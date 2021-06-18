@@ -21,7 +21,7 @@ stages:
   - deploy
 
 buildStep:
-  image: maven:3-jdk-16
+  image: maven:3-jdk-11
   stage: build
   tags:
     - dalfcs_docker_kvm
@@ -32,7 +32,7 @@ buildStep:
     mvn clean install
 
 testStep:
-  image: maven:3-jdk-16
+  image: maven:3-jdk-11
   stage: test
   tags:
     - dalfcs_docker_kvm
