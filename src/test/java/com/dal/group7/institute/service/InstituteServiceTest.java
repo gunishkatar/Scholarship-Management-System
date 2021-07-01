@@ -1,4 +1,4 @@
-package com.dal.group7.institute;
+package com.dal.group7.institute.service;
 
 import org.junit.jupiter.api.Test;
 
@@ -6,7 +6,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class InstituteServiceTest {
 
-    public  String InstituteName = "NIT";
+    private String InstituteName = "NIT";
 
     @Test
     void setNameTest() {
@@ -23,4 +23,5 @@ class InstituteServiceTest {
 
         assertTrue(institute.getName().compareTo("NIT") == 0, "Failed to get Institute name");
     }
+
 }
