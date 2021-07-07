@@ -1,0 +1,16 @@
+{
+  "form_name": "STUDENT SIGN UP",
+  "first_name": "",
+  "last_name": "",
+  "email_id": "student@dal.ca",
+  "phone_number": "",
+  "passport_number": "",
+  "password": "",
+  "re_confirm_password": "",
+  "dob": "yyyy-mm-dd hh:mm:ss",
+  "gender": "female|male|non binary",
+  "state": "",
+  "city": "",
+  "country": "",
+  "pincode": ""
+}
