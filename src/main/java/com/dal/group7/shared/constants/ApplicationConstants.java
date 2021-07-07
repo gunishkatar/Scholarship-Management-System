@@ -7,4 +7,7 @@ public class ApplicationConstants {
     public static final String DB_PASSWORD = "db.password";
     public static final String JOIN_USER = "?user=";
     public static final String JOIN_PASSWORD = "&password=";
+
+    private ApplicationConstants() {
+    }
 }
