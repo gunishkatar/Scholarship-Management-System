@@ -1,6 +1,6 @@
 package com.dal.group7;
 
-import com.dal.group7.shared.view.UserView;
+import com.dal.group7.view.implementations.UserView;
 
 public class Application {
     void init() {
