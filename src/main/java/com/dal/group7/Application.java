@@ -1,7 +1,15 @@
 package com.dal.group7;
 
+import com.dal.group7.shared.view.UserView;
+
 public class Application {
+    void init() {
+        UserView uv = new UserView();
+        uv.options();
+    }
+
     public static void main(String[] args) {
-        System.out.println("Hello Student!");
+        
+        new Application().init();
     }
 }
