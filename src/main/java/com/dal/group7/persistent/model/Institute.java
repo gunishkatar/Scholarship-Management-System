@@ -4,8 +4,8 @@ package com.dal.group7.persistent.model;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import static com.dal.group7.constants.InstituteConstants.ID;
-import static com.dal.group7.constants.InstituteConstants.NAME;
+import static com.dal.group7.constants.FieldConstants.ID;
+import static com.dal.group7.constants.FieldConstants.NAME;
 
 public class Institute {
     private Integer id;

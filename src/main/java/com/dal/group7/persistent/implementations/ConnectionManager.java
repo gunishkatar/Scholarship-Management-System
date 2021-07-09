@@ -7,13 +7,12 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class ConnectionManager {
-    private final ApplicationConfiguration applicationConfiguration;
+    private static final ApplicationConfiguration applicationConfiguration = new ApplicationConfiguration();
 
-    public ConnectionManager(ApplicationConfiguration applicationConfiguration) {
-        this.applicationConfiguration = applicationConfiguration;
+    public static Connection getConnection() throws SQLException {
+            return DriverManager.getConnection(applicationConfiguration.getDbUrl());
     }
 
-    public Connection getConnection() throws SQLException {
-            return DriverManager.getConnection(applicationConfiguration.getDbUrl());
+    private ConnectionManager() {
     }
 }

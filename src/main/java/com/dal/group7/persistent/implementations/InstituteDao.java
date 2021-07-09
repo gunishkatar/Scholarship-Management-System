@@ -1,5 +1,6 @@
 package com.dal.group7.persistent.implementations;
 
+import com.dal.group7.constants.SQLConstants;
 import com.dal.group7.persistent.interfaces.Dao;
 import com.dal.group7.persistent.model.Institute;
 
@@ -9,11 +10,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-import static com.dal.group7.constants.InstituteConstants.PARAMETER_INDEX_ID;
-import static com.dal.group7.constants.InstituteSQLConstants.SELECT_ALL_QUERY;
-import static com.dal.group7.constants.InstituteSQLConstants.SELECT_BY_ID_QUERY;
+import static com.dal.group7.constants.FieldConstants.PARAMETER_INDEX_ID;
+import static com.dal.group7.constants.SQLConstants.getSelectAllQuery;
+import static com.dal.group7.constants.SQLConstants.getSelectByIdQuery;
 
 public class InstituteDao extends Dao<Integer, Institute> {
+    private static final String INSTITUTE = "INSTITUTE";
     private final ConnectionManager connectionManager;
 
     public InstituteDao(ConnectionManager connectionManager) {
@@ -23,7 +25,7 @@ public class InstituteDao extends Dao<Integer, Institute> {
 
     public Optional<Institute> get(Integer id) throws SQLException {
         try(var connection = connectionManager.getConnection();
-            PreparedStatement preparedStatement = connection.prepareStatement(SELECT_BY_ID_QUERY)) {
+            PreparedStatement preparedStatement = connection.prepareStatement(getSelectByIdQuery(INSTITUTE))) {
             preparedStatement.setInt(PARAMETER_INDEX_ID, id);
             final var resultSet = preparedStatement.executeQuery();
             return resultSet.next() ? Optional.of(new Institute().from(resultSet)) : Optional.empty();
@@ -33,7 +35,7 @@ public class InstituteDao extends Dao<Integer, Institute> {
 
     public List<Institute> getAll() throws SQLException {
         try(var connection = connectionManager.getConnection();
-            PreparedStatement preparedStatement = connection.prepareStatement(SELECT_ALL_QUERY)) {
+            PreparedStatement preparedStatement = connection.prepareStatement(getSelectAllQuery(INSTITUTE))) {
             final var resultSet = preparedStatement.executeQuery();
             List<Institute> institutes = new ArrayList<>();
             while (resultSet.next()) {
