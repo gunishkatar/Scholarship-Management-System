@@ -1,8 +1,12 @@
 package com.dal.group7.persistent.implementations;
 
 import com.dal.group7.persistent.model.Institute;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
 import org.mockito.Mockito;
+import org.mockito.MockitoAnnotations;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -22,11 +26,26 @@ class InstituteDaoTest {
     private static final int ID = 1;
     private static final int ID_2 = 2;
     private static final String INSTITUTE_NAME_2 = "Institute2";
-    private final ConnectionManager connectionManagerMock = Mockito.mock(ConnectionManager.class);
-    private final Connection connection = Mockito.mock(Connection.class);
-    private final PreparedStatement preparedStatement = Mockito.mock(PreparedStatement.class);
-    private final ResultSet resultSet = Mockito.mock(ResultSet.class);
-    private final InstituteDao instituteDao = new InstituteDao(connectionManagerMock);
+
+    @Mock
+    private ConnectionManager connectionManager;
+
+    @Mock
+    private Connection connection;
+
+    @Mock
+    private PreparedStatement preparedStatement;
+
+    @Mock
+    private ResultSet resultSet;
+
+    @InjectMocks
+    private InstituteDao instituteDao;
+
+    @BeforeEach
+    void setUp() {
+        MockitoAnnotations.openMocks(this);
+    }
 
     @Test
     void get_returnInstitute_whenIdIsPresent() throws SQLException {
@@ -80,7 +99,7 @@ class InstituteDaoTest {
     }
 
     private void setUpMock() throws SQLException {
-        Mockito.when(connectionManagerMock.getConnection()).thenReturn(connection);
+        Mockito.when(connectionManager.getConnection()).thenReturn(connection);
         Mockito.when(connection.prepareStatement(any())).thenReturn(preparedStatement);
         Mockito.when(preparedStatement.executeQuery()).thenReturn(resultSet);
     }

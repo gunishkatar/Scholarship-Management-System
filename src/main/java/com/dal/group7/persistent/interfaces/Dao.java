@@ -15,4 +15,7 @@ public abstract class Dao<K, T> {
     List<T> getAll() throws SQLException {
         return emptyList();
     }
+
+    void insertOne(T t) throws SQLException {
+    }
 }
