@@ -8,13 +8,15 @@ import java.sql.SQLException;
 
 public class MinistryService {
     private final ScholarshipDao scholarshipDao;
+    private final JsonFileReader jsonFileReader;
 
-    public MinistryService(ScholarshipDao scholarshipDao) {
+    public MinistryService(ScholarshipDao scholarshipDao, JsonFileReader jsonFileReader) {
         this.scholarshipDao = scholarshipDao;
+        this.jsonFileReader= jsonFileReader;
     }
 
     public void saveScholarship(String filePath) throws SQLException {
-        final JSONObject jsonObject = JsonFileReader.readJson(filePath);
+        final JSONObject jsonObject = jsonFileReader.readJson(filePath);
         Scholarship scholarship = new Scholarship().from(jsonObject);
         scholarshipDao.insertOne(scholarship);
     }

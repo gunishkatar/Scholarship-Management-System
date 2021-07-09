@@ -10,7 +10,7 @@ import static com.dal.group7.constants.SQLConstants.insertIntoTableAllFields;
 public class ScholarshipDao extends Dao<Integer, Scholarship> {
 
     private static final String SCHOLARSHIP = "SCHOLARSHIP";
-    private ConnectionManager connectionManager;
+    private final ConnectionManager connectionManager;
 
     public ScholarshipDao(ConnectionManager connectionManager) {
         this.connectionManager = connectionManager;

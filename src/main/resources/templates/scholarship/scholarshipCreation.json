@@ -3,7 +3,7 @@
   "scholarship_name": "",
   "effective_date": "yyyy-mm-dd hh:mm:ss",
   "scholarship_amount": "amount in INR",
-  "scholarship_criteria_girl_child": "yes/no",
-  "scholarship_criteria_sports": "yes/no",
-  "scholarship_criteria_academics": ""
+  "scholarship_criteria_girl_child": "true or false",
+  "scholarship_criteria_sports": "true or false",
+  "scholarship_criteria_academics": "true or false"
 }

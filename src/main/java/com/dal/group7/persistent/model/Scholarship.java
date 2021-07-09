@@ -4,6 +4,7 @@ package com.dal.group7.persistent.model;
 import org.json.JSONObject;
 
 import java.sql.Date;
+import java.util.Objects;
 import java.util.Random;
 
 public class Scholarship {
@@ -66,5 +67,18 @@ public class Scholarship {
         this.criteriaSports = jsonObject.getBoolean("scholarship_criteria_sports");
         this.criteriaAcademics = jsonObject.getBoolean("scholarship_criteria_academics");
         return this;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Scholarship that = (Scholarship) o;
+        return Objects.equals(scholarShipName, that.scholarShipName) && Objects.equals(effectiveDate, that.effectiveDate) && Objects.equals(scholarshipAmount, that.scholarshipAmount) && Objects.equals(criteriaGirlChild, that.criteriaGirlChild) && Objects.equals(criteriaSports, that.criteriaSports) && Objects.equals(criteriaAcademics, that.criteriaAcademics);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(scholarShipName, effectiveDate, scholarshipAmount, criteriaGirlChild, criteriaSports, criteriaAcademics);
     }
 }

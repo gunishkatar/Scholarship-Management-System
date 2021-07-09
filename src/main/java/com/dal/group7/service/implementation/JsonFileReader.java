@@ -11,10 +11,8 @@ import java.util.stream.Collectors;
 public class JsonFileReader {
 
     private static final String DELIMITER = "\n";
-    private JsonFileReader() {
-    }
 
-    public static JSONObject readJson(String path)  {
+    public JSONObject readJson(String path)  {
         try(var bufferedReader = new BufferedReader(new FileReader(path))) {
             final String content = bufferedReader.lines().collect(Collectors.joining(DELIMITER));
             return new JSONObject(content);
