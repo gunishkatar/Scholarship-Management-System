@@ -9,10 +9,7 @@ import java.sql.SQLException;
 public class ConnectionManager {
     private static final ApplicationConfiguration applicationConfiguration = new ApplicationConfiguration();
 
-    public static Connection getConnection() throws SQLException {
+    public Connection getConnection() throws SQLException {
             return DriverManager.getConnection(applicationConfiguration.getDbUrl());
-    }
-
-    private ConnectionManager() {
     }
 }
