@@ -13,14 +13,14 @@ import static com.dal.group7.constants.InstituteConstants.PARAMETER_INDEX_ID;
 import static com.dal.group7.constants.InstituteSQLConstants.SELECT_ALL_QUERY;
 import static com.dal.group7.constants.InstituteSQLConstants.SELECT_BY_ID_QUERY;
 
-public class InstituteDao implements Dao<Integer, Institute> {
+public class InstituteDao extends Dao<Integer, Institute> {
     private final ConnectionManager connectionManager;
 
     public InstituteDao(ConnectionManager connectionManager) {
         this.connectionManager = connectionManager;
     }
 
-    @Override
+
     public Optional<Institute> get(Integer id) throws SQLException {
         try(var connection = connectionManager.getConnection();
             PreparedStatement preparedStatement = connection.prepareStatement(SELECT_BY_ID_QUERY)) {
@@ -30,7 +30,7 @@ public class InstituteDao implements Dao<Integer, Institute> {
         }
     }
 
-    @Override
+
     public List<Institute> getAll() throws SQLException {
         try(var connection = connectionManager.getConnection();
             PreparedStatement preparedStatement = connection.prepareStatement(SELECT_ALL_QUERY)) {

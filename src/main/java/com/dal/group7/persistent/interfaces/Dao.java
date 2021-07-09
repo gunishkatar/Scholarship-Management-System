@@ -4,9 +4,15 @@ import java.sql.SQLException;
 import java.util.List;
 import java.util.Optional;
 
-public interface Dao<K, T> {
+import static java.util.Collections.emptyList;
 
-    Optional<T> get(K id) throws SQLException;
+public abstract class Dao<K, T> {
 
-    List<T> getAll() throws SQLException;
+    Optional<T> get(K id) throws SQLException {
+        return Optional.empty();
+    }
+
+    List<T> getAll() throws SQLException {
+        return emptyList();
+    }
 }
