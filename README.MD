@@ -8,4 +8,6 @@
     <li> SM5308-63 : Project Layer Re-Config, Author - Rahul Kodumuru</li>
     <li> SM5308-60 : Encryption DB Table Creation, Author - Venkata Sai Kiran</li>
     <li> SM5308-11 : Student Tables Stored Proc, Author - Rahul Kodumuru</li>
+    <li> SM5308-62 : Refactoring DAO, Author - Amrita Krishna</li>
+    <li> SM5308-62-new : Scholarship creation, Author - Amrita Krishna</li>
 </ol>
