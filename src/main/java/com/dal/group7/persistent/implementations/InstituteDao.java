@@ -1,10 +1,8 @@
 package com.dal.group7.persistent.implementations;
 
-import com.dal.group7.constants.SQLConstants;
 import com.dal.group7.persistent.interfaces.Dao;
 import com.dal.group7.persistent.model.Institute;
 
-import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
@@ -25,7 +23,7 @@ public class InstituteDao extends Dao<Integer, Institute> {
 
     public Optional<Institute> get(Integer id) throws SQLException {
         try(var connection = connectionManager.getConnection();
-            PreparedStatement preparedStatement = connection.prepareStatement(getSelectByIdQuery(INSTITUTE))) {
+            var preparedStatement = connection.prepareStatement(getSelectByIdQuery(INSTITUTE))) {
             preparedStatement.setInt(PARAMETER_INDEX_ID, id);
             final var resultSet = preparedStatement.executeQuery();
             return resultSet.next() ? Optional.of(new Institute().from(resultSet)) : Optional.empty();
@@ -35,7 +33,7 @@ public class InstituteDao extends Dao<Integer, Institute> {
 
     public List<Institute> getAll() throws SQLException {
         try(var connection = connectionManager.getConnection();
-            PreparedStatement preparedStatement = connection.prepareStatement(getSelectAllQuery(INSTITUTE))) {
+            var preparedStatement = connection.prepareStatement(getSelectAllQuery(INSTITUTE))) {
             final var resultSet = preparedStatement.executeQuery();
             List<Institute> institutes = new ArrayList<>();
             while (resultSet.next()) {
