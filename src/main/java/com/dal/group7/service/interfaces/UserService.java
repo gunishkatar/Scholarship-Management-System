@@ -11,7 +11,7 @@ package com.dal.group7.service.interfaces;
  */
 public interface UserService {
 
-    void signup();
+    void signup(String filename);
 
     void login();
 

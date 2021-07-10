@@ -5,7 +5,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
-import static java.util.Collections.*;
+import static java.util.Collections.EMPTY_MAP;
+import static java.util.Collections.emptyList;
 
 public abstract class Dao<K, T> {
 
@@ -20,7 +21,10 @@ public abstract class Dao<K, T> {
     void insertOne(T t) throws SQLException {
     }
 
-    Map<K,T> getValue() throws  SQLException {
+    Map<K, T> getValue() throws SQLException {
         return EMPTY_MAP;
+    }
+
+    void getByEmail() throws SQLException {
     }
 }
