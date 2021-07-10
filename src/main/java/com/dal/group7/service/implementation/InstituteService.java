@@ -12,7 +12,7 @@ import com.dal.group7.service.interfaces.UserService;
 public class InstituteService implements UserService {
 
     @Override
-    public void signup() {
+    public void signup(String filename) {
 
     }
 

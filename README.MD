@@ -12,4 +12,6 @@
     <li> SM5308-62-new : Scholarship creation, Author - Amrita Krishna</li>
     <li> SM5308-10 : Store Encrypted Password to DB, Author - Venkata Saikiran</li>
     <li> SM5308-27 : Creation of Custom Encryption logic, Author - Venkata Saikiran</li>
+    <li> SM5308-12 : Created Student sign up template, Author - Rahul Kodumuru</li>
+    <li> SM5308-65 : Adding a new student to database, Author - Rahul Kodumuru</li>
 </ol>

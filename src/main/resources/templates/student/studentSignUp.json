@@ -1,5 +1,4 @@
 {
-  "form_name": "STUDENT SIGN UP",
   "first_name": "",
   "last_name": "",
   "email_id": "student@dal.ca",
@@ -12,5 +11,11 @@
   "state": "",
   "city": "",
   "country": "",
-  "pincode": ""
+  "pincode": "",
+  "security_question_one": "What is your favorite sports team?",
+  "security_answer_one": "",
+  "security_question_two": "What is your favorite dish?",
+  "security_answer_two": "",
+  "security_question_three": "Name your all time favorite actor?",
+  "security_answer_three": ""
 }

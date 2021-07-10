@@ -4,7 +4,7 @@ delimiter |
 CREATE PROCEDURE SP_CREATE_STUDENT_TABLES()
 BEGIN
 
-    -- student Basic
+    -- Student Basic
     DROP TABLE IF EXISTS `CSCI5308_7_DEVINT`.`student_basic`;
 
     CREATE TABLE IF NOT EXISTS `CSCI5308_7_DEVINT`.`student_basic`
@@ -15,19 +15,17 @@ BEGIN
         `email_id`        VARCHAR(255)                          NOT NULL,
         `phone_number`    VARCHAR(45)                           NOT NULL,
         `passport_number` VARCHAR(45)                           NOT NULL,
-        `password`        VARCHAR(255)                          NOT NULL,
         `dob`             DATETIME                              NOT NULL,
         `gender`          ENUM ('female', 'male', 'non binary') NOT NULL,
         `state`           VARCHAR(45)                           NOT NULL,
         `city`            VARCHAR(45)                           NOT NULL,
         `pincode`         VARCHAR(45)                           NOT NULL,
         `country`         VARCHAR(45)                           NOT NULL,
-        `is_blackListed`  ENUM ('yes', 'no')                    NOT NULL DEFAULT 'no',
         PRIMARY KEY (`student_id`)
     ) ENGINE = INNODB
       DEFAULT CHARACTER SET = UTF8MB3;
 
-    -- student Academic
+    -- Student Academic
     DROP TABLE IF EXISTS `CSCI5308_7_DEVINT`.`student_academic`;
 
     CREATE TABLE IF NOT EXISTS `CSCI5308_7_DEVINT`.`student_academic`
