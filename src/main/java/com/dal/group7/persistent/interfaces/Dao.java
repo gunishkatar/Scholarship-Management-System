@@ -2,9 +2,10 @@ package com.dal.group7.persistent.interfaces;
 
 import java.sql.SQLException;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
-import static java.util.Collections.emptyList;
+import static java.util.Collections.*;
 
 public abstract class Dao<K, T> {
 
@@ -17,5 +18,9 @@ public abstract class Dao<K, T> {
     }
 
     void insertOne(T t) throws SQLException {
+    }
+
+    Map<K,T> getValue() throws  SQLException {
+        return EMPTY_MAP;
     }
 }
