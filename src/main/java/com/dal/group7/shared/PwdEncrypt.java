@@ -24,15 +24,15 @@ public class PwdEncrypt {
     }
 
     public String getStringHash(String inputPwd, HashMap<String, String> hmap) {
-        String encryptedPwd = "";
-        String[] encryptedPwdArr = inputPwd.split("");
+        String hashPwd = "";
+        String[] hashPwdArr = inputPwd.split("");
         for (int i = 0; i < inputPwd.length(); i++) {
-            if(hmap.containsKey(encryptedPwdArr[i])) {
-                encryptedPwd += hmap.get(encryptedPwdArr[i]);
+            if(hmap.containsKey(hashPwdArr[i])) {
+                hashPwd += hmap.get(hashPwdArr[i]);
             } else {
-                encryptedPwd+= encryptedPwdArr[i];
+                hashPwd+= hashPwdArr[i];
             }
         }
-        return encryptedPwd;
+        return hashPwd;
     }
 }

@@ -80,7 +80,7 @@ class PwdEncryptDaoTest {
             }
         };
         assertFalse(encMap.isEmpty());
-        assertFalse(expectedMap.get("a").equals(encMap.get("a")));
+        assertFalse(expectedMap.get(INPUT_STRING).equals(encMap.get(HASH_STRING)));
     }
 
     private void setUpMock() throws SQLException {
