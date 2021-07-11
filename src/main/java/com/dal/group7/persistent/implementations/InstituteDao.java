@@ -10,8 +10,7 @@ import java.util.List;
 import java.util.Optional;
 
 import static com.dal.group7.constants.FieldConstants.PARAMETER_INDEX_ID;
-import static com.dal.group7.constants.SQLConstants.getSelectAllQuery;
-import static com.dal.group7.constants.SQLConstants.getSelectByIdQuery;
+import static com.dal.group7.constants.SQLConstants.*;
 
 public class InstituteDao extends Dao<Integer, Institute> {
 
@@ -22,9 +21,11 @@ public class InstituteDao extends Dao<Integer, Institute> {
         this.connectionManager = connectionManager;
     }
 
+
     public void insertOne(Institute institute) throws SQLException{
         try (var connection = connectionManager.getConnection();
-             var preparedStatement = connection.prepareStatement(SQLConstants.getInsertNewInstitute())){
+             //var preparedStatement = connection.prepareStatement(SQLConstants.getInsertNewInstitute())){
+            var preparedStatement = connection.prepareStatement(insertIntoTableAllFields(INSTITUTE, 10))) {
             preparedStatement.setInt(1, institute.getId());
             preparedStatement.setString(2, institute.getName());
             preparedStatement.setString(3, institute.getEmailId());

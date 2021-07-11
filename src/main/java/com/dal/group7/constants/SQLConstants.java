@@ -18,6 +18,7 @@ public class SQLConstants {
             "address, state, city, country, pinCode)" +
             "VALUES(?,?,?,?,?,?,?,?,?)";
 
+
     private SQLConstants() {
     }
 
