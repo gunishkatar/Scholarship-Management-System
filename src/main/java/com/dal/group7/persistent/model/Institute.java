@@ -1,8 +1,11 @@
 package com.dal.group7.persistent.model;
 
 
+import org.json.JSONObject;
+
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Random;
 
 import static com.dal.group7.constants.FieldConstants.ID;
 import static com.dal.group7.constants.FieldConstants.NAME;
@@ -81,5 +84,18 @@ public class Institute {
 
     public Integer getPinCode() {
         return pinCode;
+    }
+    public Institute from(JSONObject jsonObject) {
+        this.id = new Random().nextInt();
+        this.name= jsonObject.getString("institute_name");
+        this.emailId = jsonObject.getString("institute_email_id");
+        this.registrationCode = jsonObject.getInt("institute_registration_code");
+        this.phoneNumber = jsonObject.getInt("institute_phone_number");
+        this.address = jsonObject.getString("institute_address");
+        this.state = jsonObject.getString("institute_state");
+        this.city = jsonObject.getString("institute_city");
+        this.country = jsonObject.getString("institute_country");
+        this.pinCode = jsonObject.getInt("institute_pinCode");
+        return this;
     }
 }
