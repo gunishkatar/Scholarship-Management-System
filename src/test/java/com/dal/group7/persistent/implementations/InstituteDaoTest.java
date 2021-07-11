@@ -21,5 +21,50 @@ import static org.mockito.ArgumentMatchers.any;
 
 class InstituteDaoTest {
 
+    private static final Institute INSTITUTE = new Institute(1,"name","dal.ca",5000,
+            1111,"LakeLouise","NovaScotia","Halifax","Canada",1234);
 
+    @Mock
+    private ConnectionManager connectionManager;
+
+    @Mock
+    private Connection connection;
+
+    @Mock
+    private PreparedStatement preparedStatement;
+
+    @Mock
+    private ResultSet resultSet;
+
+    @InjectMocks
+    private InstituteDao instituteDao;
+
+    @BeforeEach
+    void setUp() {
+        MockitoAnnotations.openMocks(this);
+    }
+
+    @Test
+    void get_returnInstitute_whenIdIsPresent() throws SQLException {
+        setUpMock();
+        instituteDao.insertOne(INSTITUTE);
+        Mockito.verify(preparedStatement).executeUpdate();
+        Mockito.when(resultSet.next()).thenReturn(true);
+
+    }
+    @Test
+    void getAll_returnEmptyList_whenInstitutesAreNotPresent() throws SQLException {
+        setUpMock();
+        Mockito.when(resultSet.next()).thenReturn(false);
+
+        final List<Institute> institutes = instituteDao.getAll();
+
+        assertTrue(institutes.isEmpty());
+    }
+
+    private void setUpMock() throws SQLException {
+        Mockito.when(connectionManager.getConnection()).thenReturn(connection);
+        Mockito.when(connection.prepareStatement(any())).thenReturn(preparedStatement);
+        Mockito.when(preparedStatement.executeQuery()).thenReturn(resultSet);
+    }
 }
