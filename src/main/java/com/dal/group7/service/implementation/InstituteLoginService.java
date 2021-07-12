@@ -42,15 +42,24 @@ public class InstituteLoginService {
 
     public void credentialFromUser(){
         Scanner scn  =new Scanner(System.in);
-        System.out.println();
+        System.out.println("Enter the valid User ID:\n");
         setUserId(scn.nextLine());
-        System.out.println();
+        System.out.println("Enter the valid Password:\n");
         setPassword(scn.nextLine());
     }
 
-    public void getStoredCredential() throws SQLException {
+    public void encryptedPassword(){
+        setPassword(passwordClass.getEncryptedPwd(getPassword()));
+    }
+
+    public boolean getStoredCredential() throws SQLException {
         userCredentialDao = new UserCredentialDao(connectionManager);
-        userCredential = userCredentialDao.get(getUserId());
+        if(userCredentialDao.doesUserExist(getUserId())){
+            userCredential = userCredentialDao.get(getUserId());
+            return true;
+        }
+        return false;
+
     }
 
     public boolean areCredentialsvalid(){
@@ -60,16 +69,17 @@ public class InstituteLoginService {
         return false;
     }
 
-    public void encryptedPassword(){
-        setPassword(passwordClass.getEncryptedPwd(getPassword()));
-    }
+
 
 
     public boolean instituteLogin() throws SQLException {
         credentialFromUser();
         encryptedPassword();
-        getStoredCredential();
-        return areCredentialsvalid();
+        if(getStoredCredential()){
+            return areCredentialsvalid();
+        }
+
+        return false;
 
     }
 
