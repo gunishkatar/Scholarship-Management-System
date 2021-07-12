@@ -1,6 +1,8 @@
 package com.dal.group7.service.interfaces;
 
 
+import java.sql.SQLException;
+
 /**
  * <h1>UserService Interface</h1>
  * The UserService Interface contains abstract methods that a user needs to implement
@@ -11,7 +13,7 @@ package com.dal.group7.service.interfaces;
  */
 public interface UserService {
 
-    void signup(String filename);
+    void signup(String filename) throws SQLException;
 
     void login();
 
