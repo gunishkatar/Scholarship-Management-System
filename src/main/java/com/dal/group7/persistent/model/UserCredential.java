@@ -14,14 +14,14 @@ public class UserCredential {
     private String securityAnswerOne;
     private String securityAnswerTwo;
     private String securityAnswerThree;
-    private Integer failedLoginCount;
+    private String failedLoginCount;
     private String roleType;
     private String isBlackListed;
 
     public UserCredential() {
     }
 
-    public UserCredential(String userId, String password, String isHardBlock, String isSoftBlock, String lastLogin, String securityId, String securityAnswerOne, String securityAnswerTwo, String securityAnswerThree, Integer failedLoginCount, String roleType, String isBlackListed) {
+    public UserCredential(String userId, String password, String isHardBlock, String isSoftBlock, String lastLogin, String securityId, String securityAnswerOne, String securityAnswerTwo, String securityAnswerThree, String failedLoginCount, String roleType, String isBlackListed) {
         this.userId = userId;
         this.password = password;
         this.isHardBlock = isHardBlock;
@@ -72,7 +72,7 @@ public class UserCredential {
         return securityAnswerThree;
     }
 
-    public Integer getFailedLoginCount() {
+    public String getFailedLoginCount() {
         return failedLoginCount;
     }
 
@@ -94,7 +94,7 @@ public class UserCredential {
         this.securityAnswerOne = resultSet.getString("security_answer_one");
         this.securityAnswerTwo = resultSet.getString("security_answer_two");
         this.securityAnswerThree = resultSet.getString("security_answer_three");
-        this.failedLoginCount = resultSet.getInt("failed_login_count");
+        this.failedLoginCount = resultSet.getString("failed_login_count");
         this.roleType = resultSet.getString("role_type");
         this.isBlackListed = resultSet.getString("is_blackListed");
         return this;
