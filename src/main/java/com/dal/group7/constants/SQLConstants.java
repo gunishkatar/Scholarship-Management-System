@@ -14,6 +14,10 @@ public class SQLConstants {
             "security_id, security_answer_one, security_answer_two, security_answer_three, " +
             "role_type) " +
             "VALUES (?, ?, ?, ?, ?, ?, ?);";
+    private static final String INSERT_NEW_INSTITUTE = "INSERT INTO institute_basic (institute_name, email_id, registration_code, phone_number," +
+            "address, state, city, country, pinCode)" +
+            "VALUES(?,?,?,?,?,?,?,?,?)";
+
 
     private SQLConstants() {
     }
@@ -38,6 +42,7 @@ public class SQLConstants {
     public static String getInsertNewStudent() {
         return INSERT_NEW_STUDENT;
     }
+
 
     public static String getInsertNewUser() {
         return INSERT_NEW_USER;
