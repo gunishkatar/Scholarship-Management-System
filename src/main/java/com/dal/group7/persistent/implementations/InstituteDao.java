@@ -1,6 +1,4 @@
 package com.dal.group7.persistent.implementations;
-
-import com.dal.group7.constants.SQLConstants;
 import com.dal.group7.persistent.interfaces.Dao;
 import com.dal.group7.persistent.model.Institute;
 
@@ -22,6 +20,7 @@ public class InstituteDao extends Dao<Integer, Institute> {
     }
 
 
+
     public void insertOne(Institute institute) throws SQLException{
         try (var connection = connectionManager.getConnection();
              //var preparedStatement = connection.prepareStatement(SQLConstants.getInsertNewInstitute())){
@@ -39,8 +38,6 @@ public class InstituteDao extends Dao<Integer, Institute> {
             preparedStatement.executeUpdate();
         }
     }
-
-
 
     public Optional<Institute> get(Integer id) throws SQLException {
         try(var connection = connectionManager.getConnection();

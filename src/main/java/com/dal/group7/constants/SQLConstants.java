@@ -43,9 +43,6 @@ public class SQLConstants {
         return INSERT_NEW_STUDENT;
     }
 
-    public static String getInsertNewInstitute(){
-        return INSERT_NEW_INSTITUTE;
-    }
 
     public static String getInsertNewUser() {
         return INSERT_NEW_USER;
