@@ -10,21 +10,21 @@ import static java.util.Collections.emptyList;
 
 public abstract class Dao<K, T> {
 
-    Optional<T> get(K id) throws SQLException {
+    public Optional<T> get(K id) throws SQLException {
         return Optional.empty();
     }
 
-    List<T> getAll() throws SQLException {
+    public List<T> getAll() throws SQLException {
         return emptyList();
     }
 
-    void insertOne(T t) throws SQLException {
+    public void insertOne(T t) throws SQLException {
     }
 
-    Map<K, T> getValue() throws SQLException {
+    public Map<K, T> getValue() throws SQLException {
         return EMPTY_MAP;
     }
 
-    void getByEmail() throws SQLException {
+    public void getByEmail() throws SQLException {
     }
 }

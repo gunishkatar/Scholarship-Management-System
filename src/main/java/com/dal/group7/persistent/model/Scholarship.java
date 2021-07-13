@@ -4,8 +4,12 @@ package com.dal.group7.persistent.model;
 import org.json.JSONObject;
 
 import java.sql.Date;
+import java.util.List;
 import java.util.Objects;
 import java.util.Random;
+
+import static java.util.Arrays.stream;
+import static java.util.stream.Collectors.toList;
 
 public class Scholarship {
     private Integer id;
@@ -69,16 +73,32 @@ public class Scholarship {
         return this;
     }
 
+    public List<Object> getFieldValues() {
+        return stream(this.getClass().getDeclaredFields()).map(field -> {
+            try {
+                return field.get(this);
+            } catch (IllegalAccessException e) {
+                throw new RuntimeException(e);
+            }
+        }).collect(toList());
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Scholarship that = (Scholarship) o;
-        return Objects.equals(scholarShipName, that.scholarShipName) && Objects.equals(effectiveDate, that.effectiveDate) && Objects.equals(scholarshipAmount, that.scholarshipAmount) && Objects.equals(criteriaGirlChild, that.criteriaGirlChild) && Objects.equals(criteriaSports, that.criteriaSports) && Objects.equals(criteriaAcademics, that.criteriaAcademics);
+        return Objects.equals(scholarShipName, that.scholarShipName) &&
+                Objects.equals(effectiveDate, that.effectiveDate) &&
+                Objects.equals(scholarshipAmount, that.scholarshipAmount) &&
+                Objects.equals(criteriaGirlChild, that.criteriaGirlChild) &&
+                Objects.equals(criteriaSports, that.criteriaSports) &&
+                Objects.equals(criteriaAcademics, that.criteriaAcademics);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(scholarShipName, effectiveDate, scholarshipAmount, criteriaGirlChild, criteriaSports, criteriaAcademics);
+        return Objects.hash(scholarShipName, effectiveDate, scholarshipAmount, criteriaGirlChild, criteriaSports,
+                criteriaAcademics);
     }
 }

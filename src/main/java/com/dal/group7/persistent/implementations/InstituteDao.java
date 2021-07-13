@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-import static com.dal.group7.constants.FieldConstants.PARAMETER_INDEX_ID;
+import static com.dal.group7.constants.FieldConstants.ONE;
 import static com.dal.group7.constants.SQLConstants.*;
 
 public class InstituteDao extends Dao<Integer, Institute> {
@@ -42,7 +42,7 @@ public class InstituteDao extends Dao<Integer, Institute> {
     public Optional<Institute> get(Integer id) throws SQLException {
         try(var connection = connectionManager.getConnection();
             var preparedStatement = connection.prepareStatement(getSelectByIdQuery(INSTITUTE))) {
-            preparedStatement.setInt(PARAMETER_INDEX_ID, id);
+            preparedStatement.setInt(ONE, id);
             final var resultSet = preparedStatement.executeQuery();
             return resultSet.next() ? Optional.of(new Institute().from(resultSet)) : Optional.empty();
         }
