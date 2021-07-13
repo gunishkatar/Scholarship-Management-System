@@ -2,6 +2,7 @@ package com.dal.group7.service.implementation;
 
 import com.dal.group7.persistent.implementations.ConnectionManager;
 import com.dal.group7.persistent.implementations.InstituteDao;
+import com.dal.group7.persistent.implementations.PwdEncryptDao;
 import com.dal.group7.persistent.model.Institute;
 import com.dal.group7.service.interfaces.UserService;
 import com.dal.group7.shared.PwdEncrypt;
@@ -15,11 +16,12 @@ public class InstituteService implements UserService {
     private PwdEncrypt passwordClass;
     private ConnectionManager connectionManager;
 
-    public InstituteService(JsonFileReader jsonFileReader, InstituteDao instituteDao, PwdEncrypt passwordClass, ConnectionManager connectionManager) {
-        this.jsonFileReader = jsonFileReader;
-        this.instituteDao = instituteDao;
-        this.passwordClass = passwordClass;
-        this.connectionManager = connectionManager;
+    public InstituteService() {
+        this.jsonFileReader = new JsonFileReader();
+        this.connectionManager = new ConnectionManager();
+        this.instituteDao = new InstituteDao(connectionManager);
+        this.passwordClass = new PwdEncrypt(new PwdEncryptDao(connectionManager));
+
     }
 
     public boolean isValid(Institute institute){
