@@ -15,7 +15,7 @@ public interface UserService {
 
     void signup(String filename) throws SQLException;
 
-    void login();
+    void login() throws SQLException;
 
     void logout();
 }
