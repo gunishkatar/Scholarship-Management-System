@@ -18,10 +18,10 @@ public class HomeCommand extends Command {
     public void setNextCommand() {
         switch (input) {
             case 1:
-                nextCommand = SELECT_LOGIN_USER.getCommand();
+                nextCommand = SIGN_UP.getCommand();
                 break;
             case 2:
-                nextCommand = SIGN_UP.getCommand();
+                nextCommand = SELECT_LOGIN_USER.getCommand();
                 break;
             case 3:
                 nextCommand = GUEST.getCommand();
@@ -33,9 +33,10 @@ public class HomeCommand extends Command {
 
     @Override
     public void printView() {
-        System.out.println("Welcome to Scholarship Portal!");
-        System.out.println("1. Login");
-        System.out.println("2. Sign up");
+        System.out.println("******WELCOME TO SCHOLARSHIP MANAGEMENT SYSTEM******");
+        System.out.println("1. Sign up");
+        System.out.println("2. Login");
         System.out.println("3. Guest View");
+        System.out.print(">> Please select your option: ");
     }
 }

@@ -7,7 +7,7 @@ import static com.dal.group7.view.implementations.CommandFactory.QUIT;
 public class ErrorCommand extends Command {
     @Override
     public void printView() {
-        System.out.println("Error occured while execution");
+        System.out.println("<<<< Error occurred while execution >>>>");
 
     }
 

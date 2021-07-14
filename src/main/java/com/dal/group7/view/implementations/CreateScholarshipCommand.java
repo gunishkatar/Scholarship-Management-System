@@ -21,7 +21,9 @@ public class CreateScholarshipCommand extends Command {
 
     @Override
     public void printView() {
-        System.out.println("Enter the path to the filled json: ");
+        System.out.println("Enter the details of the Scholarship using the JSON file template created " +
+                "in /var/tmp/addScholarship.json.");
+        System.out.print(">> Enter the complete path of the filled file: ");
     }
 
     @Override
@@ -29,7 +31,7 @@ public class CreateScholarshipCommand extends Command {
         String input = scanner.nextLine();
         try {
             ministryScholarshipService.saveScholarship(input);
-            System.out.println("Sucessfully created Scholarship");
+            System.out.println("<<<< Successfully Created the Scholarship. Students can avail it now. >>>>");
             this.successFul = true;
         } catch (SQLException | IOException exception) {
            this.successFul = false;

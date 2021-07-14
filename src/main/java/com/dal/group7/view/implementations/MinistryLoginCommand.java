@@ -18,9 +18,9 @@ public class MinistryLoginCommand extends Command {
 
     @Override
     public void printView() {
-        System.out.println("Enter Username: ");
+        System.out.print(">> Enter Username: ");
         this.userName = scanner.nextLine();
-        System.out.println("Enter Password: ");
+        System.out.print(">> Enter Password: ");
         this.password = scanner.nextLine();
     }
 

@@ -1,10 +1,5 @@
 package com.dal.group7.view.implementations;
 
-import com.dal.group7.persistent.implementations.ConnectionManager;
-import com.dal.group7.persistent.implementations.DaoFactory;
-import com.dal.group7.persistent.implementations.PwdEncryptDao;
-import com.dal.group7.service.implementation.MinistryLoginService;
-import com.dal.group7.shared.PwdEncrypt;
 import com.dal.group7.view.interfaces.Command;
 
 import static com.dal.group7.view.implementations.CommandFactory.QUIT;
@@ -14,10 +9,11 @@ public class SelectLoginUserCommand extends Command {
 
     @Override
     public void printView() {
-        System.out.println("Select User");
+        System.out.println("Login as: ");
         System.out.println("1. Student");
         System.out.println("2. Institute");
         System.out.println("3. Ministry");
+        System.out.print(">> Please select your option: ");
     }
 
     @Override

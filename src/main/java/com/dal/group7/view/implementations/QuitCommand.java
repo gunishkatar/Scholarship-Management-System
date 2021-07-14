@@ -12,7 +12,7 @@ public class QuitCommand extends Command {
 
     @Override
     public void printView() {
-        System.out.println("End of program");
+        System.out.println("<<<< End of program >>>>");
     }
 
     @Override
