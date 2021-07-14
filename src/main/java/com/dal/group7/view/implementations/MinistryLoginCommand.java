@@ -36,7 +36,7 @@ public class MinistryLoginCommand extends Command {
     }
 
     @Override
-    public void getNextCommand() {
+    public void setNextCommand() {
         switch (userType) {
             case "Student":
                 // create command

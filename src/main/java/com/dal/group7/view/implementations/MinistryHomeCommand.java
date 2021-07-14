@@ -27,7 +27,7 @@ public class MinistryHomeCommand extends Command {
     }
 
     @Override
-    public void getNextCommand() {
+    public void setNextCommand() {
         switch (input) {
             case 1:
                 // TODO: ADD Command

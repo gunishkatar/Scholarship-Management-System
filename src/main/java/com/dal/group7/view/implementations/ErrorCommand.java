@@ -17,7 +17,7 @@ public class ErrorCommand extends Command {
     }
 
     @Override
-    public void getNextCommand() {
+    public void setNextCommand() {
         nextCommand = new QuitCommand();
     }
 }

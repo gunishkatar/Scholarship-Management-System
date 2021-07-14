@@ -34,7 +34,7 @@ public class CreateScholarshipCommand extends Command {
     }
 
     @Override
-    public void getNextCommand() {
+    public void setNextCommand() {
         this.nextCommand = this.successFul ? new MinistryHomeCommand() : new ErrorCommand();
     }
 }

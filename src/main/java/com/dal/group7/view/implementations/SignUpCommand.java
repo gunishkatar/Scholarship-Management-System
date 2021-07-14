@@ -14,7 +14,7 @@ public class SignUpCommand extends Command {
     }
 
     @Override
-    public void getNextCommand() {
+    public void setNextCommand() {
         //TODO: ADD content
     }
 }

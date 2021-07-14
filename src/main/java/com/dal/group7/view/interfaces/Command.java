@@ -9,13 +9,13 @@ public abstract class Command {
     public void execute() {
         printView();
         handle();
-        getNextCommand();
+        setNextCommand();
         nextCommand.execute();
     }
 
     public abstract void printView();
     public abstract void handle();
-    public abstract void getNextCommand();
+    public abstract void setNextCommand();
 
 
 
