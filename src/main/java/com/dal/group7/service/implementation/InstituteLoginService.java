@@ -5,7 +5,6 @@ import com.dal.group7.persistent.implementations.UserCredentialDao;
 import com.dal.group7.persistent.model.UserCredential;
 import com.dal.group7.shared.PwdEncrypt;
 
-import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.Optional;
 import java.util.Scanner;
@@ -54,7 +53,7 @@ public class InstituteLoginService {
 
     public boolean getStoredCredential() throws SQLException {
         userCredentialDao = new UserCredentialDao(connectionManager);
-        if(userCredentialDao.doesUserExist(getUserId())){
+        if(userCredentialDao.doesExist(getUserId())){
             userCredential = userCredentialDao.get(getUserId());
             return true;
         }

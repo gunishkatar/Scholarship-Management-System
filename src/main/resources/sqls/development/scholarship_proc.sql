@@ -9,7 +9,6 @@ CREATE TABLE IF NOT EXISTS `CSCI5308_7_DEVINT`.`scholarship` (
     `name` VARCHAR(45) NOT NULL,
     `effectiveDate` date NOT NULL,
     `scholarship_amount` double NOT NULL,
-    `address` VARCHAR(45) NOT NULL,
     `criteria_girl` boolean NOT NULL,
     `criteria_academic` boolean NOT NULL,
     `criteria_sports` boolean NOT NULL,

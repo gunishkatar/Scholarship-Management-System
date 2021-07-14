@@ -19,7 +19,8 @@ import static org.mockito.ArgumentMatchers.any;
 
 class ScholarshipDaoTest {
 
-    private static final Scholarship scholarship = new Scholarship(1, "name", valueOf(now()), 500L, true, true, true);
+    private static final Scholarship scholarship = new Scholarship(1, "name", valueOf(now()),
+            500L, true, true, true);
 
 
     @Mock
@@ -43,7 +44,7 @@ class ScholarshipDaoTest {
     }
 
     @Test
-    void get_returnInstitute_whenIdIsPresent() throws SQLException {
+    void shouldInsertScholarship() throws SQLException {
         setUpMock();
         scholarshipDao.insertOne(scholarship);
 

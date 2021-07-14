@@ -17,6 +17,9 @@ public class SQLConstants {
     private static final String INSERT_NEW_INSTITUTE = "INSERT INTO institute_basic (institute_name, email_id, registration_code, phone_number," +
             "address, state, city, country, pinCode)" +
             "VALUES(?,?,?,?,?,?,?,?,?)";
+    private static final String INSERT_NEW_SCHOLARSHIP = "INSERT INTO scholarship (name, effectiveDate, scholarship_amount," +
+            " criteria_girl, criteria_academic, criteria_sports)" +
+            "VALUES(?,?,?,?,?,?)";
 
 
     private SQLConstants() {
@@ -32,6 +35,10 @@ public class SQLConstants {
 
     public static String getSelectByUserIdQuery(String table) {
         return SELECT_ALL_QUERY + table + WHERE_USER_ID;
+    }
+
+    public static String getInsertNewScholarship() {
+        return INSERT_NEW_SCHOLARSHIP;
     }
 
     public static String insertIntoTableAllFields(String table, Integer numberOfFields) {

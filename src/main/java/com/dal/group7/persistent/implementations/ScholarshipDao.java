@@ -4,30 +4,37 @@ import com.dal.group7.persistent.interfaces.Dao;
 import com.dal.group7.persistent.model.Scholarship;
 
 import java.sql.SQLException;
+import java.util.Map;
 
-import static com.dal.group7.constants.SQLConstants.insertIntoTableAllFields;
+import static com.dal.group7.constants.SQLConstants.getInsertNewScholarship;
 
 public class ScholarshipDao extends Dao<Integer, Scholarship> {
 
-    private static final String SCHOLARSHIP = "SCHOLARSHIP";
     private final ConnectionManager connectionManager;
 
     public ScholarshipDao(ConnectionManager connectionManager) {
         this.connectionManager = connectionManager;
     }
 
+    @Override
     public void insertOne(Scholarship scholarship) throws SQLException {
         try(var connection = connectionManager.getConnection();
-            var preparedStatement = connection.prepareStatement(insertIntoTableAllFields(SCHOLARSHIP, 7))) {
-            preparedStatement.setInt(1, scholarship.getId());
-            preparedStatement.setString(2, scholarship.getScholarShipName());
-            preparedStatement.setDate(3, scholarship.getEffectiveDate());
-            preparedStatement.setDouble(4, scholarship.getScholarshipAmount());
-            preparedStatement.setBoolean(5, scholarship.getCriteriaGirlChild());
-            preparedStatement.setBoolean(6, scholarship.getCriteriaAcademics());
-            preparedStatement.setBoolean(7, scholarship.getCriteriaSports());
+            var preparedStatement = connection.prepareStatement(getInsertNewScholarship())) {
+            setValuesToPreparedStatement(scholarship, preparedStatement);
             preparedStatement.executeUpdate();
         }
+    }
+
+    private void setValuesToPreparedStatement(Scholarship scholarship, java.sql.PreparedStatement preparedStatement) {
+        final Map<Integer, Object> fieldValues = scholarship.getFieldValues();
+        fieldValues.remove(0);
+        fieldValues.forEach((index, field) -> {
+                    try {
+                        preparedStatement.setObject(index, field);
+                    } catch (SQLException exception) {
+                        exception.printStackTrace();
+                    }
+                });
     }
 
 }

@@ -15,5 +15,6 @@
     <li> SM5308-12 : Created Student sign up template, Author - Rahul Kodumuru</li>
     <li> SM5308-65 : Adding a new student to database, Author - Rahul Kodumuru</li>
     <li> SM5308-21 : Created Institute sign up template, Author - Rishita Kotiyal</li>
+    <li> SM5308-67 : Created Ministry scholarship creation view, Author - Amrita Krishna</li>
 
 </ol>

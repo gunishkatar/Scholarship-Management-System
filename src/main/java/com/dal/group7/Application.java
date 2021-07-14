@@ -1,5 +1,6 @@
 package com.dal.group7;
 
+import com.dal.group7.view.implementations.HomeCommand;
 import com.dal.group7.view.implementations.UserView;
 
 public class Application {
@@ -9,7 +10,8 @@ public class Application {
     }
 
     public static void main(String[] args) {
-        
-        new Application().init();
+        final HomeCommand homeCommand = new HomeCommand();
+        homeCommand.execute();
+//        new Application().init();
     }
 }
