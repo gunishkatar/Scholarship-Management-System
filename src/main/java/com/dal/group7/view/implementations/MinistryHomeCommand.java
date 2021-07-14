@@ -7,6 +7,8 @@ import com.dal.group7.view.interfaces.Command;
 import java.util.Scanner;
 
 import static com.dal.group7.persistent.implementations.DaoFactory.SCHOLARSHIP;
+import static com.dal.group7.view.implementations.CommandFactory.CREATE_SCHOLARSHIP;
+import static com.dal.group7.view.implementations.CommandFactory.QUIT;
 
 public class MinistryHomeCommand extends Command {
     private Integer input;
@@ -33,12 +35,11 @@ public class MinistryHomeCommand extends Command {
                 // TODO: ADD Command
                 break;
             case 2:
-                nextCommand = new CreateScholarshipCommand(new MinistryScholarshipService(SCHOLARSHIP.createDao(),
-                        new JsonFileReader()));
+                nextCommand = CREATE_SCHOLARSHIP.getCommand();
                 break;
             case 3:
             default:
-                nextCommand = new QuitCommand();
+                nextCommand = QUIT.getCommand();
         }
     }
 }

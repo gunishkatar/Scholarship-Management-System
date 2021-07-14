@@ -2,7 +2,7 @@ package com.dal.group7.view.implementations;
 
 import com.dal.group7.view.interfaces.Command;
 
-import java.util.Scanner;
+import static com.dal.group7.view.implementations.CommandFactory.QUIT;
 
 public class ErrorCommand extends Command {
     @Override
@@ -18,6 +18,6 @@ public class ErrorCommand extends Command {
 
     @Override
     public void setNextCommand() {
-        nextCommand = new QuitCommand();
+        nextCommand = QUIT.getCommand();
     }
 }

@@ -7,6 +7,9 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.util.Scanner;
 
+import static com.dal.group7.view.implementations.CommandFactory.ERROR;
+import static com.dal.group7.view.implementations.CommandFactory.MINISTRY_HOME;
+
 public class CreateScholarshipCommand extends Command {
     final Scanner scanner = new Scanner(System.in);
     private final MinistryScholarshipService ministryScholarshipService;
@@ -35,6 +38,6 @@ public class CreateScholarshipCommand extends Command {
 
     @Override
     public void setNextCommand() {
-        this.nextCommand = this.successFul ? new MinistryHomeCommand() : new ErrorCommand();
+        this.nextCommand = this.successFul ? MINISTRY_HOME.getCommand() : ERROR.getCommand();
     }
 }

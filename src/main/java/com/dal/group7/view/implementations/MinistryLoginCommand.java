@@ -5,6 +5,9 @@ import com.dal.group7.view.interfaces.Command;
 
 import java.util.Scanner;
 
+import static com.dal.group7.view.implementations.CommandFactory.ERROR;
+import static com.dal.group7.view.implementations.CommandFactory.MINISTRY_HOME;
+
 public class MinistryLoginCommand extends Command {
 
     final Scanner scanner = new Scanner(System.in);
@@ -45,11 +48,11 @@ public class MinistryLoginCommand extends Command {
                 // create institute
                 break;
             case "Ministry":
-                nextCommand = new MinistryHomeCommand();
+                nextCommand = MINISTRY_HOME.getCommand();
                 break;
             case "Error":
             default:
-                nextCommand = new ErrorCommand();
+                nextCommand = ERROR.getCommand();
                 break;
         }
 

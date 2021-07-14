@@ -7,6 +7,8 @@ import com.dal.group7.service.implementation.MinistryLoginService;
 import com.dal.group7.shared.PwdEncrypt;
 import com.dal.group7.view.interfaces.Command;
 
+import static com.dal.group7.view.implementations.CommandFactory.QUIT;
+
 public class SelectLoginUserCommand extends Command {
     private Integer input;
 
@@ -33,11 +35,10 @@ public class SelectLoginUserCommand extends Command {
                 // TODO: ADD Command
                 break;
             case 3:
-                nextCommand = new MinistryLoginCommand(new MinistryLoginService(DaoFactory.USER_CREDENTIALS.createDao(),
-                        new PwdEncrypt(new PwdEncryptDao(new ConnectionManager()))));
+                nextCommand = CommandFactory.MINISTRY_LOGIN.getCommand();
                 break;
             default:
-                nextCommand = new QuitCommand();
+                nextCommand = QUIT.getCommand();
         }
     }
 }

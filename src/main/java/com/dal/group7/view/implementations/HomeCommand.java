@@ -2,6 +2,8 @@ package com.dal.group7.view.implementations;
 
 import com.dal.group7.view.interfaces.Command;
 
+import static com.dal.group7.view.implementations.CommandFactory.*;
+
 public class HomeCommand extends Command {
     private Integer input;
 
@@ -16,16 +18,16 @@ public class HomeCommand extends Command {
     public void setNextCommand() {
         switch (input) {
             case 1:
-                nextCommand = new SelectLoginUserCommand();
+                nextCommand = SELECT_LOGIN_USER.getCommand();
                 break;
             case 2:
-                nextCommand = new SignUpCommand();
+                nextCommand = SIGN_UP.getCommand();
                 break;
             case 3:
-                nextCommand = new GuestCommand();
+                nextCommand = GUEST.getCommand();
                 break;
             default:
-               nextCommand = new QuitCommand();
+                nextCommand = QUIT.getCommand();
         }
     }
 
