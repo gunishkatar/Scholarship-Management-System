@@ -33,7 +33,7 @@ public class SelectLoginUserCommand extends Command {
                 // TODO: ADD Command
                 break;
             case 3:
-                nextCommand = new LoginCommand(new MinistryLoginService(DaoFactory.USER_CREDENTIALS.createDao(),
+                nextCommand = new MinistryLoginCommand(new MinistryLoginService(DaoFactory.USER_CREDENTIALS.createDao(),
                         new PwdEncrypt(new PwdEncryptDao(new ConnectionManager()))));
                 break;
             default:

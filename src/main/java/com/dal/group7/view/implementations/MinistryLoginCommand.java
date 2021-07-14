@@ -5,7 +5,7 @@ import com.dal.group7.view.interfaces.Command;
 
 import java.util.Scanner;
 
-public class LoginCommand extends Command {
+public class MinistryLoginCommand extends Command {
 
     final Scanner scanner = new Scanner(System.in);
     private String userName;
@@ -13,7 +13,7 @@ public class LoginCommand extends Command {
     private MinistryLoginService loginService;
     private String userType;
 
-    public LoginCommand(MinistryLoginService loginService) {
+    public MinistryLoginCommand(MinistryLoginService loginService) {
         this.loginService = loginService;
     }
 
