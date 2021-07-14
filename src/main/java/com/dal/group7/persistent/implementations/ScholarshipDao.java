@@ -4,10 +4,8 @@ import com.dal.group7.persistent.interfaces.Dao;
 import com.dal.group7.persistent.model.Scholarship;
 
 import java.sql.SQLException;
-import java.util.List;
+import java.util.Map;
 
-import static com.dal.group7.constants.FieldConstants.ONE;
-import static com.dal.group7.constants.FieldConstants.ZERO;
 import static com.dal.group7.constants.SQLConstants.getInsertNewScholarship;
 
 public class ScholarshipDao extends Dao<Integer, Scholarship> {
@@ -28,12 +26,11 @@ public class ScholarshipDao extends Dao<Integer, Scholarship> {
     }
 
     private void setValuesToPreparedStatement(Scholarship scholarship, java.sql.PreparedStatement preparedStatement) {
-        final List<Object> fieldValues = scholarship.getFieldValues();
-        fieldValues.stream()
-                .filter(field -> fieldValues.indexOf(field) != ZERO)
-                .forEach(field -> {
+        final Map<Integer, Object> fieldValues = scholarship.getFieldValues();
+        fieldValues.remove(0);
+        fieldValues.forEach((index, field) -> {
                     try {
-                        preparedStatement.setObject(fieldValues.indexOf(field) + ONE, field);
+                        preparedStatement.setObject(index, field);
                     } catch (SQLException exception) {
                         exception.printStackTrace();
                     }

@@ -3,21 +3,17 @@ package com.dal.group7.view.implementations;
 import com.dal.group7.service.implementation.MinistryLoginService;
 import com.dal.group7.view.interfaces.Command;
 
-import java.util.Scanner;
-
 import static com.dal.group7.view.implementations.CommandFactory.ERROR;
 import static com.dal.group7.view.implementations.CommandFactory.MINISTRY_HOME;
 
 public class MinistryLoginCommand extends Command {
-
-    final Scanner scanner = new Scanner(System.in);
     private String userName;
     private String password;
-    private MinistryLoginService loginService;
-    private String userType;
+    private final MinistryLoginService ministryLoginService;
+    private boolean success;
 
     public MinistryLoginCommand(MinistryLoginService loginService) {
-        this.loginService = loginService;
+        this.ministryLoginService = loginService;
     }
 
     @Override
@@ -31,30 +27,15 @@ public class MinistryLoginCommand extends Command {
     @Override
     public void handle() {
         try {
-            var userCredential = loginService.userLogin(userName, password);
-            this.userType = userCredential.getRoleType();
+//            var userCredential = ministryLoginService.userLogin(userName, password);
+            this.success = true;
         } catch (Exception exception) {
-            this.userType = "Error";
+            this.success = false;
         }
     }
 
     @Override
     public void setNextCommand() {
-        switch (userType) {
-            case "Student":
-                // create command
-                break;
-            case "Institute":
-                // create institute
-                break;
-            case "Ministry":
-                nextCommand = MINISTRY_HOME.getCommand();
-                break;
-            case "Error":
-            default:
-                nextCommand = ERROR.getCommand();
-                break;
-        }
-
+        nextCommand = success ? MINISTRY_HOME.getCommand() : ERROR.getCommand();
     }
 }

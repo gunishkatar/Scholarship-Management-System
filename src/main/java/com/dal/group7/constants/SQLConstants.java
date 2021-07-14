@@ -17,9 +17,9 @@ public class SQLConstants {
     private static final String INSERT_NEW_INSTITUTE = "INSERT INTO institute_basic (institute_name, email_id, registration_code, phone_number," +
             "address, state, city, country, pinCode)" +
             "VALUES(?,?,?,?,?,?,?,?,?)";
-    private static final String INSERT_NEW_SCHOLARSHIP = "INSERT INTO scholarship (name, email_id, effectiveDate, scholarship_amount," +
+    private static final String INSERT_NEW_SCHOLARSHIP = "INSERT INTO scholarship (name, effectiveDate, scholarship_amount," +
             " criteria_girl, criteria_academic, criteria_sports)" +
-            "VALUES(?,?,?,?,?,?,?)";
+            "VALUES(?,?,?,?,?,?)";
 
 
     private SQLConstants() {

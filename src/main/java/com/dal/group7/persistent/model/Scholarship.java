@@ -3,10 +3,9 @@ package com.dal.group7.persistent.model;
 
 import org.json.JSONObject;
 
+import java.lang.reflect.Field;
 import java.sql.Date;
-import java.util.List;
-import java.util.Objects;
-import java.util.Random;
+import java.util.*;
 
 import static java.util.Arrays.stream;
 import static java.util.stream.Collectors.toList;
@@ -73,14 +72,17 @@ public class Scholarship {
         return this;
     }
 
-    public List<Object> getFieldValues() {
-        return stream(this.getClass().getDeclaredFields()).map(field -> {
+    public Map<Integer, Object> getFieldValues() {
+        Map<Integer, Object> fieldMap = new HashMap<>();
+        final List<Field> fields = stream(this.getClass().getDeclaredFields()).collect(toList());
+        fields.forEach(field -> {
             try {
-                return field.get(this);
+                fieldMap.put(fields.indexOf(field), field.get(this));
             } catch (IllegalAccessException e) {
                 throw new RuntimeException(e);
             }
-        }).collect(toList());
+        });
+        return fieldMap;
     }
 
     @Override
