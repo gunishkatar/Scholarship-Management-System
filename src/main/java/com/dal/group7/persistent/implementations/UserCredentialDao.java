@@ -19,7 +19,8 @@ public class UserCredentialDao extends Dao<String, UserCredential> {
         this.connectionManager = connectionManager;
     }
 
-    public Boolean doesUserExist(String id) throws SQLException {
+    @Override
+    public Boolean doesExist(String id) throws SQLException {
         try (var connection = connectionManager.getConnection();
              var preparedStatement = connection.prepareStatement(getSelectByUserIdQuery(USER))) {
             preparedStatement.setString(ONE, id);
@@ -30,6 +31,7 @@ public class UserCredentialDao extends Dao<String, UserCredential> {
     }
 
 
+    @Override
     public Optional<UserCredential> get(String id) throws SQLException {
         try(var connection = connectionManager.getConnection();
             var preparedStatement = connection.prepareStatement(getSelectByUserIdQuery(USER))) {

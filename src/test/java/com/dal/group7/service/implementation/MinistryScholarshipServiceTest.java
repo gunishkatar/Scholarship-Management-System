@@ -10,15 +10,13 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 
+import java.io.IOException;
 import java.sql.SQLException;
 
 import static java.sql.Date.valueOf;
-import static java.time.LocalDate.now;
-import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.ArgumentMatchers.eq;
 
-class MinistryServiceTest {
+class MinistryScholarshipServiceTest {
 
     private static final String FILE_PATH = "file-path";
     private static final Scholarship scholarship = new Scholarship(1, "name", valueOf("2021-12-12"), 5000L, true, true, true);
@@ -30,7 +28,7 @@ class MinistryServiceTest {
     private JsonFileReader jsonFileReader;
 
     @InjectMocks
-    private MinistryService ministryService;
+    private MinistryScholarshipService ministryScholarshipService;
 
     @BeforeEach
     void setUp() {
@@ -38,10 +36,10 @@ class MinistryServiceTest {
     }
 
     @Test
-    void shouldReadFromJsonFileAndSaveScholarship() throws SQLException {
+    void shouldReadFromJsonFileAndSaveScholarship() throws SQLException, IOException {
         Mockito.when(jsonFileReader.readJson(any())).thenReturn(new JSONObject(getSource()));
 
-        ministryService.saveScholarship(FILE_PATH);
+        ministryScholarshipService.saveScholarship(FILE_PATH);
 
         Mockito.verify(scholarshipDao).insertOne(scholarship);
     }
