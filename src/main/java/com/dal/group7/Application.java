@@ -10,7 +10,8 @@ public class Application {
     }
 
     public static void main(String[] args) {
-        new HomeCommand().execute();
+        final HomeCommand homeCommand = new HomeCommand();
+        homeCommand.execute();
 //        new Application().init();
     }
 }

@@ -11,7 +11,6 @@ import static com.dal.group7.view.implementations.CommandFactory.ERROR;
 import static com.dal.group7.view.implementations.CommandFactory.MINISTRY_HOME;
 
 public class CreateScholarshipCommand extends Command {
-    final Scanner scanner = new Scanner(System.in);
     private final MinistryScholarshipService ministryScholarshipService;
     private boolean successFul;
 
