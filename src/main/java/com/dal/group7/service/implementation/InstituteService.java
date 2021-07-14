@@ -7,6 +7,8 @@ import com.dal.group7.persistent.model.Institute;
 import com.dal.group7.service.interfaces.UserService;
 import com.dal.group7.shared.PwdEncrypt;
 import org.json.JSONObject;
+
+import java.io.IOException;
 import java.sql.SQLException;
 
 
@@ -50,7 +52,7 @@ public class InstituteService implements UserService {
     }
 
     @Override
-    public void signup(String filepath)throws SQLException {
+    public void signup(String filepath) throws SQLException, IOException {
         final JSONObject jsonObject = jsonFileReader.readJson(filepath);
         Institute institute = new Institute().from(jsonObject);
         instituteDao.insertOne(institute);

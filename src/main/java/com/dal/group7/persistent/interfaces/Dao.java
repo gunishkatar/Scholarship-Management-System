@@ -27,4 +27,8 @@ public abstract class Dao<K, T> {
 
     public void getByEmail() throws SQLException {
     }
+
+    public Boolean doesExist(String id) throws SQLException {
+        return false;
+    }
 }
