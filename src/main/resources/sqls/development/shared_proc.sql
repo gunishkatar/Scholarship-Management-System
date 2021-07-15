@@ -21,7 +21,7 @@ BEGIN
         `security_answer_two`   VARCHAR(500)                  NOT NULL,
         `security_answer_three` VARCHAR(500)                  NOT NULL,
         `failed_login_count`    INT                           NOT NULL DEFAULT 0,
-        `role_type`             ENUM ('student', 'institute') NOT NULL,
+        `role_type`             ENUM ('student', 'institute', 'ministry') NOT NULL,
         `is_blackListed`        ENUM ('yes', 'no')            NOT NULL DEFAULT 'no',
         PRIMARY KEY (`user_id`)
     ) ENGINE = InnoDB

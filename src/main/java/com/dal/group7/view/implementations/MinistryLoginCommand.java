@@ -27,7 +27,7 @@ public class MinistryLoginCommand extends Command {
     @Override
     public void handle() {
         try {
-//            var userCredential = ministryLoginService.userLogin(userName, password);
+            var userCredential = ministryLoginService.userLogin(userName, password);
             this.success = true;
         } catch (Exception exception) {
             this.success = false;
