@@ -2,6 +2,7 @@ package com.dal.group7.view.implementations;
 
 import com.dal.group7.view.interfaces.Command;
 
+import static com.dal.group7.constants.ViewConstants.*;
 import static com.dal.group7.view.implementations.CommandFactory.QUIT;
 
 public class StudentHomeCommand extends Command {
@@ -9,13 +10,12 @@ public class StudentHomeCommand extends Command {
 
     @Override
     public void printView() {
-        System.out.println(
-                "As a student, You can now access the following menu");
-        System.out.println("1. List Scholarship Schemes");
-        System.out.println("2. Apply for a Scheme");
-        System.out.println("3. Check the status of the Applied Scheme");
-        System.out.println("4. Logout" + System.lineSeparator());
-        System.out.print(">> Please select your option : ");
+        System.out.println(STUDENT_MENU);
+        System.out.println(SCHOLARSHIP_SCHEMES);
+        System.out.println(APPLY_FOR_A_SCHEME);
+        System.out.println(CHECK_THE_STATUS_OF_THE_APPLIED_SCHEME);
+        System.out.println(LOGOUT_LAST + System.lineSeparator());
+        System.out.print(PROMPT_PREFIX + PLEASE_SELECT_YOUR_OPTION);
     }
 
     @Override

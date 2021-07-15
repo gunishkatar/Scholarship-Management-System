@@ -3,6 +3,7 @@ package com.dal.group7.view.implementations;
 import com.dal.group7.service.implementation.MinistryLoginService;
 import com.dal.group7.view.interfaces.Command;
 
+import static com.dal.group7.constants.ViewConstants.*;
 import static com.dal.group7.view.implementations.CommandFactory.ERROR;
 import static com.dal.group7.view.implementations.CommandFactory.MINISTRY_HOME;
 
@@ -18,18 +19,19 @@ public class MinistryLoginCommand extends Command {
 
     @Override
     public void printView() {
-        System.out.print(">> Enter Username: ");
+        System.out.print(PROMPT_PREFIX + ENTER_USERNAME);
         this.userName = scanner.nextLine();
-        System.out.print(">> Enter Password: ");
+        System.out.print(PROMPT_PREFIX + PASSWORD);
         this.password = scanner.nextLine();
     }
 
     @Override
     public void handle() {
         try {
-            var userCredential = ministryLoginService.userLogin(userName, password);
+            ministryLoginService.userLogin(userName, password);
             this.success = true;
         } catch (Exception exception) {
+            System.out.println(PROGRAM_MESSAGE_PREFIX + exception.getMessage() + PROGRAM_MESSAGE_POSTFIX);
             this.success = false;
         }
     }

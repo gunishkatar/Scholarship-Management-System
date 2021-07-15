@@ -2,6 +2,7 @@ package com.dal.group7.view.implementations;
 
 import com.dal.group7.view.interfaces.Command;
 
+import static com.dal.group7.constants.ViewConstants.*;
 import static com.dal.group7.view.implementations.CommandFactory.QUIT;
 
 public class SelectLoginUserCommand extends Command {
@@ -9,11 +10,11 @@ public class SelectLoginUserCommand extends Command {
 
     @Override
     public void printView() {
-        System.out.println("Login as: ");
-        System.out.println("1. Student");
-        System.out.println("2. Institute");
-        System.out.println("3. Ministry");
-        System.out.print(">> Please select your option: ");
+        System.out.println(LOGIN_AS);
+        System.out.println(STUDENT);
+        System.out.println(INSTITUTE);
+        System.out.println(MINISTRY);
+        System.out.print(PROMPT_PREFIX + PLEASE_SELECT_YOUR_OPTION);
     }
 
     @Override
