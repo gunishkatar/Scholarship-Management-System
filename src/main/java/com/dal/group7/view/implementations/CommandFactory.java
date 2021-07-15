@@ -6,10 +6,12 @@ import com.dal.group7.persistent.implementations.PwdEncryptDao;
 import com.dal.group7.service.implementation.JsonFileReader;
 import com.dal.group7.service.implementation.MinistryLoginService;
 import com.dal.group7.service.implementation.MinistryScholarshipService;
+import com.dal.group7.service.implementation.StudentService;
 import com.dal.group7.shared.PwdEncrypt;
 import com.dal.group7.view.interfaces.Command;
 
 import static com.dal.group7.persistent.implementations.DaoFactory.SCHOLARSHIP;
+import static com.dal.group7.persistent.implementations.DaoFactory.STUDENT;
 
 public enum CommandFactory {
     CREATE_SCHOLARSHIP {
@@ -66,6 +68,20 @@ public enum CommandFactory {
         @Override
         public Command getCommand() {
             return new SignUpCommand();
+        }
+    },
+    STUDENT_SIGNUP {
+        @Override
+        public Command getCommand() {
+            return new StudentSignupCommand(
+                    new StudentService(STUDENT.createDao(),
+                            new JsonFileReader()));
+        }
+    },
+    STUDENT_HOME {
+        @Override
+        public Command getCommand() {
+            return new StudentHomeCommand();
         }
     };
 
