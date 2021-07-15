@@ -19,4 +19,5 @@
     <li> SM5308-69 : Student Service & DAO refactored to use Conn Mgr, Author - Rahul Kodumuru</li>
     <li> SM5308-70 : Student Home View Creation, Author - Rahul Kodumuru</li>
     <li> SM5308-71 : Student Signup View Creation, Author - Rahul Kodumuru</li>
+    <li> SM5308-68 : Ministry Log in, Author - Amrita Krishna</li>
 </ol>
