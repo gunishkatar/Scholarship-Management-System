@@ -1,7 +1,13 @@
+/*
+ * author    : Sai Rahul Kodumuru
+ * file      : StudentDAO.java
+ * purpose   : This DAO has the implementations that interact with
+ *             the database for student services.
+ */
+
 package com.dal.group7.persistent.implementations;
 
 import com.dal.group7.constants.SQLConstants;
-import com.dal.group7.constants.TableConstants;
 import com.dal.group7.persistent.interfaces.Dao;
 import com.dal.group7.persistent.model.Student;
 import com.dal.group7.shared.PwdEncrypt;
@@ -11,69 +17,76 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-/**
- * <h1>StudentDao is an extension of the Dao class</h1>
- * <p>It has the methods to interact with student DB tables</p>
- *
- * @author : Sai Rahul Kodumuru
- * @version : 1.0
- * @since : 2021-July-05
- */
 public class StudentDao extends Dao<Integer, Student> {
 
-    public Boolean doesEmailExist(String emailId) throws SQLException {
+    private final ConnectionManager connectionManager;
 
-        try (Connection connection = DatabaseManager.getConnection();
+    public StudentDao(ConnectionManager connectionManager) {
+        this.connectionManager = connectionManager;
+    }
+
+    @Override
+    public Boolean doesEmailExist(String emailId) throws SQLException {
+        try (Connection connection = connectionManager.getConnection();
              PreparedStatement preparedStatement = connection.
-                     prepareStatement(SQLConstants.getSelectByUserIdQuery(TableConstants.USER_CREDENTIAL))) {
+                     prepareStatement(SQLConstants.getSelectByUserIdQuery(
+                             SQLConstants.USER_CREDENTIAL))) {
 
             preparedStatement.setString(1, emailId);
             ResultSet rs = preparedStatement.executeQuery();
 
             return rs.next();
         }
-
     }
 
-    public void insertOne(Student student) {
+    @Override
+    public void insertOne(Student student) throws SQLException {
+        PreparedStatement statement = null;
 
-        try (Connection connection = DatabaseManager.getConnection()) {
-            PwdEncrypt pwdEncrypt = new PwdEncrypt(new PwdEncryptDao(new ConnectionManager()));
-
-            PreparedStatement statement;
-            statement = connection.prepareStatement(SQLConstants.getInsertNewStudent());
+        try (Connection connection = connectionManager.getConnection()) {
+            PwdEncrypt pwdEncrypt =
+                    new PwdEncrypt(new PwdEncryptDao(new ConnectionManager()));
+            int counter = 1;
+            statement = connection.
+                    prepareStatement(SQLConstants.getInsertNewStudent());
 
             // student_basic table object
-            statement.setString(1, student.getFirstName());
-            statement.setString(2, student.getLastName());
-            statement.setString(3, student.getEmailId());
-            statement.setString(4, student.getPhoneNumber());
-            statement.setString(5, student.getPassportNumber());
-            statement.setString(6, student.getDob());
-            statement.setString(7, student.getGender());
-            statement.setString(8, student.getState());
-            statement.setString(9, student.getCity());
-            statement.setString(10, student.getPincode());
-            statement.setString(11, student.getCountry());
-
+            statement.setString(counter++, student.getFirstName());
+            statement.setString(counter++, student.getLastName());
+            statement.setString(counter++, student.getEmailId());
+            statement.setString(counter++, student.getPhoneNumber());
+            statement.setString(counter++, student.getPassportNumber());
+            statement.setString(counter++, student.getDob());
+            statement.setString(counter++, student.getGender());
+            statement.setString(counter++, student.getState());
+            statement.setString(counter++, student.getCity());
+            statement.setString(counter++, student.getPincode());
+            statement.setString(counter, student.getCountry());
             statement.execute();
 
-            statement = connection.prepareStatement(SQLConstants.getInsertNewUser());
-            statement.setString(1, student.getEmailId());
-            statement.setString(2, pwdEncrypt.getEncryptedPwd(student.getPassword()));
-            statement.setString(3, "1");
-            statement.setString(4, student.getSecurityAnswerOne());
-            statement.setString(5, student.getSecurityAnswerTwo());
-            statement.setString(6, student.getSecurityAnswerThree());
-            statement.setString(7, student.getClass().getSimpleName().toLowerCase());
+            counter = 1;
+            statement = connection.
+                    prepareStatement(SQLConstants.getInsertNewUser());
+
+            statement.setString(counter++, student.getEmailId());
+            statement.setString(counter++,
+                    pwdEncrypt.getEncryptedPwd(student.getPassword()));
+            statement.setString(counter++, SQLConstants.ONE);
+            statement.setString(counter++, student.getSecurityAnswerOne());
+            statement.setString(counter++, student.getSecurityAnswerTwo());
+            statement.setString(counter++,
+                    student.getSecurityAnswerThree());
+            statement.setString(counter,
+                    student.getClass().getSimpleName().toLowerCase());
 
             statement.execute();
-
-            statement.close();
         } catch (Exception e) {
             e.printStackTrace();
+        } finally {
+            if (statement != null) {
+                statement.close();
+            }
         }
-
     }
 
 }

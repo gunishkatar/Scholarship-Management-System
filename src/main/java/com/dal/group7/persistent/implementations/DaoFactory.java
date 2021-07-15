@@ -29,7 +29,7 @@ public enum DaoFactory {
     STUDENT {
         @Override
         public Dao<Integer, Student> createDao() {
-            return new StudentDao();
+            return new StudentDao(connectionManager);
         }
     },
     USER_CREDENTIALS {
