@@ -31,4 +31,8 @@ public abstract class Dao<K, T> {
     public Boolean doesExist(String id) throws SQLException {
         return false;
     }
+
+    public Boolean doesEmailExist(String emailId) throws SQLException {
+        return false;
+    }
 }

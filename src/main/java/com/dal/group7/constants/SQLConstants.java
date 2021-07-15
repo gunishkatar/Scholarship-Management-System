@@ -4,22 +4,33 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class SQLConstants {
+    public static final String STUDENT_BASIC = "student_basic";
+    public static final String USER_CREDENTIAL = "user_credential";
     private static final String SELECT_ALL_QUERY = "select * from ";
     private static final String WHERE_ID = " where id = ?";
     private static final String WHERE_USER_ID = " where user_id = ?";
-    private static final String INSERT_NEW_STUDENT = "INSERT INTO student_basic (first_name, last_name, email_id, " +
-            "phone_number, passport_number, dob, gender, state, city, pincode, country) " +
-            "values (?,?,?,?,?,?,?,?,?,?,?)";
-    private static final String INSERT_NEW_USER = "INSERT INTO user_credential (user_id, password, " +
-            "security_id, security_answer_one, security_answer_two, security_answer_three, " +
-            "role_type) " +
-            "VALUES (?, ?, ?, ?, ?, ?, ?);";
-    private static final String INSERT_NEW_INSTITUTE = "INSERT INTO institute_basic (institute_name, email_id, registration_code, phone_number," +
-            "address, state, city, country, pinCode)" +
-            "VALUES(?,?,?,?,?,?,?,?,?)";
-    private static final String INSERT_NEW_SCHOLARSHIP = "INSERT INTO scholarship (name, effectiveDate, scholarship_amount," +
-            " criteria_girl, criteria_academic, criteria_sports)" +
-            "VALUES(?,?,?,?,?,?)";
+    private static final String INSERT_NEW_STUDENT =
+            "INSERT INTO student_basic (first_name, last_name, email_id, " +
+                    "phone_number, passport_number, dob, gender, state, " +
+                    "city, pincode, country) " +
+                    "values (?,?,?,?,?,?,?,?,?,?,?)";
+    private static final String INSERT_NEW_USER =
+            "INSERT INTO user_credential (user_id, password, " +
+                    "security_id, security_answer_one, security_answer_two, " +
+                    "security_answer_three, " +
+                    "role_type) " +
+                    "VALUES (?, ?, ?, ?, ?, ?, ?);";
+    private static final String INSERT_NEW_INSTITUTE =
+            "INSERT INTO institute_basic (institute_name, email_id, " +
+                    "registration_code, phone_number," +
+                    "address, state, city, country, pinCode)" +
+                    "VALUES(?,?,?,?,?,?,?,?,?)";
+    private static final String INSERT_NEW_SCHOLARSHIP =
+            "INSERT INTO scholarship (name, effectiveDate, " +
+                    "scholarship_amount," +
+                    " criteria_girl, criteria_academic, criteria_sports)" +
+                    "VALUES(?,?,?,?,?,?)";
+    public static final String ONE = "1";
 
 
     private SQLConstants() {
@@ -49,7 +60,6 @@ public class SQLConstants {
     public static String getInsertNewStudent() {
         return INSERT_NEW_STUDENT;
     }
-
 
     public static String getInsertNewUser() {
         return INSERT_NEW_USER;

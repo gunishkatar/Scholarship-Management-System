@@ -2,14 +2,8 @@ package com.dal.group7.persistent.model;
 
 import org.json.JSONObject;
 
+import java.util.Objects;
 
-/**
- * <h1>Student is an POJO class</h1>
- *
- * @author : Sai Rahul Kodumuru
- * @version : 1.0
- * @since : 2021-July-09
- */
 public class Student {
 
     private String firstName;
@@ -137,8 +131,47 @@ public class Student {
         this.pincode = jsonObject.getString("pincode");
         this.securityAnswerOne = jsonObject.getString("security_answer_one");
         this.securityAnswerTwo = jsonObject.getString("security_answer_two");
-        this.securityAnswerThree = jsonObject.getString("security_answer_three");
+        this.securityAnswerThree =
+                jsonObject.getString("security_answer_three");
 
         return this;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Student)) return false;
+        Student student = (Student) o;
+        return Objects.equals(getFirstName(), student.getFirstName()) &&
+                Objects.equals(getLastName(), student.getLastName()) &&
+                Objects.equals(getEmailId(), student.getEmailId()) &&
+                Objects
+                        .equals(getPhoneNumber(), student.getPhoneNumber()) &&
+                Objects.equals(getPassportNumber(),
+                        student.getPassportNumber()) &&
+                Objects.equals(getPassword(), student.getPassword()) &&
+                Objects.equals(getReConfirmPassword(),
+                        student.getReConfirmPassword()) &&
+                Objects.equals(getDob(), student.getDob()) &&
+                Objects.equals(getGender(), student.getGender()) &&
+                Objects.equals(getState(), student.getState()) &&
+                Objects.equals(getCity(), student.getCity()) &&
+                Objects.equals(getPincode(), student.getPincode()) &&
+                Objects.equals(getCountry(), student.getCountry()) &&
+                Objects.equals(getSecurityAnswerOne(),
+                        student.getSecurityAnswerOne()) && Objects
+                .equals(getSecurityAnswerTwo(),
+                        student.getSecurityAnswerTwo()) &&
+                Objects.equals(getSecurityAnswerThree(),
+                        student.getSecurityAnswerThree());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getFirstName(), getLastName(), getEmailId(),
+                getPhoneNumber(), getPassportNumber(), getPassword(),
+                getReConfirmPassword(), getDob(), getGender(), getState(),
+                getCity(), getPincode(), getCountry(), getSecurityAnswerOne(),
+                getSecurityAnswerTwo(), getSecurityAnswerThree());
     }
 }
