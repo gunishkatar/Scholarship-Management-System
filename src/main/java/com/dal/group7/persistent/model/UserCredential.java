@@ -2,6 +2,7 @@ package com.dal.group7.persistent.model;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Objects;
 
 public class UserCredential {
 
@@ -98,5 +99,18 @@ public class UserCredential {
         this.roleType = resultSet.getString("role_type");
         this.isBlackListed = resultSet.getString("is_blackListed");
         return this;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        UserCredential that = (UserCredential) o;
+        return Objects.equals(userId, that.userId) && Objects.equals(password, that.password) && Objects.equals(isHardBlock, that.isHardBlock) && Objects.equals(isSoftBlock, that.isSoftBlock) && Objects.equals(lastLogin, that.lastLogin) && Objects.equals(securityId, that.securityId) && Objects.equals(securityAnswerOne, that.securityAnswerOne) && Objects.equals(securityAnswerTwo, that.securityAnswerTwo) && Objects.equals(securityAnswerThree, that.securityAnswerThree) && Objects.equals(failedLoginCount, that.failedLoginCount) && Objects.equals(roleType, that.roleType) && Objects.equals(isBlackListed, that.isBlackListed);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(userId, password, isHardBlock, isSoftBlock, lastLogin, securityId, securityAnswerOne, securityAnswerTwo, securityAnswerThree, failedLoginCount, roleType, isBlackListed);
     }
 }

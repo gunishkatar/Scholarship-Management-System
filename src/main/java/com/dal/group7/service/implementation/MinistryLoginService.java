@@ -18,6 +18,15 @@ public class MinistryLoginService {
         this.pwdEncrypt = pwdEncrypt;
     }
 
+    public UserCredential userLogin(String userId, String password) throws SQLException {
+        this.userId =  userId;
+        this.password = getEncryptedPassword(password);
+        if(getStoredCredential() && areCredentialsValid()){
+            return userCredential;
+        }
+        throw new IllegalArgumentException("Invalid Credentials");
+    }
+
     private String getEncryptedPassword(String password){
         return pwdEncrypt.getEncryptedPwd(password);
     }
@@ -25,7 +34,7 @@ public class MinistryLoginService {
     private boolean getStoredCredential() throws SQLException {
         if(userCredentialDao.doesExist(userId)){
             userCredential = userCredentialDao.get(userId)
-                    .orElseThrow(() -> new IllegalArgumentException("Invalid credentials"));
+                    .orElseThrow(() -> new IllegalArgumentException("Invalid Credentials"));
             return true;
         }
         return false;
@@ -34,14 +43,5 @@ public class MinistryLoginService {
 
     private boolean areCredentialsValid(){
         return password.equals(userCredential.getPassword());
-    }
-
-    public UserCredential userLogin(String userId, String password) throws SQLException {
-        this.userId =  userId;
-        this.password = getEncryptedPassword(password);
-        if(getStoredCredential() && areCredentialsValid()){
-            return userCredential;
-        }
-        throw new IllegalArgumentException("Invalid Credentials");
     }
 }

@@ -2,6 +2,7 @@ package com.dal.group7.view.implementations;
 
 import com.dal.group7.view.interfaces.Command;
 
+import static com.dal.group7.constants.ViewConstants.*;
 import static com.dal.group7.view.implementations.CommandFactory.*;
 
 public class HomeCommand extends Command {
@@ -33,10 +34,10 @@ public class HomeCommand extends Command {
 
     @Override
     public void printView() {
-        System.out.println("******WELCOME TO SCHOLARSHIP MANAGEMENT SYSTEM******");
-        System.out.println("1. Sign up");
-        System.out.println("2. Login");
-        System.out.println("3. Guest View");
-        System.out.print(">> Please select your option: ");
+        System.out.println(HEADER + SCHOLARSHIP_MANAGEMENT_SYSTEM + HEADER);
+        System.out.println(SIGN_UP_OPT);
+        System.out.println(LOGIN);
+        System.out.println(GUEST_VIEW);
+        System.out.print(PROMPT_PREFIX + PLEASE_SELECT_YOUR_OPTION);
     }
 }

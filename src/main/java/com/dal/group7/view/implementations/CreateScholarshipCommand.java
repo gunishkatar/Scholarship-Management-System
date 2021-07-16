@@ -5,8 +5,8 @@ import com.dal.group7.view.interfaces.Command;
 
 import java.io.IOException;
 import java.sql.SQLException;
-import java.util.Scanner;
 
+import static com.dal.group7.constants.ViewConstants.*;
 import static com.dal.group7.view.implementations.CommandFactory.ERROR;
 import static com.dal.group7.view.implementations.CommandFactory.MINISTRY_HOME;
 
@@ -20,9 +20,8 @@ public class CreateScholarshipCommand extends Command {
 
     @Override
     public void printView() {
-        System.out.println("Enter the details of the Scholarship using the JSON file template created " +
-                "in /var/tmp/addScholarship.json.");
-        System.out.print(">> Enter the complete path of the filled file: ");
+        System.out.println(ENTER_SCHOLARSHIP_FILE_PATH);
+        System.out.print(PROMPT_PREFIX + FILLED_FILE);
     }
 
     @Override
@@ -30,7 +29,7 @@ public class CreateScholarshipCommand extends Command {
         String input = scanner.nextLine();
         try {
             ministryScholarshipService.saveScholarship(input);
-            System.out.println("<<<< Successfully Created the Scholarship. Students can avail it now. >>>>");
+            System.out.println(PROGRAM_MESSAGE_PREFIX + SUCCESSFULLY_CREATED_SCHOLARSHIP + PROGRAM_MESSAGE_POSTFIX);
             this.successFul = true;
         } catch (SQLException | IOException exception) {
            this.successFul = false;

@@ -2,6 +2,7 @@ package com.dal.group7.view.implementations;
 
 import com.dal.group7.view.interfaces.Command;
 
+import static com.dal.group7.constants.ViewConstants.*;
 import static com.dal.group7.view.implementations.CommandFactory.CREATE_SCHOLARSHIP;
 import static com.dal.group7.view.implementations.CommandFactory.QUIT;
 
@@ -11,11 +12,11 @@ public class MinistryHomeCommand extends Command {
 
     @Override
     public void printView() {
-        System.out.println("******WELCOME TO MINISTRY PORTAL******");
-        System.out.println("1. View Approved Student Applications");
-        System.out.println("2. Create Scholarship");
-        System.out.println("3. Logout");
-        System.out.print(">> Please select your option: ");
+        System.out.println(HEADER+MINISTRY_PORTAL + HEADER);
+        System.out.println(VIEW_APPROVED_STUDENT_APPLICATIONS);
+        System.out.println(CREATE_SCHOLARSHIP1);
+        System.out.println(LOGOUT);
+        System.out.print(PROMPT_PREFIX + PLEASE_SELECT_YOUR_OPTION);
     }
 
     @Override
