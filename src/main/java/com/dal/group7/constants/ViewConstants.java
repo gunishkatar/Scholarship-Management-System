@@ -36,6 +36,10 @@ public class ViewConstants {
   public static final String SUCCESSFULLY_CREATED_SCHOLARSHIP = "Successfully Created the Scholarship. " +
           "Students can avail it now.";
   public static final String VIEW_APPROVED_STUDENT_APPLICATIONS = "1. View Approved Student Applications";
+  public static final String STUDENT_BANNED_MSG= "You have been banned from applying for Further Scholarships";
+  public static final String INVALID_CREDENTIALS = "You have entered invalid Credentials";
+  public static final String STUDENT_SOFT_BLOCK_MSG = "You have been Blocked Temporarily";
+  public static final String STUDENT_HARD_BLOCK_MSG = "You have been Blocked";
 
 
   private ViewConstants() {
