@@ -15,6 +15,7 @@ public class StudentLoginService {
   private UserCredential userCredential;
   private String userId;
   private String password;
+  private static final String YES = "yes";
 
   public StudentLoginService(Dao<String, UserCredential> userCredentialDao, PwdEncrypt pwdEncrypt) {
     this.userCredentialDao = userCredentialDao;
@@ -60,14 +61,14 @@ public class StudentLoginService {
   }
 
   private boolean isStudentSoftBlocked() {
-    return userCredential.getIsSoftBlock().equals("yes");
+    return userCredential.getIsSoftBlock().equals(YES);
   }
 
   private boolean isStudentHardBlocked() {
-    return userCredential.getIsHardBlock().equals("yes");
+    return userCredential.getIsHardBlock().equals(YES);
   }
 
   private boolean isStudentBlackListed() {
-    return userCredential.getIsBlackListed().equals("yes");
+    return userCredential.getIsBlackListed().equals(YES);
   }
 }
