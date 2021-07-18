@@ -26,7 +26,7 @@ public class SelectLoginUserCommand extends Command {
     public void setNextCommand() {
         switch (input) {
             case 1:
-                // TODO: ADD Command
+                nextCommand = CommandFactory.STUDENT_LOGIN.getCommand();
                 break;
             case 2:
                 // TODO: ADD Command

@@ -3,10 +3,7 @@ package com.dal.group7.view.implementations;
 import com.dal.group7.persistent.implementations.ConnectionManager;
 import com.dal.group7.persistent.implementations.DaoFactory;
 import com.dal.group7.persistent.implementations.PwdEncryptDao;
-import com.dal.group7.service.implementation.JsonFileReader;
-import com.dal.group7.service.implementation.MinistryLoginService;
-import com.dal.group7.service.implementation.MinistryScholarshipService;
-import com.dal.group7.service.implementation.StudentService;
+import com.dal.group7.service.implementation.*;
 import com.dal.group7.shared.PwdEncrypt;
 import com.dal.group7.view.interfaces.Command;
 
@@ -83,7 +80,14 @@ public enum CommandFactory {
         public Command getCommand() {
             return new StudentHomeCommand();
         }
-    };
+    },
+    STUDENT_LOGIN {
+        @Override
+        public Command getCommand() {
+            return new StudentLoginCommand(new StudentLoginService(DaoFactory.USER_CREDENTIALS.createDao(),
+                    new PwdEncrypt(new PwdEncryptDao(new ConnectionManager()))));
+        }
+    },;
 
     public abstract Command getCommand();
 }
