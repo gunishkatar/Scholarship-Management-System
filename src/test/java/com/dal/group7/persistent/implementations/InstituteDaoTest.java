@@ -22,7 +22,8 @@ import static org.mockito.ArgumentMatchers.any;
 class InstituteDaoTest {
 
     private static final Institute INSTITUTE = new Institute(1,"name","dal.ca",5000,
-            1111,"LakeLouise","NovaScotia","Halifax","Canada",1234);
+            "abc","abc", 1111,"LakeLouise","NovaScotia",
+            "Halifax","Canada",1234);
 
     @Mock
     private ConnectionManager connectionManager;
