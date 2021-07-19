@@ -15,6 +15,8 @@ public class Institute {
     private String name;
     private String emailId;
     private Integer registrationCode;
+    private String password;
+    private String reConfirmPassword;
     private Integer phoneNumber;
     private String address;
     private String state;
@@ -25,13 +27,15 @@ public class Institute {
     public Institute() {
     }
 
-    public Institute(Integer id, String name, String emailId, Integer registrationCode,
-                     Integer phoneNumber, String address,String state, String city,String country,
-                     Integer pinCode) {
+    public Institute(Integer id, String name, String emailId, Integer registrationCode,String password,
+                     String reConfirmPassword, Integer phoneNumber, String address,String state, String city,
+                     String country, Integer pinCode) {
         this.id = id;
         this.name = name;
         this.emailId = emailId;
         this.registrationCode = registrationCode;
+        this.password = password;
+        this.reConfirmPassword = reConfirmPassword;
         this.phoneNumber = phoneNumber;
         this.address = address;
         this.state = state;
@@ -62,6 +66,12 @@ public class Institute {
         return registrationCode;
     }
 
+    public String getPassword() {
+        return password;
+    }
+
+    public String getReConfirmPassword() { return reConfirmPassword; }
+
     public Integer getPhoneNumber() {
         return phoneNumber;
     }
@@ -90,6 +100,8 @@ public class Institute {
         this.name= jsonObject.getString("institute_name");
         this.emailId = jsonObject.getString("institute_email_id");
         this.registrationCode = jsonObject.getInt("institute_registration_code");
+        this.password = jsonObject.getString("password");
+        this.reConfirmPassword = jsonObject.getString("re_confirm_password");
         this.phoneNumber = jsonObject.getInt("institute_phone_number");
         this.address = jsonObject.getString("institute_address");
         this.state = jsonObject.getString("institute_state");

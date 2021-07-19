@@ -16,7 +16,8 @@ class InstituteServiceTest {
 
     @Test
     public void isValidInstitute() {
-        Institute institute = new Institute(1,"name","institute@dal.ca",5000,1111,
+        Institute institute = new Institute(1,"name","institute@dal.ca",5000,
+                "abc","abc",1111,
                 "LakeLouise","NovaScotia","Halifax","Country",1234);
 
         InstituteService instituteService = new InstituteService(instituteDao, jsonFileReader);
@@ -25,8 +26,9 @@ class InstituteServiceTest {
 
     @Test
     public void isNotValidInstitute() {
-        Institute institute = new Institute(1,"name","institute@dal.ca",0,1111,
-                "LakeLouise","NovaScotia","Halifax","Country",1234);
+        Institute institute = new Institute(1,"name","institute@dal.ca",
+                0,"abc","abc",1111, "LakeLouise",
+                "NovaScotia","Halifax","Country",1234);
 
         InstituteService instituteService = new InstituteService(instituteDao, jsonFileReader);
         Assertions.assertFalse(instituteService.isValid(institute));
