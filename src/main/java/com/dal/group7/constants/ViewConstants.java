@@ -8,12 +8,15 @@ public class ViewConstants {
           "template created in /var/tmp/addScholarship.json.";
   public static final String ENTER_STUDENT_FILE = "Enter the student details using the JSON file template " +
           "in /var/tmp/addStudent.json";
+  public static final String ENTER_INSTITUTE_FILE = "Enter the institute details using the JSON file template " +
+          "in /var/tmp/addInstitute.json";
   public static final String ENTER_USERNAME = "Enter Username: ";
   public static final String ERROR_IN_EXECUTION = "Error occurred while execution";
   public static final String FILLED_FILE = "Enter the complete path of the filled file: ";
   public static final String GUEST_VIEW = "3. Guest View";
   public static final String HEADER = "******";
   public static final String INSERTING_STUDENT = "Inserting Student....";
+  public static final String INSERTING_INSTITUTE = "Inserting Institute....";
   public static final String INSTITUTE = "2. Institute";
   public static final String LOGIN = "2. Login";
   public static final String LOGOUT = "3. Logout";
@@ -30,6 +33,7 @@ public class ViewConstants {
   public static final String SCHOLARSHIP_SCHEMES = "1. List Scholarship Schemes";
   public static final String SIGN_UP_AS = "Sign Up As : ";
   public static final String SIGNED_UP_AS_STUDENT = "Successfully signed up as student";
+  public static final String SIGNED_UP_AS_INSTITUTE = "Successfully signed up as institute";
   public static final String SIGN_UP_OPT = "1. Sign up";
   public static final String STUDENT = "1. Student";
   public static final String STUDENT_MENU = "As a student, You can now access the following menu";
