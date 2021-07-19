@@ -1,7 +1,11 @@
 package com.dal.group7.persistent.implementations;
+import com.dal.group7.constants.SQLConstants;
 import com.dal.group7.persistent.interfaces.Dao;
 import com.dal.group7.persistent.model.Institute;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
@@ -36,6 +40,20 @@ public class InstituteDao extends Dao<Integer, Institute> {
             preparedStatement.setString(9, institute.getCountry());
             preparedStatement.setInt(10, institute.getPinCode());
             preparedStatement.executeUpdate();
+        }
+    }
+
+    @Override
+    public Boolean doesEmailExist(String emailId) throws SQLException {
+        try (Connection connection = connectionManager.getConnection();
+             PreparedStatement preparedStatement = connection.
+                     prepareStatement(SQLConstants.getSelectByUserIdQuery(
+                             SQLConstants.USER_CREDENTIAL))) {
+
+            preparedStatement.setString(1, emailId);
+            ResultSet rs = preparedStatement.executeQuery();
+
+            return rs.next();
         }
     }
 
