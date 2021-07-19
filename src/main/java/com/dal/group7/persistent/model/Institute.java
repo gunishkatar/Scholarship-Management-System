@@ -5,6 +5,7 @@ import org.json.JSONObject;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Objects;
 import java.util.Random;
 
 import static com.dal.group7.constants.FieldConstants.ID;
@@ -109,5 +110,22 @@ public class Institute {
         this.country = jsonObject.getString("institute_country");
         this.pinCode = jsonObject.getInt("institute_pinCode");
         return this;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Institute that = (Institute) o;
+        return Objects.equals(name, that.name) && Objects.equals(emailId , that.emailId) && Objects.equals(registrationCode, that.registrationCode)
+                && Objects.equals(password, that.password) && Objects.equals(reConfirmPassword, that.reConfirmPassword)
+                && Objects.equals(phoneNumber, that.phoneNumber ) && Objects.equals(address, that.address)
+                && Objects.equals(state, that.state) && Objects.equals(city, that.city) && Objects.equals(country, that.country)
+                && Objects.equals(pinCode, that.pinCode);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, emailId, registrationCode, password, reConfirmPassword, phoneNumber, address, state, city, country, pinCode);
     }
 }
