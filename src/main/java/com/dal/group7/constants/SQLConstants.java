@@ -6,9 +6,14 @@ import java.util.stream.IntStream;
 public class SQLConstants {
     public static final String STUDENT_BASIC = "student_basic";
     public static final String USER_CREDENTIAL = "user_credential";
+    public static final String APPLICATION = "application";
+    public static final String STUDENT_FINANCE = "student_finance";
+    public static final String STUDENT_ACADEMIC = "student_academic";
+    public static final String STUDENT_NON_ACADEMIC = "student_non_academic";
     private static final String SELECT_ALL_QUERY = "select * from ";
     private static final String WHERE_ID = " where id = ?";
     private static final String WHERE_USER_ID = " where user_id = ?";
+    private static final String WHERE_STUDENT_ID = " where student_id= ?";
     private static final String INSERT_NEW_STUDENT =
             "INSERT INTO student_basic (first_name, last_name, email_id, " +
                     "phone_number, passport_number, dob, gender, state, " +
@@ -31,7 +36,43 @@ public class SQLConstants {
                     " criteria_girl, criteria_academic, criteria_sports)" +
                     "VALUES(?,?,?,?,?,?)";
     public static final String ONE = "1";
+    private static final String INSERT_INTO = "INSERT INTO ";
 
+    private static final String INSERT_STUDENT_FINANCE =
+            INSERT_INTO + STUDENT_FINANCE +
+                    " (email_id, bank_acc_num, bank_IFSC, annual_income, " +
+                    "bank_name, bank_acc_holder_name)  VALUES(?,?,?,?,?,?)";
+    private static final String INSERT_STUDENT_ACADEMIC =
+            INSERT_INTO + STUDENT_ACADEMIC +
+                    " (email_id, institute_id, `GPA-X`, `GPA-XII`, " +
+                    "GPA_Bachelors," +
+                    " `BOARD-X`, `BOARD-XII`, `backlog_count_X`, " +
+                    "`backlog_count_XII`," +
+                    " backlog_count_bachelors, joining_month_bachelors, " +
+                    "graduation_month_bachelors) VALUES(?,?,?,?,?,?,?,?,?,?," +
+                    "?,?) ";
+    private static final String INSERT_STUDENT_NON_ACADEMIC =
+            INSERT_INTO + STUDENT_NON_ACADEMIC +
+                    " (email_id, national_sports_awards_count, " +
+                    "state_sports_awards_count, district_sports_awards_count," +
+                    " national_arts_awards_count,state_arts_awards_count, " +
+                    "district_arts_awards_count)" +
+                    "VALUES (?,?,?,?,?,?,?) ";
+    private static final String INSERT_NEW_APPLICATION =
+            INSERT_INTO + APPLICATION +
+                    " (application_id, scheme_id, student_id, institute_id, " +
+                    "application_status, academic_score, " +
+                    "non_academic_score, profile_score)" +
+                    " VALUES(?,?,?,?,?,?,?,?) ";
+
+    // Application Status Variables
+    public static final String SUBMITTED = "submitted";
+    public static final String APPROVED = "approved";
+    public static final String REJECTED = "rejected";
+    public static final String CLOSED = "closed";
+    public static final String PICKED = "picked";
+    public static final String FUND_RECEIVED = "fund_received";
+    public static final String FUND_ISSUED = "fund_issued";
 
     private SQLConstants() {
     }
@@ -48,18 +89,42 @@ public class SQLConstants {
         return SELECT_ALL_QUERY + table + WHERE_USER_ID;
     }
 
+    public static String getSelectByApplicationIdQuery() {
+        return SELECT_ALL_QUERY + APPLICATION + WHERE_STUDENT_ID;
+    }
+
     public static String getInsertNewScholarship() {
         return INSERT_NEW_SCHOLARSHIP;
     }
 
-    public static String insertIntoTableAllFields(String table, Integer numberOfFields) {
-        final String params = IntStream.range(0, numberOfFields).mapToObj(i -> "?").collect(Collectors.joining(","));
+    public static String insertIntoTableAllFields(String table,
+                                                  Integer numberOfFields) {
+        final String params =
+                IntStream.range(0, numberOfFields).mapToObj(i -> "?")
+                        .collect(Collectors.joining(","));
         return "insert into " + table + " values(" + params + ");";
     }
 
     public static String getInsertNewStudent() {
         return INSERT_NEW_STUDENT;
     }
+
+    public static String getInsertStudentFinance() {
+        return INSERT_STUDENT_FINANCE;
+    }
+
+    public static String getInsertStudentAcademic() {
+        return INSERT_STUDENT_ACADEMIC;
+    }
+
+    public static String getInsertStudentNonAcademic() {
+        return INSERT_STUDENT_NON_ACADEMIC;
+    }
+
+    public static String getInsertNewApplication() {
+        return INSERT_NEW_APPLICATION;
+    }
+
 
     public static String getInsertNewUser() {
         return INSERT_NEW_USER;
