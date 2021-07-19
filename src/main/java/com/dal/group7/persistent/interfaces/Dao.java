@@ -10,6 +10,7 @@ import static java.util.Collections.emptyList;
 
 public abstract class Dao<K, T> {
 
+
     public Optional<T> get(K id) throws SQLException {
         return Optional.empty();
     }
