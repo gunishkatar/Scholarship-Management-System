@@ -12,6 +12,8 @@ import org.mockito.MockitoAnnotations;
 import java.sql.SQLException;
 
 class InstituteServiceTest {
+
+    private static final String EMAIL_ID_ONE = "institute@dal.ca";
     static final Institute INSTITUTE = new Institute(1,"name","dal.ca",5000,"abc",
             "abc", 1111,"LakeLouise","NovaScotia","Halifax",
             "Canada",1234);
@@ -30,6 +32,14 @@ class InstituteServiceTest {
         MockitoAnnotations.openMocks(this);
     }
 
+    /* returns true if institute has valid email */
+    @Test
+    void shouldApproveValidEmail() {
+        InstituteService instituteService =
+                new InstituteService(instituteDao, jsonFileReader);
+        Assertions.assertTrue(instituteService.isValidInstituteEmail(EMAIL_ID_ONE),
+                "Invalid Email approved");
+    }
 
     @Test
     public void isValidInstitute() {
@@ -49,6 +59,20 @@ class InstituteServiceTest {
 
         InstituteService instituteService = new InstituteService(instituteDao, jsonFileReader);
         Assertions.assertFalse(instituteService.isValid(institute));
+    }
+
+    /* returns true if exceptions are handled */
+    @Test
+    void shouldHandleInvalidEmailExceptions() {
+        InstituteService instituteService =
+                new InstituteService(instituteDao, jsonFileReader);
+        try {
+            Assertions.assertFalse(instituteService.isValidInstituteEmail(null),
+                    "null check failed");
+        } catch (Exception e) {
+            // Do Nothing
+        }
+
     }
 
     public void signup(){
