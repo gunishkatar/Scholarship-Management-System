@@ -79,7 +79,7 @@ class StudentServiceTest {
     @Test
     void shouldCheckStudentExists() throws SQLException {
         studentService.doesStudentExist(STUDENT.getEmailId());
-        Mockito.verify(studentDao).doesEmailExist(STUDENT.getEmailId());
+        Mockito.verify(studentDao).doesExist(STUDENT.getEmailId());
     }
 
     /* returns true if student attributes are valid */

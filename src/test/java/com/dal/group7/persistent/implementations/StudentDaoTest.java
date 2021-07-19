@@ -53,7 +53,7 @@ class StudentDaoTest {
     @Test
     void shouldCheckEmailExist() throws SQLException {
         setUpMock();
-        studentDao.doesEmailExist(STUDENT.getEmailId());
+        studentDao.doesExist(STUDENT.getEmailId());
         Mockito.verify(preparedStatement, Mockito.atLeastOnce())
                 .executeQuery();
     }
