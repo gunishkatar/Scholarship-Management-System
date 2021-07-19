@@ -32,6 +32,7 @@ public enum DaoFactory {
             return new StudentDao(connectionManager);
         }
     },
+
     USER_CREDENTIALS {
         @Override
         public Dao<String, UserCredential> createDao() {

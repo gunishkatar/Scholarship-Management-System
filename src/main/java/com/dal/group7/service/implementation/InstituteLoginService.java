@@ -82,6 +82,9 @@ public class InstituteLoginService {
 
     }
 
+    public UserCredential userLogin(String username, String password){
+        return new UserCredential();
+    }
 
 
 

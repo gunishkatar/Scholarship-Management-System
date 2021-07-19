@@ -9,6 +9,8 @@ import com.dal.group7.view.interfaces.Command;
 
 import static com.dal.group7.persistent.implementations.DaoFactory.SCHOLARSHIP;
 import static com.dal.group7.persistent.implementations.DaoFactory.STUDENT;
+import static com.dal.group7.persistent.implementations.DaoFactory.INSTITUTE;
+
 
 public enum CommandFactory {
     CREATE_SCHOLARSHIP {
@@ -86,6 +88,21 @@ public enum CommandFactory {
         public Command getCommand() {
             return new StudentLoginCommand(new StudentLoginService(DaoFactory.USER_CREDENTIALS.createDao(),
                     new PwdEncrypt(new PwdEncryptDao(new ConnectionManager()))));
+        }
+
+    },
+    INSTITUTE_SIGNUP {
+        @Override
+        public Command getCommand() {
+            return new InstituteSignupCommand(
+                    new InstituteService(INSTITUTE.createDao(),
+                            new JsonFileReader()));
+        }
+    },
+    INSTITUTE_HOME {
+        @Override
+        public Command getCommand() {
+            return new InstituteHomeCommand();
         }
     },;
 

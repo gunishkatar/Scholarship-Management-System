@@ -3,7 +3,9 @@ package com.dal.group7.service.implementation;
 import com.dal.group7.persistent.implementations.ConnectionManager;
 import com.dal.group7.persistent.implementations.InstituteDao;
 import com.dal.group7.persistent.implementations.PwdEncryptDao;
+import com.dal.group7.persistent.interfaces.Dao;
 import com.dal.group7.persistent.model.Institute;
+import com.dal.group7.persistent.model.Student;
 import com.dal.group7.service.interfaces.UserService;
 import com.dal.group7.shared.PwdEncrypt;
 import org.json.JSONObject;
@@ -13,16 +15,15 @@ import java.sql.SQLException;
 
 
 public class InstituteService implements UserService {
-    private final InstituteDao instituteDao;
+    private final Dao<Integer, Institute> instituteDao;
     private final JsonFileReader jsonFileReader;
     private PwdEncrypt passwordClass;
     private ConnectionManager connectionManager;
 
-    public InstituteService() {
-        this.jsonFileReader = new JsonFileReader();
-        this.connectionManager = new ConnectionManager();
-        this.instituteDao = new InstituteDao(connectionManager);
-        this.passwordClass = new PwdEncrypt(new PwdEncryptDao(connectionManager));
+    public InstituteService(Dao<Integer, Institute> instituteDao,
+                            JsonFileReader jsonFileReader) {
+        this.instituteDao = instituteDao;
+        this.jsonFileReader = jsonFileReader;
 
     }
 
