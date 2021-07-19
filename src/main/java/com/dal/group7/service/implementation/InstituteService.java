@@ -1,5 +1,6 @@
 package com.dal.group7.service.implementation;
 
+import com.dal.group7.constants.StudentConstants;
 import com.dal.group7.persistent.implementations.ConnectionManager;
 import com.dal.group7.persistent.implementations.InstituteDao;
 import com.dal.group7.persistent.implementations.PwdEncryptDao;
@@ -52,11 +53,43 @@ public class InstituteService implements UserService {
         return (idFlag && nameFlag && emailIdFlag && registrationCodeFlag && phoneNumberFlag && addressFlag && stateFlag && cityFlag && countryFlag && pinCodeFlag);
     }
 
+    public Boolean isValidInstituteEmail(String emailId) {
+        try {
+            if (!emailId.equals("")) {
+                String[] emailSplits =
+                        emailId.split(StudentConstants.getEmailDelimiter());
+
+                if (emailSplits.length > 0) {
+                    String userDomain = emailSplits[1];
+                    return (!StudentConstants.getInvalidDomains()
+                            .contains(userDomain));
+                }
+            }
+        } catch (Exception e) {
+            throw new IllegalArgumentException("Invalid Email");
+        }
+        return false;
+    }
+
     @Override
     public void signup(String filepath) throws SQLException, IOException {
         final JSONObject jsonObject = jsonFileReader.readJson(filepath);
         Institute institute = new Institute().from(jsonObject);
         instituteDao.insertOne(institute);
+        if (Boolean.TRUE.equals(isValid(institute)) &&
+                Boolean.FALSE
+                        .equals(doesInstituteExist(institute.getEmailId())) &&
+                Boolean.TRUE
+                        .equals(isValidInstituteEmail(institute.getEmailId()))) {
+            instituteDao.insertOne(institute);
+        } else {
+            throw new IllegalArgumentException(
+                    "Invalid student parameters passed");
+        }
+    }
+
+    public Boolean doesInstituteExist(String emailId) throws SQLException {
+        return instituteDao.doesEmailExist(emailId);
     }
 
 

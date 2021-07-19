@@ -3,16 +3,33 @@ package com.dal.group7.service.implementation;
 import com.dal.group7.persistent.implementations.InstituteDao;
 import com.dal.group7.persistent.model.Institute;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
+import org.mockito.Mockito;
+import org.mockito.MockitoAnnotations;
+
+import java.sql.SQLException;
 
 class InstituteServiceTest {
+    static final Institute INSTITUTE = new Institute(1,"name","dal.ca",5000,"abc",
+            "abc", 1111,"LakeLouise","NovaScotia","Halifax",
+            "Canada",1234);
 
     @Mock
     private InstituteDao instituteDao;
 
     @Mock
     private JsonFileReader jsonFileReader;
+
+    @Mock
+    private InstituteService instituteService;
+
+    @BeforeEach
+    void setUp() {
+        MockitoAnnotations.openMocks(this);
+    }
+
 
     @Test
     public void isValidInstitute() {
