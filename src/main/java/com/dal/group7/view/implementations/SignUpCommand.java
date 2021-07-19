@@ -31,7 +31,7 @@ public class SignUpCommand extends Command {
                 nextCommand = STUDENT_SIGNUP.getCommand();
                 break;
             case 2:
-                // TODO: ADD COMMAND
+                nextCommand = INSTITUTE_SIGNUP.getCommand();
                 break;
             default:
                 nextCommand = QUIT.getCommand();
