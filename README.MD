@@ -24,4 +24,5 @@
     <li> SM5308-14 : Student Login, Author - Venkata Saikiran</li>
     <li> SM5308-72 : Institute Home View Creation, Author - Rishita Kotiyal</li>
     <li> SM5308-73 : Institute Signup View Creation, Author - Rishita Kotiyal</li>
+    <li> SM5308-74 : Institute Login Command, Author - Gunish Katar</li>
 </ol>
