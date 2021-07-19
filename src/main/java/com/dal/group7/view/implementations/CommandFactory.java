@@ -10,6 +10,7 @@ import com.dal.group7.view.interfaces.Command;
 import static com.dal.group7.persistent.implementations.DaoFactory.SCHOLARSHIP;
 import static com.dal.group7.persistent.implementations.DaoFactory.STUDENT;
 
+
 public enum CommandFactory {
     CREATE_SCHOLARSHIP {
         @Override
@@ -87,6 +88,7 @@ public enum CommandFactory {
             return new StudentLoginCommand(new StudentLoginService(DaoFactory.USER_CREDENTIALS.createDao(),
                     new PwdEncrypt(new PwdEncryptDao(new ConnectionManager()))));
         }
+
     },;
 
     public abstract Command getCommand();

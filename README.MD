@@ -21,4 +21,5 @@
     <li> SM5308-71 : Student Signup View Creation, Author - Rahul Kodumuru</li>
     <li> SM5308-68 : Ministry Log in, Author - Amrita Krishna</li>
     <li> SM5308-14 : Student Login, Author - Venkata Saikiran</li>
+    <li> SM5308-72 : Institute Home View Creation, Author - Rishita Kotiyal</li>
 </ol>
