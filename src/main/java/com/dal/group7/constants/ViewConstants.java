@@ -33,6 +33,9 @@ public class ViewConstants {
   public static final String SIGN_UP_OPT = "1. Sign up";
   public static final String STUDENT = "1. Student";
   public static final String STUDENT_MENU = "As a student, You can now access the following menu";
+  public static final String INSTITUTE_MENU = "As an institute, You can now access the following menu";
+  public static final String APPROVE_THE_APPLICATION = "3. Approves the student application";
+  public static final String REJECT_THE_APPLICATION = "4. Rejects the student application";
   public static final String SUCCESSFULLY_CREATED_SCHOLARSHIP = "Successfully Created the Scholarship. " +
           "Students can avail it now.";
   public static final String VIEW_APPROVED_STUDENT_APPLICATIONS = "1. View Approved Student Applications";
