@@ -43,19 +43,6 @@ public class InstituteDao extends Dao<Integer, Institute> {
         }
     }
 
-    @Override
-    public Boolean doesEmailExist(String emailId) throws SQLException {
-        try (Connection connection = connectionManager.getConnection();
-             PreparedStatement preparedStatement = connection.
-                     prepareStatement(SQLConstants.getSelectByUserIdQuery(
-                             SQLConstants.USER_CREDENTIAL))) {
-
-            preparedStatement.setString(1, emailId);
-            ResultSet rs = preparedStatement.executeQuery();
-
-            return rs.next();
-        }
-    }
 
     public Optional<Institute> get(Integer id) throws SQLException {
         try(var connection = connectionManager.getConnection();

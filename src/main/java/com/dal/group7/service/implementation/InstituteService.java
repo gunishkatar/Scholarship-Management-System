@@ -6,7 +6,6 @@ import com.dal.group7.persistent.implementations.InstituteDao;
 import com.dal.group7.persistent.implementations.PwdEncryptDao;
 import com.dal.group7.persistent.interfaces.Dao;
 import com.dal.group7.persistent.model.Institute;
-import com.dal.group7.persistent.model.Student;
 import com.dal.group7.service.interfaces.UserService;
 import com.dal.group7.shared.PwdEncrypt;
 import org.json.JSONObject;
@@ -71,27 +70,11 @@ public class InstituteService implements UserService {
         return false;
     }
 
+
     @Override
-    public void signup(String filepath) throws SQLException, IOException {
-        final JSONObject jsonObject = jsonFileReader.readJson(filepath);
-        Institute institute = new Institute().from(jsonObject);
-        instituteDao.insertOne(institute);
-        if (Boolean.TRUE.equals(isValid(institute)) &&
-                Boolean.FALSE
-                        .equals(doesInstituteExist(institute.getEmailId())) &&
-                Boolean.TRUE
-                        .equals(isValidInstituteEmail(institute.getEmailId()))) {
-            instituteDao.insertOne(institute);
-        } else {
-            throw new IllegalArgumentException(
-                    "Invalid student parameters passed");
-        }
-    }
+    public void signup(String filename) throws SQLException, IOException {
 
-    public Boolean doesInstituteExist(String emailId) throws SQLException {
-        return instituteDao.doesEmailExist(emailId);
     }
-
 
     @Override
     public void login() throws SQLException {
