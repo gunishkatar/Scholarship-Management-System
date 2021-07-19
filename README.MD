@@ -25,4 +25,7 @@
     <li> SM5308-72 : Institute Home View Creation, Author - Rishita Kotiyal</li>
     <li> SM5308-73 : Institute Signup View Creation, Author - Rishita Kotiyal</li>
     <li> SM5308-74 : Institute Login Command, Author - Gunish Katar</li>
+    <li> SM5308-22 : Student Scheme Template, Author - Rahul Kodumuru</li>
+    <li> SM5308-77 : Student Apply Scheme view, Author - Rahul Kodumuru</li>
+    <li> SM5308-78 : Add student application to DB, Author - Rahul Kodumuru</li>
 </ol>
