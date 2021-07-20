@@ -59,9 +59,7 @@ public class Institute {
         return name;
     }
 
-    public String getEmailId() {
-        return emailId;
-    }
+    public String getEmailId() { return emailId;}
 
     public Integer getRegistrationCode() {
         return registrationCode;

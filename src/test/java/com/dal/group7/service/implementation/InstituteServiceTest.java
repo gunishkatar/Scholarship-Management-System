@@ -5,6 +5,7 @@ import com.dal.group7.persistent.model.Institute;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
@@ -24,7 +25,7 @@ class InstituteServiceTest {
     @Mock
     private JsonFileReader jsonFileReader;
 
-    @Mock
+    @InjectMocks
     private InstituteService instituteService;
 
     @BeforeEach
@@ -32,11 +33,11 @@ class InstituteServiceTest {
         MockitoAnnotations.openMocks(this);
     }
 
+
     /* returns true if institute has valid email */
     @Test
     void shouldApproveValidEmail() {
-        InstituteService instituteService =
-                new InstituteService(instituteDao, jsonFileReader);
+        instituteService = new InstituteService(instituteDao, jsonFileReader);
         Assertions.assertTrue(instituteService.isValidInstituteEmail(EMAIL_ID_ONE),
                 "Invalid Email approved");
     }
@@ -64,8 +65,7 @@ class InstituteServiceTest {
     /* returns true if exceptions are handled */
     @Test
     void shouldHandleInvalidEmailExceptions() {
-        InstituteService instituteService =
-                new InstituteService(instituteDao, jsonFileReader);
+         instituteService = new InstituteService(instituteDao, jsonFileReader);
         try {
             Assertions.assertFalse(instituteService.isValidInstituteEmail(null),
                     "null check failed");

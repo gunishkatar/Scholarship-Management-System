@@ -1,6 +1,6 @@
 package com.dal.group7.service.implementation;
 
-import com.dal.group7.constants.StudentConstants;
+import com.dal.group7.constants.InstituteConstants;
 import com.dal.group7.persistent.implementations.ConnectionManager;
 import com.dal.group7.persistent.implementations.InstituteDao;
 import com.dal.group7.persistent.implementations.PwdEncryptDao;
@@ -56,11 +56,11 @@ public class InstituteService implements UserService {
         try {
             if (!emailId.equals("")) {
                 String[] emailSplits =
-                        emailId.split(StudentConstants.getEmailDelimiter());
+                        emailId.split(InstituteConstants.getInstEmailDelimiter());
 
                 if (emailSplits.length > 0) {
                     String userDomain = emailSplits[1];
-                    return (!StudentConstants.getInvalidDomains()
+                    return (!InstituteConstants.getInvalidDomains()
                             .contains(userDomain));
                 }
             }
@@ -70,11 +70,30 @@ public class InstituteService implements UserService {
         return false;
     }
 
-
     @Override
-    public void signup(String filename) throws SQLException, IOException {
-
+    public void signup(String filepath) throws SQLException, IOException {
+        final JSONObject jsonObject = jsonFileReader.readJson(filepath);
+        Institute institute = new Institute().from(jsonObject);
+        instituteDao.insertOne(institute);
+        if (Boolean.TRUE.equals(isValid(institute)) &&
+                Boolean.FALSE
+                        .equals(doesInstituteExist(institute.getEmailId())) &&
+                Boolean.TRUE
+                        .equals(isValidInstituteEmail(institute.getEmailId()))) {
+            instituteDao.insertOne(institute);
+        } else {
+            throw new IllegalArgumentException(
+                    "Invalid institute parameters passed");
+        }
     }
+
+
+
+    public Boolean doesInstituteExist(String emailId) throws SQLException {
+        return instituteDao.doesEmailExist(emailId);
+    }
+
+
 
     @Override
     public void login() throws SQLException {

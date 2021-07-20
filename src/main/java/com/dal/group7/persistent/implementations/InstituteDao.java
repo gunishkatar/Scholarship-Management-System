@@ -23,7 +23,19 @@ public class InstituteDao extends Dao<Integer, Institute> {
         this.connectionManager = connectionManager;
     }
 
+    @Override
+    public Boolean doesEmailExist(String emailId) throws SQLException {
+        try (Connection connection = connectionManager.getConnection();
+             PreparedStatement preparedStatement = connection.
+                     prepareStatement(SQLConstants.getSelectByUserIdQuery(
+                             SQLConstants.USER_CREDENTIAL))) {
 
+            preparedStatement.setString(1, emailId);
+            ResultSet rs = preparedStatement.executeQuery();
+
+            return rs.next();
+        }
+    }
 
     public void insertOne(Institute institute) throws SQLException{
         try (var connection = connectionManager.getConnection();
