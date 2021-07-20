@@ -1,6 +1,6 @@
 package com.dal.group7.service.implementation;
 
-import com.dal.group7.constants.StudentConstants;
+import com.dal.group7.constants.InstituteConstants;
 import com.dal.group7.persistent.implementations.ConnectionManager;
 import com.dal.group7.persistent.implementations.InstituteDao;
 import com.dal.group7.persistent.implementations.PwdEncryptDao;
@@ -56,11 +56,11 @@ public class InstituteService implements UserService {
         try {
             if (!emailId.equals("")) {
                 String[] emailSplits =
-                        emailId.split(StudentConstants.getEmailDelimiter());
+                        emailId.split(InstituteConstants.getInstEmailDelimiter());
 
                 if (emailSplits.length > 0) {
                     String userDomain = emailSplits[1];
-                    return (!StudentConstants.getInvalidDomains()
+                    return (!InstituteConstants.getInvalidDomains()
                             .contains(userDomain));
                 }
             }

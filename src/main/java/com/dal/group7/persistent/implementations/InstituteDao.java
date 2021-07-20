@@ -24,7 +24,6 @@ public class InstituteDao extends Dao<Integer, Institute> {
     }
 
 
-
     public void insertOne(Institute institute) throws SQLException{
         try (var connection = connectionManager.getConnection();
              //var preparedStatement = connection.prepareStatement(SQLConstants.getInsertNewInstitute())){

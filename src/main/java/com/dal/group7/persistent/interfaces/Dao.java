@@ -33,4 +33,5 @@ public abstract class Dao<K, T> {
     public void updateValue(K id, String field, Object value) throws SQLException {
     }
 
+
 }
