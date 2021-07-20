@@ -16,7 +16,6 @@ public class InstituteLoginCommand extends Command {
     private boolean success;
 
     public InstituteLoginCommand(InstituteLoginService loginService) {
-
         this.instituteLoginService = loginService;
     }
 
@@ -31,7 +30,7 @@ public class InstituteLoginCommand extends Command {
     @Override
     public void handle() {
         try {
-            instituteLoginService.userLogin(userName, password);
+            instituteLoginService.instituteLogin(userName, password);
             this.success = true;
         } catch (Exception exception) {
             System.out.println(PROGRAM_MESSAGE_PREFIX + exception.getMessage() + PROGRAM_MESSAGE_POSTFIX);

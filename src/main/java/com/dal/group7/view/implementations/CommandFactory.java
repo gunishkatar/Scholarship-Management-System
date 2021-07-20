@@ -103,6 +103,13 @@ public enum CommandFactory {
             return new InstituteHomeCommand();
         }
     },
+    INSTITUTE_LOGIN {
+        @Override
+        public Command getCommand() {
+            return new InstituteLoginCommand(new InstituteLoginService(DaoFactory.USER_CREDENTIALS.createDao(),
+                    new PwdEncrypt(new PwdEncryptDao(new ConnectionManager()))));
+        }
+    },
     APPLY_FOR_SCHEME {
         @Override
         public Command getCommand() {

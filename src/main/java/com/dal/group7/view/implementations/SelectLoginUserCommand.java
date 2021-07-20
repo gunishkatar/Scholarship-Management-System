@@ -29,7 +29,7 @@ public class SelectLoginUserCommand extends Command {
                 nextCommand = CommandFactory.STUDENT_LOGIN.getCommand();
                 break;
             case 2:
-                // TODO: ADD Command
+                nextCommand = CommandFactory.INSTITUTE_LOGIN.getCommand();
                 break;
             case 3:
                 nextCommand = CommandFactory.MINISTRY_LOGIN.getCommand();
