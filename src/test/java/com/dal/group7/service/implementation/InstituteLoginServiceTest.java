@@ -30,11 +30,45 @@ public class InstituteLoginServiceTest {
     private PwdEncrypt pwdEncrypt;
 
     @InjectMocks
-    private StudentLoginService insStudentLoginService;
+    private InstituteLoginService instituteLoginService;
 
     @BeforeEach
     void setUp() {
         MockitoAnnotations.openMocks(this);
+    }
+
+    @Test
+    void shouldReturnCredentialsIfUsernameAndPasswordAreValid() throws SQLException {
+        Mockito.when(pwdEncrypt.getEncryptedPwd(any())).thenReturn(PASSWORD);
+        Mockito.when(userCredentialDao.doesExist(any())).thenReturn(true);
+        Mockito.when(userCredentialDao.get(any())).thenReturn(Optional.of(CREDENTIALS));
+
+        final UserCredential userCredential = instituteLoginService.instituteLogin(USERNAME, PASSWORD);
+
+        assertEquals(CREDENTIALS, userCredential);
+    }
+
+    @Test
+    void shouldThrowExceptionIfUsernameDoesntExist() throws SQLException {
+        Mockito.when(pwdEncrypt.getEncryptedPwd(any())).thenReturn(PASSWORD);
+        Mockito.when(userCredentialDao.doesExist(any())).thenReturn(false);
+
+        final IllegalArgumentException exception = assertThrows(IllegalArgumentException.class,
+                () -> instituteLoginService.instituteLogin(USERNAME, PASSWORD));
+
+        assertEquals("You have entered invalid Credentials", exception.getMessage());
+    }
+
+    @Test
+    void shouldThrowExceptionIfNoCredentialsReturned() throws SQLException {
+        Mockito.when(pwdEncrypt.getEncryptedPwd(any())).thenReturn(PASSWORD);
+        Mockito.when(userCredentialDao.doesExist(any())).thenReturn(true);
+        Mockito.when(userCredentialDao.get(any())).thenReturn(Optional.empty());
+
+        final IllegalArgumentException exception = assertThrows(IllegalArgumentException.class,
+                () -> instituteLoginService.instituteLogin(USERNAME, PASSWORD));
+
+        assertEquals("You have entered invalid Credentials", exception.getMessage());
     }
 
 }
