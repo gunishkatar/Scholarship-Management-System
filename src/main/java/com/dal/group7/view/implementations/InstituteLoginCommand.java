@@ -16,7 +16,6 @@ public class InstituteLoginCommand extends Command {
     private boolean success;
 
     public InstituteLoginCommand(InstituteLoginService loginService) {
-
         this.instituteLoginService = loginService;
     }
 
