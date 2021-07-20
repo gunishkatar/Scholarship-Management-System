@@ -24,4 +24,18 @@ public class InstituteLoginService {
         this.passwordClass = pwdEncrypt;
     }
 
+    private String getEncryptedPassword(String password) {
+        return passwordClass.getEncryptedPwd(password);
+    }
+
+    private boolean getStoredCredential() throws SQLException {
+        if (userCredentialDao.doesExist(userId)) {
+            userCredential = userCredentialDao.get(userId)
+                    .orElseThrow(() -> new IllegalArgumentException(INVALID_CREDENTIALS));
+            return true;
+        }
+        return false;
+
+    }
+
 }
