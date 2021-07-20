@@ -45,7 +45,7 @@ public class StudentService implements UserService {
     }
 
     public Boolean doesStudentExist(String emailId) throws SQLException {
-        return studentDao.doesEmailExist(emailId);
+        return studentDao.doesExist(emailId);
     }
 
     public Boolean isValidStudentEmail(String emailId) {

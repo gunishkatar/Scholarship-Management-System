@@ -1,10 +1,7 @@
 package com.dal.group7.persistent.implementations;
 
 import com.dal.group7.persistent.interfaces.Dao;
-import com.dal.group7.persistent.model.Institute;
-import com.dal.group7.persistent.model.Scholarship;
-import com.dal.group7.persistent.model.Student;
-import com.dal.group7.persistent.model.UserCredential;
+import com.dal.group7.persistent.model.*;
 
 public enum DaoFactory {
 
@@ -32,15 +29,21 @@ public enum DaoFactory {
             return new StudentDao(connectionManager);
         }
     },
-
     USER_CREDENTIALS {
         @Override
         public Dao<String, UserCredential> createDao() {
             return new UserCredentialDao(connectionManager);
         }
+    },
+    APPLICATION {
+        @Override
+        public Dao<String, Application> createDao() {
+            return new ApplicationDao(connectionManager);
+        }
     };
 
-    private static final ConnectionManager connectionManager = new ConnectionManager();
+    private static final ConnectionManager connectionManager =
+            new ConnectionManager();
 
     public abstract Dao createDao();
 }

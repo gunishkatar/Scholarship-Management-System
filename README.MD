@@ -16,6 +16,7 @@
     <li> SM5308-12 : Created Student sign up template, Author - Rahul Kodumuru</li>
     <li> SM5308-65 : Adding a new student to database, Author - Rahul Kodumuru</li>
     <li> SM5308-21 : Created Institute sign up template, Author - Rishita Kotiyal</li>
+    <li> SM5308-21-new : Institute sign up implementation and tests, Author - Rishita Kotiyal</li>
     <li> SM5308-67 : Created Ministry scholarship creation view, Author - Amrita Krishna</li>
     <li> SM5308-69 : Student Service & DAO refactored to use Conn Mgr, Author - Rahul Kodumuru</li>
     <li> SM5308-70 : Student Home View Creation, Author - Rahul Kodumuru</li>
@@ -25,4 +26,7 @@
     <li> SM5308-72 : Institute Home View Creation, Author - Rishita Kotiyal</li>
     <li> SM5308-73 : Institute Signup View Creation, Author - Rishita Kotiyal</li>
     <li> SM5308-74 : Institute Login Command, Author - Gunish Katar</li>
+    <li> SM5308-22 : Student Scheme Template, Author - Rahul Kodumuru</li>
+    <li> SM5308-77 : Student Apply Scheme view, Author - Rahul Kodumuru</li>
+    <li> SM5308-78 : Add student application to DB, Author - Rahul Kodumuru</li>
 </ol>

@@ -10,6 +10,7 @@ import static java.util.Collections.emptyList;
 
 public abstract class Dao<K, T> {
 
+
     public Optional<T> get(K id) throws SQLException {
         return Optional.empty();
     }
@@ -25,14 +26,8 @@ public abstract class Dao<K, T> {
         return EMPTY_MAP;
     }
 
-    public void getByEmail() throws SQLException {
-    }
-
     public Boolean doesExist(String id) throws SQLException {
         return false;
     }
 
-    public Boolean doesEmailExist(String emailId) throws SQLException {
-        return false;
-    }
 }

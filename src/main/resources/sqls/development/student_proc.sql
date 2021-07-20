@@ -4,12 +4,10 @@ delimiter |
 CREATE PROCEDURE SP_CREATE_STUDENT_TABLES()
 BEGIN
 
-    -- Student Basic
     DROP TABLE IF EXISTS `CSCI5308_7_DEVINT`.`student_basic`;
-
+    -- Student Basic
     CREATE TABLE IF NOT EXISTS `CSCI5308_7_DEVINT`.`student_basic`
     (
-        `student_id`      INT                                   NOT NULL AUTO_INCREMENT,
         `first_name`      VARCHAR(255)                          NOT NULL,
         `last_name`       VARCHAR(255)                          NOT NULL,
         `email_id`        VARCHAR(255)                          NOT NULL,
@@ -21,7 +19,7 @@ BEGIN
         `city`            VARCHAR(45)                           NOT NULL,
         `pincode`         VARCHAR(45)                           NOT NULL,
         `country`         VARCHAR(45)                           NOT NULL,
-        PRIMARY KEY (`student_id`)
+        PRIMARY KEY (`email_id`)
     ) ENGINE = INNODB
       DEFAULT CHARACTER SET = UTF8MB3;
 
@@ -30,35 +28,35 @@ BEGIN
 
     CREATE TABLE IF NOT EXISTS `CSCI5308_7_DEVINT`.`student_academic`
     (
-        `student_id`                 INT         NOT NULL,
-        `institute_id`               VARCHAR(45) NULL DEFAULT NULL,
-        `GPA-X`                      DOUBLE      NULL DEFAULT NULL,
-        `GPA-XII`                    DOUBLE      NULL DEFAULT NULL,
-        `GPA_Bachelors`              DOUBLE      NULL DEFAULT NULL,
-        `BOARD-X`                    VARCHAR(45) NULL DEFAULT NULL,
-        `BOARD-XII`                  VARCHAR(45) NULL DEFAULT NULL,
-        `backlog_count_X`            INT         NULL DEFAULT NULL,
-        `backlog_count_XII`          INT         NULL DEFAULT NULL,
-        `backlog_count_bachelors`    INT         NULL DEFAULT NULL,
-        `joining_month_bachelors`    DATETIME    NULL DEFAULT NULL,
-        `graduation_month_bachelors` DATETIME    NULL DEFAULT NULL,
-        PRIMARY KEY (`student_id`)
+        `email_id`                   VARCHAR(255) NOT NULL,
+        `institute_id`               INT          NULL DEFAULT NULL,
+        `GPA-X`                      DOUBLE       NULL DEFAULT NULL,
+        `GPA-XII`                    DOUBLE       NULL DEFAULT NULL,
+        `GPA_Bachelors`              DOUBLE       NULL DEFAULT NULL,
+        `BOARD-X`                    VARCHAR(45)  NULL DEFAULT NULL,
+        `BOARD-XII`                  VARCHAR(45)  NULL DEFAULT NULL,
+        `backlog_count_X`            INT          NULL DEFAULT NULL,
+        `backlog_count_XII`          INT          NULL DEFAULT NULL,
+        `backlog_count_bachelors`    INT          NULL DEFAULT NULL,
+        `joining_month_bachelors`    DATETIME     NULL DEFAULT NULL,
+        `graduation_month_bachelors` DATETIME     NULL DEFAULT NULL,
+        PRIMARY KEY (`email_id`)
     ) ENGINE = INNODB
       DEFAULT CHARACTER SET = UTF8MB3;
 
     -- student Non Academic
-    DROP TABLE IF EXISTS `CSCI5308_7_DEVINT`.`student_non_adademic`;
+    DROP TABLE IF EXISTS `CSCI5308_7_DEVINT`.`student_non_academic`;
 
     CREATE TABLE IF NOT EXISTS `CSCI5308_7_DEVINT`.`student_non_academic`
     (
-        `student_id`                   INT NOT NULL,
-        `national_sports_awards_count` INT NULL DEFAULT '0',
-        `state_sports_awards_count`    INT NULL DEFAULT '0',
-        `district_sports_awards_count` INT NULL DEFAULT '0',
-        `national_arts_awards_count`   INT NULL DEFAULT '0',
-        `state_arts_awards_count`      INT NULL DEFAULT '0',
-        `district_arts_awards_count`   INT NULL DEFAULT '0',
-        PRIMARY KEY (`student_id`)
+        `email_id`                     VARCHAR(255) NOT NULL,
+        `national_sports_awards_count` INT          NULL DEFAULT '0',
+        `state_sports_awards_count`    INT          NULL DEFAULT '0',
+        `district_sports_awards_count` INT          NULL DEFAULT '0',
+        `national_arts_awards_count`   INT          NULL DEFAULT '0',
+        `state_arts_awards_count`      INT          NULL DEFAULT '0',
+        `district_arts_awards_count`   INT          NULL DEFAULT '0',
+        PRIMARY KEY (`email_id`)
     ) ENGINE = INNODB
       DEFAULT CHARACTER SET = UTF8MB3;
 
@@ -67,13 +65,13 @@ BEGIN
 
     CREATE TABLE IF NOT EXISTS `CSCI5308_7_DEVINT`.`student_finance`
     (
-        `student_id`           INT          NOT NULL,
+        `email_id`             VARCHAR(255) NOT NULL,
         `bank_acc_num`         VARCHAR(255) NULL DEFAULT NULL,
         `bank_IFSC`            VARCHAR(255) NULL DEFAULT NULL,
         `annual_income`        DOUBLE       NULL DEFAULT NULL,
         `bank_name`            VARCHAR(255) NULL DEFAULT NULL,
         `bank_acc_holder_name` VARCHAR(255) NULL DEFAULT NULL,
-        PRIMARY KEY (`student_id`)
+        PRIMARY KEY (`email_id`)
     ) ENGINE = INNODB
       DEFAULT CHARACTER SET = UTF8MB3;
 END

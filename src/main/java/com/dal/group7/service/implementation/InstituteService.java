@@ -1,11 +1,11 @@
 package com.dal.group7.service.implementation;
 
+import com.dal.group7.constants.StudentConstants;
 import com.dal.group7.persistent.implementations.ConnectionManager;
 import com.dal.group7.persistent.implementations.InstituteDao;
 import com.dal.group7.persistent.implementations.PwdEncryptDao;
 import com.dal.group7.persistent.interfaces.Dao;
 import com.dal.group7.persistent.model.Institute;
-import com.dal.group7.persistent.model.Student;
 import com.dal.group7.service.interfaces.UserService;
 import com.dal.group7.shared.PwdEncrypt;
 import org.json.JSONObject;
@@ -52,13 +52,29 @@ public class InstituteService implements UserService {
         return (idFlag && nameFlag && emailIdFlag && registrationCodeFlag && phoneNumberFlag && addressFlag && stateFlag && cityFlag && countryFlag && pinCodeFlag);
     }
 
-    @Override
-    public void signup(String filepath) throws SQLException, IOException {
-        final JSONObject jsonObject = jsonFileReader.readJson(filepath);
-        Institute institute = new Institute().from(jsonObject);
-        instituteDao.insertOne(institute);
+    public Boolean isValidInstituteEmail(String emailId) {
+        try {
+            if (!emailId.equals("")) {
+                String[] emailSplits =
+                        emailId.split(StudentConstants.getEmailDelimiter());
+
+                if (emailSplits.length > 0) {
+                    String userDomain = emailSplits[1];
+                    return (!StudentConstants.getInvalidDomains()
+                            .contains(userDomain));
+                }
+            }
+        } catch (Exception e) {
+            throw new IllegalArgumentException("Invalid Email");
+        }
+        return false;
     }
 
+
+    @Override
+    public void signup(String filename) throws SQLException, IOException {
+
+    }
 
     @Override
     public void login() throws SQLException {

@@ -3,6 +3,7 @@ package com.dal.group7.view.implementations;
 import com.dal.group7.view.interfaces.Command;
 
 import static com.dal.group7.constants.ViewConstants.*;
+import static com.dal.group7.view.implementations.CommandFactory.APPLY_FOR_SCHEME;
 import static com.dal.group7.view.implementations.CommandFactory.QUIT;
 
 public class StudentHomeCommand extends Command {
@@ -30,7 +31,7 @@ public class StudentHomeCommand extends Command {
                 // TODO: LIST Scholarship Command
                 break;
             case 2:
-                // TODO: APPLY for scheme
+                this.nextCommand = APPLY_FOR_SCHEME.getCommand();
                 break;
             case 3:
                 // TODO: CHECK STATUS

@@ -7,9 +7,7 @@ import com.dal.group7.service.implementation.*;
 import com.dal.group7.shared.PwdEncrypt;
 import com.dal.group7.view.interfaces.Command;
 
-import static com.dal.group7.persistent.implementations.DaoFactory.SCHOLARSHIP;
-import static com.dal.group7.persistent.implementations.DaoFactory.STUDENT;
-import static com.dal.group7.persistent.implementations.DaoFactory.INSTITUTE;
+import static com.dal.group7.persistent.implementations.DaoFactory.*;
 
 
 public enum CommandFactory {
@@ -111,7 +109,17 @@ public enum CommandFactory {
             return new InstituteLoginCommand(new InstituteLoginService(DaoFactory.USER_CREDENTIALS.createDao(),
                     new PwdEncrypt(new PwdEncryptDao(new ConnectionManager()))));
         }
-    };
+    },
+    APPLY_FOR_SCHEME {
+        @Override
+        public Command getCommand() {
+            return new ApplySchemeCommand(new StudentApplySchemeService(
+                    DaoFactory.USER_CREDENTIALS.createDao(),
+                    DaoFactory.APPLICATION.createDao(),
+                    new JsonFileReader()));
+        }
+    },
+    ;
 
     public abstract Command getCommand();
 }
