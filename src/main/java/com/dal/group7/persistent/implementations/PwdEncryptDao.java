@@ -16,6 +16,8 @@ public class PwdEncryptDao extends Dao {
     public PwdEncryptDao(ConnectionManager connectionManager) {
         this.connectionManager = connectionManager;
     }
+
+    @Override
     public HashMap<String, String> getValue() throws SQLException {
         try(var connection = connectionManager.getConnection();
             PreparedStatement preparedStatement = connection.prepareStatement(getSelectAllQuery(ENCRYPTION_TABLE))) {

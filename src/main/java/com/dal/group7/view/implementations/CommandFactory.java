@@ -1,8 +1,5 @@
 package com.dal.group7.view.implementations;
 
-import com.dal.group7.persistent.implementations.ConnectionManager;
-import com.dal.group7.persistent.implementations.DaoFactory;
-import com.dal.group7.persistent.implementations.PwdEncryptDao;
 import com.dal.group7.service.implementation.*;
 import com.dal.group7.shared.PwdEncrypt;
 import com.dal.group7.view.interfaces.Command;
@@ -14,8 +11,7 @@ public enum CommandFactory {
     CREATE_SCHOLARSHIP {
         @Override
         public Command getCommand() {
-            return new CreateScholarshipCommand(new MinistryScholarshipService(SCHOLARSHIP.createDao(),
-                    new JsonFileReader()));
+            return new CreateScholarshipCommand(ServiceConstants.MINISTRY_SCHOLARSHIP_SERVICE);
         }
     },
     ERROR {
@@ -45,8 +41,7 @@ public enum CommandFactory {
     MINISTRY_LOGIN {
         @Override
         public Command getCommand() {
-            return new MinistryLoginCommand(new MinistryLoginService(DaoFactory.USER_CREDENTIALS.createDao(),
-                    new PwdEncrypt(new PwdEncryptDao(new ConnectionManager()))));
+            return new MinistryLoginCommand(ServiceConstants.MINISTRY_LOGIN_SERVICE);
         }
     },
     QUIT {
@@ -70,9 +65,7 @@ public enum CommandFactory {
     STUDENT_SIGNUP {
         @Override
         public Command getCommand() {
-            return new StudentSignupCommand(
-                    new StudentService(STUDENT.createDao(),
-                            new JsonFileReader()));
+            return new StudentSignupCommand(ServiceConstants.STUDENT_SERVICE);
         }
     },
     STUDENT_HOME {
@@ -84,17 +77,14 @@ public enum CommandFactory {
     STUDENT_LOGIN {
         @Override
         public Command getCommand() {
-            return new StudentLoginCommand(new StudentLoginService(DaoFactory.USER_CREDENTIALS.createDao(),
-                    new PwdEncrypt(new PwdEncryptDao(new ConnectionManager()))));
+            return new StudentLoginCommand(ServiceConstants.STUDENT_LOGIN_SERVICE);
         }
 
     },
     INSTITUTE_SIGNUP {
         @Override
         public Command getCommand() {
-            return new InstituteSignupCommand(
-                    new InstituteService(INSTITUTE.createDao(),
-                            new JsonFileReader()));
+            return new InstituteSignupCommand(ServiceConstants.INSTITUTE_SERVICE);
         }
     },
     INSTITUTE_HOME {
@@ -103,23 +93,41 @@ public enum CommandFactory {
             return new InstituteHomeCommand();
         }
     },
-    INSTITUTE_LOGIN {
-        @Override
-        public Command getCommand() {
-            return new InstituteLoginCommand(new InstituteLoginService(DaoFactory.USER_CREDENTIALS.createDao(),
-                    new PwdEncrypt(new PwdEncryptDao(new ConnectionManager()))));
-        }
-    },
     APPLY_FOR_SCHEME {
         @Override
         public Command getCommand() {
-            return new ApplySchemeCommand(new StudentApplySchemeService(
-                    DaoFactory.USER_CREDENTIALS.createDao(),
-                    DaoFactory.APPLICATION.createDao(),
-                    new JsonFileReader()));
+            return new ApplySchemeCommand(ServiceConstants.APPLY_SCHEME_SERVICE);
         }
     },
-    ;
+    INSTITUTE_LOGIN {
+        @Override
+        public Command getCommand() {
+            return new InstituteLoginCommand(ServiceConstants.LOGIN_SERVICE);
+        }
+    },
+    INSTITUTE_APPROVE_REJECT {
+        @Override
+        public Command getCommand() {
+            return new InstituteDecisionCommand();
+        }
+    };
 
     public abstract Command getCommand();
+
+    private static class ServiceConstants {
+        private static final MinistryScholarshipService MINISTRY_SCHOLARSHIP_SERVICE = new MinistryScholarshipService(
+                SCHOLARSHIP.createDao(), new JsonFileReader());
+        private static final MinistryLoginService MINISTRY_LOGIN_SERVICE = new MinistryLoginService(
+                USER_CREDENTIALS.createDao(), new PwdEncrypt(ENCRYPTION.createDao()));
+        private static final StudentService STUDENT_SERVICE = new StudentService(STUDENT.createDao(),
+                new JsonFileReader());
+        private static final StudentLoginService STUDENT_LOGIN_SERVICE = new StudentLoginService(
+                USER_CREDENTIALS.createDao(), new PwdEncrypt(ENCRYPTION.createDao()));
+        private static final InstituteService INSTITUTE_SERVICE = new InstituteService(INSTITUTE.createDao(),
+                new JsonFileReader());
+        private static final StudentApplySchemeService APPLY_SCHEME_SERVICE = new StudentApplySchemeService(
+                USER_CREDENTIALS.createDao(), APPLICATION.createDao(), new JsonFileReader());
+        private static final InstituteLoginService LOGIN_SERVICE = new InstituteLoginService(
+                USER_CREDENTIALS.createDao(), new PwdEncrypt(ENCRYPTION.createDao()));
+    }
 }

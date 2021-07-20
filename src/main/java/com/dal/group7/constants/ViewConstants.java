@@ -45,10 +45,8 @@ public class ViewConstants {
           "As a student, You can now access the following menu";
   public static final String INSTITUTE_MENU =
           "As an institute, You can now access the following menu";
-  public static final String APPROVE_THE_APPLICATION =
-          "3. Approves the student application";
-  public static final String REJECT_THE_APPLICATION =
-          "4. Rejects the student application";
+  public static final String APPROVE_REJECT_APPLICATION =
+          "3. Approve/Reject the student application";
   public static final String SUCCESSFULLY_CREATED_SCHOLARSHIP =
           "Successfully Created the Scholarship. " +
                   "Students can avail it now.";
@@ -67,6 +65,13 @@ public class ViewConstants {
           "Trying to apply for a scholarship... after checking eligibility";
   public static final String APPLICATION_SUBMITTED =
           "Your application has been submitted Successfully...";
+  public static final String APPLICATION_NUMBER = "Enter the application number: ";
+  public static final String APPROVE = "1. Approve";
+  public static final String REJECT = "2. Reject";
+  public static final String EXIT = "3. Exit";
+  public static final String CONFIRM_YOUR_SELECTION = "Confirm your selection";
+  public static final String CONFIRM = "1. Confirm";
+  public static final String EXIT1 = "2. Exit";
 
 
   private ViewConstants() {
