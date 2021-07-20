@@ -12,14 +12,14 @@ import static com.dal.group7.constants.ViewConstants.INVALID_CREDENTIALS;
 
 public class InstituteLoginService {
 
-    private UserCredentialDao userCredentialDao;
+    private Dao<String, UserCredential> userCredentialDao;
     private String userId;
     private String password;
     private PwdEncrypt passwordClass;
     private UserCredential userCredential;
     private static final String YES = "yes";
 
-    public InstituteLoginService(UserCredentialDao userCredentialDao, PwdEncrypt pwdEncrypt) {
+    public InstituteLoginService(Dao<String, UserCredential> userCredentialDao, PwdEncrypt pwdEncrypt) {
         this.userCredentialDao = userCredentialDao;
         this.passwordClass = pwdEncrypt;
     }
