@@ -13,7 +13,7 @@ public class SQLConstants {
     private static final String SELECT_ALL_QUERY = "select * from ";
     private static final String WHERE_ID = " where id = ?";
     private static final String WHERE_USER_ID = " where user_id = ?";
-    private static final String WHERE_STUDENT_ID = " where student_id= ?";
+    private static final String WHERE_APPLICATION_ID = " where application_id = ?";
     private static final String INSERT_NEW_STUDENT =
             "INSERT INTO student_basic (first_name, last_name, email_id, " +
                     "phone_number, passport_number, dob, gender, state, " +
@@ -73,6 +73,8 @@ public class SQLConstants {
     public static final String PICKED = "picked";
     public static final String FUND_RECEIVED = "fund_received";
     public static final String FUND_ISSUED = "fund_issued";
+    private static final String UPDATE_APPLICATION_SET = "update application set ";
+    private static final String STATUS = " = ?";
 
     private SQLConstants() {
     }
@@ -90,7 +92,7 @@ public class SQLConstants {
     }
 
     public static String getSelectByApplicationIdQuery() {
-        return SELECT_ALL_QUERY + APPLICATION + WHERE_STUDENT_ID;
+        return SELECT_ALL_QUERY + APPLICATION + WHERE_APPLICATION_ID;
     }
 
     public static String getInsertNewScholarship() {
@@ -128,5 +130,9 @@ public class SQLConstants {
 
     public static String getInsertNewUser() {
         return INSERT_NEW_USER;
+    }
+
+    public static String setStatusForApplication(String field) {
+        return UPDATE_APPLICATION_SET + field + STATUS + WHERE_APPLICATION_ID;
     }
 }

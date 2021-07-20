@@ -141,4 +141,17 @@ public class ApplicationDao extends Dao<String, Application> {
             }
         }
     }
+
+    @Override
+    public void updateValue(String id, String field, Object value) throws SQLException {
+        try (var connection = connectionManager.getConnection();
+             var preparedStatement = connection.prepareStatement(
+                     setStatusForApplication(field))
+             ) {
+            preparedStatement.setObject(1, value);
+            preparedStatement.setString(2, id);
+
+            preparedStatement.executeUpdate();
+        }
+    }
 }
