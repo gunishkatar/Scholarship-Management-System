@@ -88,6 +88,7 @@ public class InstituteService implements UserService {
     }
 
 
+
     public Boolean doesInstituteExist(String emailId) throws SQLException {
         return instituteDao.doesEmailExist(emailId);
     }
