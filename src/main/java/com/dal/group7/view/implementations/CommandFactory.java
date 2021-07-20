@@ -1,5 +1,6 @@
 package com.dal.group7.view.implementations;
 
+import com.dal.group7.persistent.implementations.DaoFactory;
 import com.dal.group7.service.implementation.*;
 import com.dal.group7.shared.PwdEncrypt;
 import com.dal.group7.view.interfaces.Command;
@@ -108,9 +109,10 @@ public enum CommandFactory {
     INSTITUTE_APPROVE_REJECT {
         @Override
         public Command getCommand() {
-            return new InstituteDecisionCommand();
+            return new InstituteDecisionCommand(ServiceConstants.INSTITUTE_APPLICATION_SERVICE);
         }
     };
+
 
     public abstract Command getCommand();
 
@@ -129,5 +131,8 @@ public enum CommandFactory {
                 USER_CREDENTIALS.createDao(), APPLICATION.createDao(), new JsonFileReader());
         private static final InstituteLoginService LOGIN_SERVICE = new InstituteLoginService(
                 USER_CREDENTIALS.createDao(), new PwdEncrypt(ENCRYPTION.createDao()));
+        private static final InstituteApplicationService INSTITUTE_APPLICATION_SERVICE =
+                new InstituteApplicationService(APPLICATION.createDao());
+
     }
 }

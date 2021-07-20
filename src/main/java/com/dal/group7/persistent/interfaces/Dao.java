@@ -30,4 +30,7 @@ public abstract class Dao<K, T> {
         return false;
     }
 
+    public void updateValue(K id, String field, Object value) throws SQLException {
+    }
+
 }
