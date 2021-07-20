@@ -70,11 +70,29 @@ public class InstituteService implements UserService {
         return false;
     }
 
-
     @Override
-    public void signup(String filename) throws SQLException, IOException {
-
+    public void signup(String filepath) throws SQLException, IOException {
+        final JSONObject jsonObject = jsonFileReader.readJson(filepath);
+        Institute institute = new Institute().from(jsonObject);
+        instituteDao.insertOne(institute);
+        if (Boolean.TRUE.equals(isValid(institute)) &&
+                Boolean.FALSE
+                        .equals(doesInstituteExist(institute.getEmailId())) &&
+                Boolean.TRUE
+                        .equals(isValidInstituteEmail(institute.getEmailId()))) {
+            instituteDao.insertOne(institute);
+        } else {
+            throw new IllegalArgumentException(
+                    "Invalid institute parameters passed");
+        }
     }
+
+
+    public Boolean doesInstituteExist(String emailId) throws SQLException {
+        return instituteDao.doesEmailExist(emailId);
+    }
+
+
 
     @Override
     public void login() throws SQLException {
