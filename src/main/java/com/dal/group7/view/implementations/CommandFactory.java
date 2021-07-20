@@ -104,7 +104,14 @@ public enum CommandFactory {
         public Command getCommand() {
             return new InstituteHomeCommand();
         }
-    },;
+    },
+    INSTITUTE_LOGIN {
+        @Override
+        public Command getCommand() {
+            return new InstituteLoginCommand(new InstituteLoginService(DaoFactory.USER_CREDENTIALS.createDao(),
+                    new PwdEncrypt(new PwdEncryptDao(new ConnectionManager()))));
+        }
+    };
 
     public abstract Command getCommand();
 }
