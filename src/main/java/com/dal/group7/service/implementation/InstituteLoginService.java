@@ -1,91 +1,27 @@
 package com.dal.group7.service.implementation;
 
-import com.dal.group7.persistent.implementations.ConnectionManager;
 import com.dal.group7.persistent.implementations.UserCredentialDao;
+import com.dal.group7.persistent.interfaces.Dao;
 import com.dal.group7.persistent.model.UserCredential;
 import com.dal.group7.shared.PwdEncrypt;
 
 import java.sql.SQLException;
-import java.util.Optional;
-import java.util.Scanner;
+
+import static com.dal.group7.constants.ViewConstants.*;
+import static com.dal.group7.constants.ViewConstants.INVALID_CREDENTIALS;
 
 public class InstituteLoginService {
 
+    private UserCredentialDao userCredentialDao;
     private String userId;
     private String password;
     private PwdEncrypt passwordClass;
-    private Optional<UserCredential> userCredential;
-    private UserCredentialDao userCredentialDao;
-    private ConnectionManager connectionManager;
+    private UserCredential userCredential;
+    private static final String YES = "yes";
 
-    public InstituteLoginService(PwdEncrypt passwordClass, ConnectionManager connectionManager) {
-        this.passwordClass = passwordClass;
-        this.connectionManager = connectionManager;
+    public InstituteLoginService(UserCredentialDao userCredentialDao, PwdEncrypt pwdEncrypt) {
+        this.userCredentialDao = userCredentialDao;
+        this.passwordClass = pwdEncrypt;
     }
-
-    public String getUserId() {
-        return userId;
-    }
-
-    public void setUserId(String userId) {
-        this.userId = userId;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public void credentialFromUser(){
-        Scanner scn  =new Scanner(System.in);
-        System.out.println("Enter the valid User ID:\n");
-        setUserId(scn.nextLine());
-        System.out.println("Enter the valid Password:\n");
-        setPassword(scn.nextLine());
-    }
-
-    public void encryptedPassword(){
-        setPassword(passwordClass.getEncryptedPwd(getPassword()));
-    }
-
-    public boolean getStoredCredential() throws SQLException {
-        userCredentialDao = new UserCredentialDao(connectionManager);
-        if(userCredentialDao.doesExist(getUserId())){
-            userCredential = userCredentialDao.get(getUserId());
-            return true;
-        }
-        return false;
-
-    }
-
-    public boolean areCredentialsvalid(){
-        if(getPassword().equals(userCredential.get().getPassword())){
-            return true;
-        }
-        return false;
-    }
-
-
-
-
-    public boolean instituteLogin() throws SQLException {
-        credentialFromUser();
-        encryptedPassword();
-        if(getStoredCredential()){
-            return areCredentialsvalid();
-        }
-
-        return false;
-
-    }
-
-    public UserCredential userLogin(String username, String password){
-        return new UserCredential();
-    }
-
-
 
 }
