@@ -1,6 +1,5 @@
 package com.dal.group7.service.implementation;
 
-import com.dal.group7.persistent.implementations.UserCredentialDao;
 import com.dal.group7.persistent.interfaces.Dao;
 import com.dal.group7.persistent.model.UserCredential;
 import com.dal.group7.shared.PwdEncrypt;
