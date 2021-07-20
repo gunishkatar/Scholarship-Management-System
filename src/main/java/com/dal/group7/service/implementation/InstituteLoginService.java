@@ -42,4 +42,16 @@ public class InstituteLoginService {
         return password.equals(userCredential.getPassword());
     }
 
+    private boolean isInstituteSoftBlocked() {
+        return userCredential.getIsSoftBlock().equals(YES);
+    }
+
+    private boolean isInstituteHardBlocked() {
+        return userCredential.getIsHardBlock().equals(YES);
+    }
+
+    private boolean isInstituteBlackListed() {
+        return userCredential.getIsBlackListed().equals(YES);
+    }
+
 }
