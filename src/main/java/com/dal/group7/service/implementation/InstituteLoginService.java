@@ -38,4 +38,8 @@ public class InstituteLoginService {
 
     }
 
+    private boolean areCredentialsValid() {
+        return password.equals(userCredential.getPassword());
+    }
+
 }
