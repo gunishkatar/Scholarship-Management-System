@@ -31,4 +31,5 @@
     <li> SM5308-78 : Add student application to DB, Author - Rahul Kodumuru</li>
     <li> SM5308-23-New : Institute Login implementation, view and tests, Author - Gunish Katar</li>
     <li> SM5308-49 : Institute approves/rejects application, Author - Amrita Krishna</li>
+    <li> SM5308-34 : Scheme Listing for Students, Author - Rahul Kodumuru</li>
 </ol>
