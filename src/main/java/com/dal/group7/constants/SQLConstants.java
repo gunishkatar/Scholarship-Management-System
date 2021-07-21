@@ -14,7 +14,9 @@ public class SQLConstants {
     private static final String SELECT_ALL_QUERY = "select * from ";
     private static final String WHERE_ID = " where id = ?";
     private static final String WHERE_USER_ID = " where user_id = ?";
-    private static final String WHERE_APPLICATION_ID = " where application_id = ?";
+    private static final String WHERE_STUDENT_ID = " where student_id=?";
+    private static final String WHERE_APPLICATION_ID =
+            " where application_id = ?";
     private static final String INSERT_NEW_STUDENT =
             "INSERT INTO student_basic (first_name, last_name, email_id, " +
                     "phone_number, passport_number, dob, gender, state, " +
@@ -92,6 +94,10 @@ public class SQLConstants {
 
     public static String getSelectByUserIdQuery(String table) {
         return SELECT_ALL_QUERY + table + WHERE_USER_ID;
+    }
+
+    public static String getSelectByStudentIdQuery(String table) {
+        return SELECT_ALL_QUERY + table + WHERE_STUDENT_ID;
     }
 
     public static String getSelectByApplicationIdQuery() {
