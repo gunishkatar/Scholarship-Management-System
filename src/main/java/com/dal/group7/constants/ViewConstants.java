@@ -58,8 +58,9 @@ public class ViewConstants {
   public static final String INVALID_CREDENTIALS =
           "You have entered invalid Credentials";
   public static final String STUDENT_SOFT_BLOCK_MSG =
-          "You have been Blocked Temporarily";
+          "You have been Blocked Temporarily for a day";
   public static final String STUDENT_HARD_BLOCK_MSG = "You have been Blocked";
+  public static final String MAX_ATTEMPT_MSG = "You have reached maximum attempts to login.";
   public static final String ENTER_APPLY_SCHEME_FILE =
           "Enter the full path of the scholarship application";
   public static final String APPLYING_SCHOLARSHIP =

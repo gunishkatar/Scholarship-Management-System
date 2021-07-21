@@ -12,6 +12,8 @@ import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 
 import java.sql.SQLException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Optional;
 
 import static com.dal.group7.constants.ViewConstants.NO_USER_FOUND;
@@ -22,6 +24,8 @@ class StudentLoginServiceTest {
 
   private static final String PASSWORD = "pwd";
   private static final String USERNAME = "user";
+  private static final String TEST_DATE = "2021-07-21 00:00:01";
+  private static final String TEST_DATE1 = "2022-07-21 08:00:01";
   private static final UserCredential CREDENTIALS = new UserCredential(USERNAME, PASSWORD, "NO", "NO",
           "2020-01-10", "1", "NONE", "NONE",
           "NONE", "0", "student", "NO");
@@ -72,4 +76,26 @@ class StudentLoginServiceTest {
 
     assertEquals("You have entered invalid Credentials", exception.getMessage());
   }
+
+  @Test
+  void calculateHrsSinceLoginTest() {
+    Long testDateHours = studentLoginService.calculateHrsSinceLogin(TEST_DATE);
+    boolean isTestDateHoursPositive = testDateHours>0;
+    assertEquals(isTestDateHoursPositive, true);
+  }
+
+  @Test
+  void calculateHrsSinceLoginTestFalse() {
+    Long testDateHours = studentLoginService.calculateHrsSinceLogin(TEST_DATE1);
+    boolean isTestDateHoursPositive = testDateHours>0;
+    assertEquals(isTestDateHoursPositive, false);
+  }
+
+  @Test
+  void getLoginCountTest() {
+    String loginCount ="1";
+    int loginCountVal = studentLoginService.getLoginCount(loginCount);
+    assertEquals(1,loginCountVal);
+  }
+
 }
