@@ -34,4 +34,5 @@
     <li> SM5308-15 : Update Student last login to db for successful attempts, Author - Venkata Saikiran</li>
     <li> SM5308-34 : Scheme Listing for Students, Author - Rahul Kodumuru</li>
     <li> SM5308-24 : Check Application Status, Author - Rahul Kodumuru</li>
+    <li> SM5308-86 :  Update Student fail login count to database on fail, to zero on success, Author - Venkata Saikiran</li>
 </ol>
