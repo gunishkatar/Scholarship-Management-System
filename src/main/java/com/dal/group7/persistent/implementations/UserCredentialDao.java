@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.util.Optional;
 
 import static com.dal.group7.constants.FieldConstants.ONE;
+import static com.dal.group7.constants.FieldConstants.TWO;
 import static com.dal.group7.constants.SQLConstants.*;
 
 public class UserCredentialDao extends Dao<String, UserCredential> {
@@ -48,6 +49,19 @@ public class UserCredentialDao extends Dao<String, UserCredential> {
              var preparedStatement = connection
                      .prepareStatement(setLastLoginForUser())) {
             preparedStatement.setString(ONE, id);
+            preparedStatement.executeUpdate();
+        }
+    }
+
+    @Override
+    public void updateValue(String id, String field, Object value) throws SQLException {
+        try (var connection = connectionManager.getConnection();
+             var preparedStatement = connection.prepareStatement(
+                     setFailedLoginCountForUser(field))
+        ) {
+            preparedStatement.setObject(ONE, value);
+            preparedStatement.setString(TWO, id);
+
             preparedStatement.executeUpdate();
         }
     }

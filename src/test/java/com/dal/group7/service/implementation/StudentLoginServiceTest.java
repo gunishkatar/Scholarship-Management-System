@@ -14,6 +14,7 @@ import org.mockito.MockitoAnnotations;
 import java.sql.SQLException;
 import java.util.Optional;
 
+import static com.dal.group7.constants.ViewConstants.NO_USER_FOUND;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
 
@@ -57,7 +58,7 @@ class StudentLoginServiceTest {
     final IllegalArgumentException exception = assertThrows(IllegalArgumentException.class,
             () -> studentLoginService.userLogin(USERNAME, PASSWORD));
 
-    assertEquals("You have entered invalid Credentials", exception.getMessage());
+    assertEquals(NO_USER_FOUND, exception.getMessage());
   }
 
   @Test
