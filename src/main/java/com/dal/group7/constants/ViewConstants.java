@@ -25,6 +25,7 @@ public class ViewConstants {
   public static final String MINISTRY = "3. Ministry";
   public static final String MINISTRY_PORTAL = "WELCOME TO MINISTRY PORTAL";
   public static final String PASSWORD = "Enter Password: ";
+  public static final String USER_ID = "Enter User id: ";
   public static final String PLEASE_SELECT_YOUR_OPTION =
           "Please select your option: ";
   public static final String PROGRAM_MESSAGE_POSTFIX = " >>>>>";
@@ -81,6 +82,20 @@ public class ViewConstants {
   public static final String GIRL_CHILD_SPECIFIC = "Girl Child Specific: ";
   public static final String ACADEMIC_SPECIFIC = "Academic Specific: ";
   public static final String SPORTS_SPECIFIC = "Sports Specific: ";
+  public static final String CHECKING_STATUS =
+          "Checking the status of application...";
+  public static final String ENTER_SECURITY_DETAILS =
+          "For security purposes, enter below details.";
+  public static final String APPLIED_ON = "Applied On: ";
+  public static final String LAST_UPDATE = "Last Updated On: ";
+  public static final String APPLICATION_STATUS = "Overall Status: ";
+  public static final String INSTITUTE_STATUS = "Status from Institute: ";
+  public static final String MINISTRY_STATUS = "Status from Ministry: ";
+  public static final String NO_APPLICATIONS_FOUND =
+          "No Applications Found for given userID...";
+  public static final String NOT_ELIGIBLE =
+          "User is not eligible for scholarship";
+  public static final String NO_USER_FOUND = "No User Found";
 
   private ViewConstants() {
   }

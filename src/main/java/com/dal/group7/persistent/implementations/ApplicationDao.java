@@ -7,6 +7,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.SQLIntegrityConstraintViolationException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 import static com.dal.group7.constants.FieldConstants.ONE;
@@ -25,11 +27,31 @@ public class ApplicationDao extends Dao<String, Application> {
         try (var connection = connectionManager.getConnection();
              var preparedStatement = connection.prepareStatement(
                      getSelectByUserIdQuery(USER_CREDENTIAL))) {
+
             preparedStatement.setString(ONE, id);
             final var resultSet = preparedStatement.executeQuery();
             return resultSet.next() ?
                     Optional.of(new Application().from(resultSet)) :
                     Optional.empty();
+        }
+    }
+
+    @Override
+    public List<Application> getAllByUser(String userId) throws SQLException {
+        try (var connection = connectionManager.getConnection();
+             var preparedStatement = connection
+                     .prepareStatement(
+                             getSelectByStudentIdQuery(APPLICATION))) {
+
+            preparedStatement.setString(ONE, userId);
+            final var resultSet = preparedStatement.executeQuery();
+            List<Application> applications = new ArrayList<>();
+            while (resultSet.next()) {
+                applications
+                        .add(new Application().from(resultSet));
+            }
+            
+            return applications;
         }
     }
 

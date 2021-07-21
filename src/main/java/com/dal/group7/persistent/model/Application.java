@@ -18,6 +18,31 @@ public class Application {
     double profileScore;
     Scheme scheme;
 
+    public Application() {
+    }
+
+    public Application(String applicationId, int schemeId,
+                       String studentId, int instituteId,
+                       String appliedDate, String lastUpdate,
+                       String applicationStatus, String instituteStatus,
+                       String ministryStatus, double academicScore,
+                       double nonAcademicScore, double profileScore,
+                       Scheme scheme) {
+        this.applicationId = applicationId;
+        this.schemeId = schemeId;
+        this.studentId = studentId;
+        this.instituteId = instituteId;
+        this.appliedDate = appliedDate;
+        this.lastUpdate = lastUpdate;
+        this.applicationStatus = applicationStatus;
+        this.instituteStatus = instituteStatus;
+        this.ministryStatus = ministryStatus;
+        this.academicScore = academicScore;
+        this.nonAcademicScore = nonAcademicScore;
+        this.profileScore = profileScore;
+        this.scheme = scheme;
+    }
+
     public String getApplicationId() {
         return applicationId;
     }

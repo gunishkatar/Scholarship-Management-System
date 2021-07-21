@@ -8,15 +8,19 @@ import org.json.JSONObject;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.List;
 
-public class StudentApplySchemeService {
+import static com.dal.group7.constants.ViewConstants.NOT_ELIGIBLE;
+import static com.dal.group7.constants.ViewConstants.NO_USER_FOUND;
+
+public class StudentSchemeService {
     private final Dao<String, UserCredential> userCredentialDao;
     private final Dao<String, Application> applicationDao;
     private final JsonFileReader jsonFileReader;
     private static final String NO = "no";
 
 
-    public StudentApplySchemeService(
+    public StudentSchemeService(
             Dao<String, UserCredential> userCredentialDao,
             Dao<String, Application> schemeApplicationDao,
             JsonFileReader jsonFileReader) {
@@ -39,8 +43,7 @@ public class StudentApplySchemeService {
             applicationDao.insertOne(application);
 
         } else {
-            throw new IllegalArgumentException(
-                    "User is not eligible for scholarship");
+            throw new IllegalArgumentException(NOT_ELIGIBLE);
         }
     }
 
@@ -81,7 +84,11 @@ public class StudentApplySchemeService {
 
         return userCredentialDao.get(userId)
                 .orElseThrow(
-                        () -> new IllegalArgumentException("No User Found"));
+                        () -> new IllegalArgumentException(NO_USER_FOUND));
 
+    }
+
+    public List<Application> viewStatus(String userId) throws SQLException {
+        return applicationDao.getAllByUser(userId);
     }
 }
