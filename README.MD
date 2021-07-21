@@ -33,4 +33,5 @@
     <li> SM5308-49 : Institute approves/rejects application, Author - Amrita Krishna</li>
     <li> SM5308-15 : Update Student last login to db for successful attempts, Author - Venkata Saikiran</li>
     <li> SM5308-34 : Scheme Listing for Students, Author - Rahul Kodumuru</li>
+    <li> SM5308-24 : Check Application Status, Author - Rahul Kodumuru</li>
 </ol>
