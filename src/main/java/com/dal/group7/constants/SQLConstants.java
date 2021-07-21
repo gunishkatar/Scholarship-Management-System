@@ -77,7 +77,7 @@ public class SQLConstants {
     public static final String FUND_RECEIVED = "fund_received";
     public static final String FUND_ISSUED = "fund_issued";
     private static final String UPDATE_APPLICATION_SET = "update application set ";
-    private static final String UPDATE_LAST_LOGIN_SET = "update user_credential set ";
+    private static final String UPDATE_USER_CREDENTIAL_SET = "update user_credential set ";
     private static final String LAST_LOGIN_SET = "last_login_time = now()";
     private static final String STATUS = " = ?";
 
@@ -145,6 +145,9 @@ public class SQLConstants {
         return UPDATE_APPLICATION_SET + field + STATUS + WHERE_APPLICATION_ID;
     }
     public static String setLastLoginForUser() {
-        return UPDATE_LAST_LOGIN_SET + LAST_LOGIN_SET + WHERE_USER_ID;
+        return UPDATE_USER_CREDENTIAL_SET + LAST_LOGIN_SET + WHERE_USER_ID;
+    }
+    public static String setFailedLoginCountForUser(String field) {
+        return UPDATE_USER_CREDENTIAL_SET + field + STATUS + WHERE_USER_ID;
     }
 }
