@@ -33,6 +33,49 @@ public class Scheme {
     String bankName;
     String bankHolderName;
 
+    public Scheme() {
+    }
+
+    public Scheme(int applicationID, String userId, String gender, int schemeId,
+                  int instituteId, double gpaX, double gpaXII,
+                  double gpaBachelors,
+                  String boardX, String boardXII, int backlogX, int backlogXII,
+                  int backlogBachelors, Date joiningMonthBachelors,
+                  Date graduationMonthBachelors, int nationalSportsAwards,
+                  int stateSportsAwards, int districtSportsAwards,
+                  int nationalArtsAwards, int stateArtsAwards,
+                  int districtArtsAwards, String bankAccNumber,
+                  String bankIFSC, double annualIncome, String bankName,
+                  String bankHolderName) {
+        this.applicationID = applicationID;
+        this.userId = userId;
+        this.gender = gender;
+        this.schemeId = schemeId;
+        this.instituteId = instituteId;
+        this.gpaX = gpaX;
+        this.gpaXII = gpaXII;
+        this.gpaBachelors = gpaBachelors;
+        this.boardX = boardX;
+        this.boardXII = boardXII;
+        this.backlogX = backlogX;
+        this.backlogXII = backlogXII;
+        this.backlogBachelors = backlogBachelors;
+        this.joiningMonthBachelors = joiningMonthBachelors;
+        this.graduationMonthBachelors = graduationMonthBachelors;
+        this.nationalSportsAwards = nationalSportsAwards;
+        this.stateSportsAwards = stateSportsAwards;
+        this.districtSportsAwards = districtSportsAwards;
+        this.nationalArtsAwards = nationalArtsAwards;
+        this.stateArtsAwards = stateArtsAwards;
+        this.districtArtsAwards = districtArtsAwards;
+        this.bankAccNumber = bankAccNumber;
+        this.bankIFSC = bankIFSC;
+        this.annualIncome = annualIncome;
+        this.bankName = bankName;
+        this.bankHolderName = bankHolderName;
+    }
+
+
     public int getApplicationID() {
         return applicationID;
     }

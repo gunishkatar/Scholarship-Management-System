@@ -19,6 +19,10 @@ public abstract class Dao<K, T> {
         return emptyList();
     }
 
+    public List<T> getAllByUser(K id) throws SQLException {
+        return emptyList();
+    }
+
     public void insertOne(T t) throws SQLException {
     }
 
@@ -30,15 +34,16 @@ public abstract class Dao<K, T> {
         return false;
     }
 
-    public void updateValue(K id, String field, Object value) throws SQLException {
+    public void updateValue(K id, String field, Object value)
+            throws SQLException {
     }
 
     public Boolean doesEmailExist(String emailId) throws SQLException {
         return false;
     }
 
-    public void updateLastLoginTime(String emailId) throws SQLException{
+    public void updateLastLoginTime(String emailId) throws SQLException {
 
-    };
+    }
 
 }
