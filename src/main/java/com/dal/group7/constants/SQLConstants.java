@@ -10,6 +10,7 @@ public class SQLConstants {
     public static final String STUDENT_FINANCE = "student_finance";
     public static final String STUDENT_ACADEMIC = "student_academic";
     public static final String STUDENT_NON_ACADEMIC = "student_non_academic";
+    public static final String SCHOLARSHIP = "scholarship";
     private static final String SELECT_ALL_QUERY = "select * from ";
     private static final String WHERE_ID = " where id = ?";
     private static final String WHERE_USER_ID = " where user_id = ?";

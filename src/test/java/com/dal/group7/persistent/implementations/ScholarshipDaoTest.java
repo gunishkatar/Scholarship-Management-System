@@ -51,9 +51,17 @@ class ScholarshipDaoTest {
         Mockito.verify(preparedStatement).executeUpdate();
     }
 
+    @Test
+    void shouldGetAllScholarships() throws SQLException {
+        setUpMock();
+        scholarshipDao.getAll();
+        Mockito.verify(preparedStatement, Mockito.atLeastOnce()).executeQuery();
+    }
+
     private void setUpMock() throws SQLException {
         Mockito.when(connectionManager.getConnection()).thenReturn(connection);
-        Mockito.when(connection.prepareStatement(any())).thenReturn(preparedStatement);
+        Mockito.when(connection.prepareStatement(any()))
+                .thenReturn(preparedStatement);
         Mockito.when(preparedStatement.executeQuery()).thenReturn(resultSet);
     }
 

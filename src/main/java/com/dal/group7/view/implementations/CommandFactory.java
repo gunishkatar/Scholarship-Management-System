@@ -1,6 +1,5 @@
 package com.dal.group7.view.implementations;
 
-import com.dal.group7.persistent.implementations.DaoFactory;
 import com.dal.group7.service.implementation.*;
 import com.dal.group7.shared.PwdEncrypt;
 import com.dal.group7.view.interfaces.Command;
@@ -97,7 +96,15 @@ public enum CommandFactory {
     APPLY_FOR_SCHEME {
         @Override
         public Command getCommand() {
-            return new ApplySchemeCommand(ServiceConstants.APPLY_SCHEME_SERVICE);
+            return new ApplySchemeCommand(
+                    ServiceConstants.APPLY_SCHEME_SERVICE);
+        }
+    },
+    LIST_SCHOLARSHIPS {
+        @Override
+        public Command getCommand() {
+            return new ListScholarshipCommand(
+                    ServiceConstants.MINISTRY_SCHOLARSHIP_SERVICE);
         }
     },
     INSTITUTE_LOGIN {
@@ -109,7 +116,8 @@ public enum CommandFactory {
     INSTITUTE_APPROVE_REJECT {
         @Override
         public Command getCommand() {
-            return new InstituteDecisionCommand(ServiceConstants.INSTITUTE_APPLICATION_SERVICE);
+            return new InstituteDecisionCommand(
+                    ServiceConstants.INSTITUTE_APPLICATION_SERVICE);
         }
     };
 

@@ -65,14 +65,22 @@ public class ViewConstants {
           "Trying to apply for a scholarship... after checking eligibility";
   public static final String APPLICATION_SUBMITTED =
           "Your application has been submitted Successfully...";
-  public static final String APPLICATION_NUMBER = "Enter the application number: ";
+  public static final String APPLICATION_NUMBER =
+          "Enter the application number: ";
   public static final String APPROVE = "1. Approve";
   public static final String REJECT = "2. Reject";
   public static final String EXIT = "3. Exit";
   public static final String CONFIRM_YOUR_SELECTION = "Confirm your selection";
   public static final String CONFIRM = "1. Confirm";
   public static final String EXIT1 = "2. Exit";
-
+  public static final String VIEW_SCHOLARSHIP =
+          "Below are the current available scholarships";
+  public static final String STARS = " ***** ";
+  public static final String EFFECTIVE_FROM = "Effective From: ";
+  public static final String AMOUNT_GRANT = "Amount for grant: ";
+  public static final String GIRL_CHILD_SPECIFIC = "Girl Child Specific: ";
+  public static final String ACADEMIC_SPECIFIC = "Academic Specific: ";
+  public static final String SPORTS_SPECIFIC = "Sports Specific: ";
 
   private ViewConstants() {
   }

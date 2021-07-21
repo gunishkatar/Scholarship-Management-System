@@ -36,12 +36,20 @@ class MinistryScholarshipServiceTest {
     }
 
     @Test
-    void shouldReadFromJsonFileAndSaveScholarship() throws SQLException, IOException {
-        Mockito.when(jsonFileReader.readJson(any())).thenReturn(new JSONObject(getSource()));
+    void shouldReadFromJsonFileAndSaveScholarship()
+            throws SQLException, IOException {
+        Mockito.when(jsonFileReader.readJson(any()))
+                .thenReturn(new JSONObject(getSource()));
 
         ministryScholarshipService.saveScholarship(FILE_PATH);
 
         Mockito.verify(scholarshipDao).insertOne(scholarship);
+    }
+
+    @Test
+    void shouldGetScholarshipList() throws SQLException {
+        ministryScholarshipService.displayScholarships();
+        Mockito.verify(scholarshipDao, Mockito.atLeastOnce()).getAll();
     }
 
     private String getSource() {
