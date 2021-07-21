@@ -1,6 +1,6 @@
 package com.dal.group7.view.implementations;
 
-import com.dal.group7.service.implementation.StudentApplySchemeService;
+import com.dal.group7.service.implementation.StudentSchemeService;
 import com.dal.group7.view.interfaces.Command;
 
 import static com.dal.group7.constants.ViewConstants.*;
@@ -11,10 +11,10 @@ public class ApplySchemeCommand extends Command {
 
     public Boolean result;
     public String input;
-    public StudentApplySchemeService studentApplySchemeService;
+    public StudentSchemeService studentSchemeService;
 
-    ApplySchemeCommand(StudentApplySchemeService studentApplySchemeService) {
-        this.studentApplySchemeService = studentApplySchemeService;
+    ApplySchemeCommand(StudentSchemeService studentSchemeService) {
+        this.studentSchemeService = studentSchemeService;
     }
 
     @Override
@@ -28,7 +28,7 @@ public class ApplySchemeCommand extends Command {
         this.input = scanner.nextLine();
         try {
             System.out.println(APPLYING_SCHOLARSHIP);
-            studentApplySchemeService.applyScheme(input);
+            studentSchemeService.applyScheme(input);
             System.out.println(PROGRAM_MESSAGE_PREFIX + SIGNED_UP_AS_STUDENT +
                     PROGRAM_MESSAGE_POSTFIX);
             this.result = true;

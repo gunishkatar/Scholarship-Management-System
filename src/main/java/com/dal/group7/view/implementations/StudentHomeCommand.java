@@ -10,7 +10,7 @@ public class StudentHomeCommand extends Command {
 
     @Override
     public void printView() {
-        System.out.println(STUDENT_MENU);
+        System.out.println(System.lineSeparator() + STUDENT_MENU);
         System.out.println(SCHOLARSHIP_SCHEMES);
         System.out.println(APPLY_FOR_A_SCHEME);
         System.out.println(CHECK_THE_STATUS_OF_THE_APPLIED_SCHEME);
@@ -33,7 +33,7 @@ public class StudentHomeCommand extends Command {
                 this.nextCommand = APPLY_FOR_SCHEME.getCommand();
                 break;
             case 3:
-                // TODO: CHECK STATUS
+                this.nextCommand = VIEW_APPLICATION_STATUS.getCommand();
                 break;
             case 4:
                 // TODO: LOGOUT
