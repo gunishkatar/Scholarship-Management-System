@@ -12,18 +12,20 @@ import static java.util.stream.Collectors.toList;
 
 public class Scholarship {
     private Integer id;
-    private String scholarShipName;
-    private Date effectiveDate;
-    private Long scholarshipAmount;
-    private Boolean criteriaGirlChild;
-    private Boolean criteriaSports;
-    private Boolean criteriaAcademics;
+    protected String scholarShipName;
+    protected Date effectiveDate;
+    protected Long scholarshipAmount;
+    protected Boolean criteriaGirlChild;
+    protected Boolean criteriaSports;
+    protected Boolean criteriaAcademics;
 
     public Scholarship() {
     }
 
-    public Scholarship(Integer id, String scholarShipName, Date effectiveDate, Long scholarshipAmount,
-                       Boolean criteriaGirlChild, Boolean criteriaSports, Boolean criteriaAcademics) {
+    public Scholarship(Integer id, String scholarShipName, Date effectiveDate,
+                       Long scholarshipAmount,
+                       Boolean criteriaGirlChild, Boolean criteriaSports,
+                       Boolean criteriaAcademics) {
         this.id = id;
         this.scholarShipName = scholarShipName;
         this.effectiveDate = effectiveDate;
@@ -64,11 +66,15 @@ public class Scholarship {
     public Scholarship from(JSONObject jsonObject) {
         this.id = new Random().nextInt();
         this.scholarShipName = jsonObject.getString("scholarship_name");
-        this.effectiveDate = Date.valueOf(jsonObject.getString("effective_date"));
+        this.effectiveDate =
+                Date.valueOf(jsonObject.getString("effective_date"));
         this.scholarshipAmount = jsonObject.getLong("scholarship_amount");
-        this.criteriaGirlChild = jsonObject.getBoolean("scholarship_criteria_girl_child");
-        this.criteriaSports = jsonObject.getBoolean("scholarship_criteria_sports");
-        this.criteriaAcademics = jsonObject.getBoolean("scholarship_criteria_academics");
+        this.criteriaGirlChild =
+                jsonObject.getBoolean("scholarship_criteria_girl_child");
+        this.criteriaSports =
+                jsonObject.getBoolean("scholarship_criteria_sports");
+        this.criteriaAcademics =
+                jsonObject.getBoolean("scholarship_criteria_academics");
         return this;
     }
 
@@ -100,7 +106,8 @@ public class Scholarship {
 
     @Override
     public int hashCode() {
-        return Objects.hash(scholarShipName, effectiveDate, scholarshipAmount, criteriaGirlChild, criteriaSports,
+        return Objects.hash(scholarShipName, effectiveDate, scholarshipAmount,
+                criteriaGirlChild, criteriaSports,
                 criteriaAcademics);
     }
 }
