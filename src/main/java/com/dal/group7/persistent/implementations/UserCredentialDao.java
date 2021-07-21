@@ -9,6 +9,7 @@ import java.util.Optional;
 import static com.dal.group7.constants.FieldConstants.ONE;
 import static com.dal.group7.constants.SQLConstants.USER_CREDENTIAL;
 import static com.dal.group7.constants.SQLConstants.getSelectByUserIdQuery;
+import static com.dal.group7.constants.SQLConstants.setLastLoginForUser;
 
 public class UserCredentialDao extends Dao<String, UserCredential> {
 
@@ -40,6 +41,15 @@ public class UserCredentialDao extends Dao<String, UserCredential> {
             return resultSet.next() ?
                     Optional.of(new UserCredential().from(resultSet)) :
                     Optional.empty();
+        }
+    }
+
+    @Override
+    public void updateLastLoginTime(String id) throws SQLException{
+        try (var connection = connectionManager.getConnection();
+        var preparedStatement = connection.prepareStatement(setLastLoginForUser())) {
+         preparedStatement.setString(ONE,id);
+         preparedStatement.executeUpdate();
         }
     }
 
