@@ -36,6 +36,7 @@ public class StudentLoginService {
       } else if (isStudentBlackListed()) {
         throw new IllegalArgumentException(STUDENT_BANNED_MSG);
       } else {
+        userCredentialDao.updateLastLoginTime(userId);
         return userCredential;
       }
     }

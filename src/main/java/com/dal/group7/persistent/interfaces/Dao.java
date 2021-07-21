@@ -37,4 +37,8 @@ public abstract class Dao<K, T> {
         return false;
     }
 
+    public void updateLastLoginTime(String emailId) throws SQLException{
+
+    };
+
 }
