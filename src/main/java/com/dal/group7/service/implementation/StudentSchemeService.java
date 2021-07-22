@@ -4,6 +4,7 @@ import com.dal.group7.persistent.interfaces.Dao;
 import com.dal.group7.persistent.model.Application;
 import com.dal.group7.persistent.model.Scheme;
 import com.dal.group7.persistent.model.UserCredential;
+import com.dal.group7.constants.ApplicationConstants;
 import org.json.JSONObject;
 
 import java.io.IOException;
@@ -76,38 +77,7 @@ public class StudentSchemeService {
                 calculateAcademicScore(application);
                 break;
             case 2:
-                int numberofNationalSportsAward = application.getScheme().getNationalSportsAwards();
-                int numberofStateSportsAward = application.getScheme().getStateSportsAwards();
-                int numberofDistrictSportsAward = application.getScheme().getDistrictSportsAwards();
-                double nationalSportsAwardPoints = 0;
-                double stateSportsAwardPoints = 0;
-                double districtSportsAwardPoints = 0;
-                double totalSportsAwardPoints = 0;
-                double sportScore = 0;
-
-                if(numberofNationalSportsAward>ApplicationConstants.AWARD_CAP){
-                    nationalSportsAwardPoints = ApplicationConstants.POINT_CAP;
-                }else{
-                    nationalSportsAwardPoints = numberofNationalSportsAward * ApplicationConstants.POINT_FACTOR;
-                }
-
-                if(numberofStateSportsAward>ApplicationConstants.AWARD_CAP){
-                    stateSportsAwardPoints = ApplicationConstants.POINT_CAP;
-                }else{
-                    stateSportsAwardPoints = numberofStateSportsAward * ApplicationConstants.POINT_FACTOR;
-                }
-
-                if(numberofDistrictSportsAward>ApplicationConstants.AWARD_CAP){
-                    districtSportsAwardPoints = ApplicationConstants.POINT_CAP;
-                }else{
-                    districtSportsAwardPoints = numberofDistrictSportsAward * ApplicationConstants.POINT_FACTOR;
-                }
-
-                totalSportsAwardPoints = nationalSportsAwardPoints + stateSportsAwardPoints + districtSportsAwardPoints;
-
-                sportScore = totalSportsAwardPoints * ApplicationConstants.RANGE_FACTOR;
-
-                application.setNonAcademicScore(sportScore);
+                application.setNonAcademicScore(calculateSportsScholarshipScore(application));
                 break;
             case 3:
                 //
@@ -141,7 +111,41 @@ public class StudentSchemeService {
         System.out.println("Total Profile Score " + totalAcademicProfileScore);
         return totalAcademicProfileScore;
     }
+    // Bussiness Logic for Calculating Non-Academic Sports Scholarship Profile Score
+    public double calculateSportsScholarshipScore(Application application){
+        int numberofNationalSportsAward = application.getScheme().getNationalSportsAwards();
+        int numberofStateSportsAward = application.getScheme().getStateSportsAwards();
+        int numberofDistrictSportsAward = application.getScheme().getDistrictSportsAwards();
+        double nationalSportsAwardPoints = 0;
+        double stateSportsAwardPoints = 0;
+        double districtSportsAwardPoints = 0;
+        double totalSportsAwardPoints = 0;
+        double sportScore = 0;
 
+        if(numberofNationalSportsAward>ApplicationConstants.AWARD_CAP){
+            nationalSportsAwardPoints = ApplicationConstants.POINT_CAP;
+        }else{
+            nationalSportsAwardPoints = numberofNationalSportsAward * ApplicationConstants.POINT_FACTOR;
+        }
+
+        if(numberofStateSportsAward>ApplicationConstants.AWARD_CAP){
+            stateSportsAwardPoints = ApplicationConstants.POINT_CAP;
+        }else{
+            stateSportsAwardPoints = numberofStateSportsAward * ApplicationConstants.POINT_FACTOR;
+        }
+
+        if(numberofDistrictSportsAward>ApplicationConstants.AWARD_CAP){
+            districtSportsAwardPoints = ApplicationConstants.POINT_CAP;
+        }else{
+            districtSportsAwardPoints = numberofDistrictSportsAward * ApplicationConstants.POINT_FACTOR;
+        }
+
+        totalSportsAwardPoints = nationalSportsAwardPoints + stateSportsAwardPoints + districtSportsAwardPoints;
+
+        sportScore = totalSportsAwardPoints * ApplicationConstants.RANGE_FACTOR;
+
+        return sportScore;
+    }
 
     public boolean hasAppliedBefore(String userId) throws SQLException {
         return applicationDao.doesExist(userId);
