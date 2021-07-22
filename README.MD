@@ -38,5 +38,6 @@
     <li> SM5308-29 : Student login soft blocked details updated to database, Author - Venkata Saikiran</li>
     <li> SM5308-28 : Student Login re-validation in case of incorrect attempts., Author - Venkata Saikiran</li>
     <li> SM5308-13 : Student Soft blocking by Portal, Author - Venkata Saikiran </li>
+    <li> SM5308-89 : Profile Score Calculation Logic for Academic Scholarship, Author - Rishita Kotiyal </li>
 
 </ol>
