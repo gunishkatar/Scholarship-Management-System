@@ -34,7 +34,8 @@ public class StudentSchemeService {
         Scheme scheme = new Scheme().from(jsonObject);
         UserCredential user = getUserDetails(scheme.getUserId());
 
-        if (Boolean.TRUE.equals(isUserEligible(user)) &&
+        if (isApplicationValid(scheme) &&
+                Boolean.TRUE.equals(isUserEligible(user)) &&
                 Boolean.FALSE.equals(hasAppliedBefore(scheme.getUserId()))) {
 
             Application application = new Application();
@@ -47,7 +48,28 @@ public class StudentSchemeService {
         }
     }
 
-    private void generateScores(Application application) {
+    public boolean isApplicationValid(Scheme scheme) {
+        Boolean emailID =
+                !scheme.getUserId().equals("") && scheme.getUserId() != null;
+        Boolean gender =
+                !scheme.getGender().equals("") && scheme.getGender() != null;
+        Boolean boards =
+                !scheme.getBoardX().equals("") && scheme.getBoardX() != null &&
+                        !scheme.getBoardXII().equals("") &&
+                        scheme.getBoardXII() != null;
+        Boolean bankDetails = scheme.getBankAccNumber() != null &&
+                !scheme.getBankAccNumber().equals("") &&
+                !scheme.getBankIFSC().equals("") &&
+                scheme.getBankIFSC() != null &&
+                !scheme.getBankName().equals("") &&
+                scheme.getBankName() != null &&
+                scheme.getBankHolderName() != null &&
+                !scheme.getBankHolderName().equals("");
+
+        return emailID && gender && boards && bankDetails;
+    }
+
+    public void generateScores(Application application) {
 
         switch (application.getScheme().getSchemeId()) {
             case 1:
@@ -68,18 +90,18 @@ public class StudentSchemeService {
         application.setProfileScore(0);
     }
 
-    private boolean hasAppliedBefore(String userId) throws SQLException {
+    public boolean hasAppliedBefore(String userId) throws SQLException {
         return applicationDao.doesExist(userId);
     }
 
-    private Boolean isUserEligible(UserCredential user) {
+    public Boolean isUserEligible(UserCredential user) {
 
         return user.getIsHardBlock().equalsIgnoreCase(NO) &&
                 user.getIsSoftBlock().equalsIgnoreCase(NO) &&
                 user.getIsBlackListed().equalsIgnoreCase(NO);
     }
 
-    private UserCredential getUserDetails(String userId)
+    public UserCredential getUserDetails(String userId)
             throws SQLException {
 
         return userCredentialDao.get(userId)
