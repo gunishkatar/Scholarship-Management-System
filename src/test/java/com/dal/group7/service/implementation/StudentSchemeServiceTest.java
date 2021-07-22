@@ -75,4 +75,10 @@ class StudentSchemeServiceTest {
                 "Correct details not approved");
     }
 
+    @Test
+    void shouldCheckAcademicProfileScore(){
+        double academicScore = studentSchemeService.calculateAcademicScore(APPLICATION);
+        Assertions.assertEquals(70.541,academicScore);
+    }
+
 }
