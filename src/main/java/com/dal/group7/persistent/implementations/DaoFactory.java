@@ -40,6 +40,12 @@ public enum DaoFactory {
         public Dao<String, Application> createDao() {
             return new ApplicationDao(connectionManager);
         }
+    },
+    STUDENT_FINANCE {
+        @Override
+        public Dao<String, StudentFinance> createDao() {
+            return new StudentFinanceDao(connectionManager);
+        }
     };
 
     private static final ConnectionManager connectionManager =

@@ -8,6 +8,7 @@ import com.dal.group7.persistent.model.StudentFinance;
 import java.sql.SQLException;
 
 import static com.dal.group7.persistent.model.ApplicationStatus.FUND_ISSUED;
+import static com.dal.group7.persistent.model.ApplicationStatus.REJECTED;
 
 public class MinistryApplicationService {
     private static final String MINISTRY_STATUS = "ministry_status";
@@ -38,8 +39,16 @@ public class MinistryApplicationService {
         return application;
     }
 
+    public boolean doesExist(String applicationNumber) throws SQLException {
+        return applicationDao.doesExist(applicationNumber);
+    }
+
     public void issueFundToApplication(Application application) throws SQLException {
         applicationDao.updateValue(application.getApplicationId(), MINISTRY_STATUS, FUND_ISSUED);
         applicationDao.setValues(application);
+    }
+
+    public void rejectApplication(String applicationNumber) throws SQLException {
+        applicationDao.updateValue(applicationNumber, MINISTRY_STATUS, REJECTED);
     }
 }
