@@ -42,7 +42,7 @@ public class ListScholarshipCommand extends Command {
             System.out.println(STARS + scheme.getScholarShipName() + STARS);
             System.out.println(EFFECTIVE_FROM + scheme.getEffectiveDate());
             System.out.println(
-                    AMOUNT_GRANT + scheme.getScholarshipAmount());
+                    AMOUNT_GRANT + scheme.getTuitionAmount());
             System.out.println(
                     GIRL_CHILD_SPECIFIC + scheme.getCriteriaGirlChild());
             System.out.println(

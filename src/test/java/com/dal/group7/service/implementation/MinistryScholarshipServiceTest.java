@@ -19,7 +19,9 @@ import static org.mockito.ArgumentMatchers.any;
 class MinistryScholarshipServiceTest {
 
     private static final String FILE_PATH = "file-path";
-    private static final Scholarship scholarship = new Scholarship(1, "name", valueOf("2021-12-12"), 5000L, true, true, true);
+    private static final Scholarship scholarship = new Scholarship(1, "name", valueOf("2021-12-12"),
+            5000D,5000D, 5000D,5000D, true,
+            true, true);
 
     @Mock
     private ScholarshipDao scholarshipDao;
@@ -57,7 +59,10 @@ class MinistryScholarshipServiceTest {
                 "  \"form_name\": \"CREATE SCHOLARSHIP\",\n" +
                 "  \"scholarship_name\": \"name\",\n" +
                 "  \"effective_date\": \"2021-12-12\",\n" +
-                "  \"scholarship_amount\": 5000,\n" +
+                "  \"tuition_amount\": 5000,\n" +
+                "  \"insurance_amount\": 5000,\n" +
+                "  \"travel_amount\": 5000,\n" +
+                "  \"living_expenses_amount\": 5000,\n" +
                 "  \"scholarship_criteria_girl_child\": \"true\",\n" +
                 "  \"scholarship_criteria_sports\": \"true\",\n" +
                 "  \"scholarship_criteria_academics\": \"true\" \n" +

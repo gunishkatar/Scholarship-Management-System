@@ -1,6 +1,7 @@
 package com.dal.group7.persistent.implementations;
 
 import com.dal.group7.persistent.interfaces.Dao;
+import com.dal.group7.persistent.model.Application;
 import com.dal.group7.persistent.model.Scholarship;
 import com.dal.group7.persistent.model.ScholarshipHandle;
 
@@ -8,7 +9,9 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
+import static com.dal.group7.constants.FieldConstants.ONE;
 import static com.dal.group7.constants.SQLConstants.*;
 
 public class ScholarshipDao extends Dao<Integer, Scholarship> {
@@ -52,6 +55,20 @@ public class ScholarshipDao extends Dao<Integer, Scholarship> {
                         .add(new ScholarshipHandle().formResultSet(resultSet));
             }
             return scholarships;
+        }
+    }
+
+    @Override
+    public Optional<Scholarship> findById(Integer id) throws SQLException {
+        try (var connection = connectionManager.getConnection();
+             var preparedStatement = connection.prepareStatement(
+                     getSelectScholarshipByIdQuery())) {
+
+            preparedStatement.setInt(ONE, id);
+            final var resultSet = preparedStatement.executeQuery();
+            return resultSet.next() ?
+                    Optional.of(new ScholarshipHandle().formResultSet(resultSet)) :
+                    Optional.empty();
         }
     }
 

@@ -5,5 +5,6 @@ public enum ApplicationStatus {
     UNRECEIVED,
     RECEIVED,
     APPROVED,
-    REJECTED;
+    REJECTED,
+    FUND_ISSUED;
 }

@@ -15,6 +15,7 @@ public class SQLConstants {
     private static final String WHERE_ID = " where id = ?";
     private static final String WHERE_USER_ID = " where user_id = ?";
     private static final String WHERE_STUDENT_ID = " where student_id=?";
+    private static final String WHERE_EMAIL_ID = " where email_id=?";
     private static final String WHERE_APPLICATION_ID =
             " where application_id = ?";
     private static final String INSERT_NEW_STUDENT =
@@ -80,6 +81,8 @@ public class SQLConstants {
     private static final String UPDATE_USER_CREDENTIAL_SET = "update user_credential set ";
     private static final String LAST_LOGIN_SET = "last_login_time = now()";
     private static final String STATUS = " = ?";
+    private static final String AMOUNT = "tuition_amount=?, insurance_amount=?, travel_amount=?, " +
+            "living_expenses_amount=?";
 
     private SQLConstants() {
     }
@@ -102,6 +105,14 @@ public class SQLConstants {
 
     public static String getSelectByApplicationIdQuery() {
         return SELECT_ALL_QUERY + APPLICATION + WHERE_APPLICATION_ID;
+    }
+
+    public static String getSelectScholarshipByIdQuery() {
+        return SELECT_ALL_QUERY + SCHOLARSHIP + WHERE_ID;
+    }
+
+    public static String getSelectStudentFinanceByIdQuery() {
+        return SELECT_ALL_QUERY + "student_finance" + WHERE_EMAIL_ID;
     }
 
     public static String getInsertNewScholarship() {
@@ -144,9 +155,15 @@ public class SQLConstants {
     public static String setStatusForApplication(String field) {
         return UPDATE_APPLICATION_SET + field + STATUS + WHERE_APPLICATION_ID;
     }
+
+    public static String setAmountForApplication() {
+        return UPDATE_APPLICATION_SET + AMOUNT + WHERE_APPLICATION_ID;
+    }
+
     public static String setLastLoginForUser() {
         return UPDATE_USER_CREDENTIAL_SET + LAST_LOGIN_SET + WHERE_USER_ID;
     }
+
     public static String setFailedLoginCountForUser(String field) {
         return UPDATE_USER_CREDENTIAL_SET + field + STATUS + WHERE_USER_ID;
     }

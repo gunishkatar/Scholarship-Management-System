@@ -1,5 +1,7 @@
 package com.dal.group7.persistent.interfaces;
 
+import com.dal.group7.persistent.model.Application;
+
 import java.sql.SQLException;
 import java.util.List;
 import java.util.Map;
@@ -44,6 +46,13 @@ public abstract class Dao<K, T> {
 
     public void updateLastLoginTime(String emailId) throws SQLException {
 
+    }
+
+    public void setValues(Object object) throws SQLException {
+    }
+
+    public Optional<T> findById(K id) throws SQLException {
+        return Optional.empty();
     }
 
 }

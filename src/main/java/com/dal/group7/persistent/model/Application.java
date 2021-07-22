@@ -18,6 +18,10 @@ public class Application {
     double nonAcademicScore;
     double profileScore;
     Scheme scheme;
+    double tuitionAmount;
+    double travelAmount;
+    double insuranceAmount;
+    double livingExpensesAmount;
 
     public Application() {
     }
@@ -110,6 +114,38 @@ public class Application {
 
     public void setScheme(Scheme scheme) {
         this.scheme = scheme;
+    }
+
+    public double getTuitionAmount() {
+        return tuitionAmount;
+    }
+
+    public void setTuitionAmount(double tuitionAmount) {
+        this.tuitionAmount = tuitionAmount;
+    }
+
+    public double getTravelAmount() {
+        return travelAmount;
+    }
+
+    public void setTravelAmount(double travelAmount) {
+        this.travelAmount = travelAmount;
+    }
+
+    public double getInsuranceAmount() {
+        return insuranceAmount;
+    }
+
+    public void setInsuranceAmount(double insuranceAmount) {
+        this.insuranceAmount = insuranceAmount;
+    }
+
+    public double getLivingExpensesAmount() {
+        return livingExpensesAmount;
+    }
+
+    public void setLivingExpensesAmount(double livingExpensesAmount) {
+        this.livingExpensesAmount = livingExpensesAmount;
     }
 
     public Application from(ResultSet resultSet) throws SQLException {
