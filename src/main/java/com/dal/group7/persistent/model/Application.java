@@ -2,6 +2,7 @@ package com.dal.group7.persistent.model;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Objects;
 
 public class Application {
     String applicationId;
@@ -126,5 +127,40 @@ public class Application {
         this.nonAcademicScore = resultSet.getDouble(counter++);
         this.profileScore = resultSet.getDouble(counter);
         return this;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Application)) return false;
+        Application that = (Application) o;
+        return getSchemeId() == that.getSchemeId() &&
+                getInstituteId() == that.getInstituteId() && Double
+                .compare(that.getAcademicScore(), getAcademicScore()) == 0 &&
+                Double.compare(that.getNonAcademicScore(),
+                        getNonAcademicScore()) == 0 && Double
+                .compare(that.getProfileScore(), getProfileScore()) == 0 &&
+                Objects
+                        .equals(getApplicationId(), that.getApplicationId()) &&
+                Objects.equals(getStudentId(), that.getStudentId()) &&
+                Objects.equals(getAppliedDate(), that.getAppliedDate()) &&
+                Objects.equals(getLastUpdate(), that.getLastUpdate()) &&
+                Objects.equals(getApplicationStatus(),
+                        that.getApplicationStatus()) && Objects
+                .equals(getInstituteStatus(), that.getInstituteStatus()) &&
+                Objects
+                        .equals(getMinistryStatus(),
+                                that.getMinistryStatus()) &&
+                Objects.equals(getScheme(), that.getScheme());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getApplicationId(), getSchemeId(), getStudentId(),
+                getInstituteId(), getAppliedDate(), getLastUpdate(),
+                getApplicationStatus(), getInstituteStatus(),
+                getMinistryStatus(),
+                getAcademicScore(), getNonAcademicScore(), getProfileScore(),
+                getScheme());
     }
 }
