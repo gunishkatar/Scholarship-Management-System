@@ -76,7 +76,41 @@ public class StudentSchemeService {
                 calculateAcademicScore(application);
                 break;
             case 2:
-                // TODO: profile score
+                int numberofNationalSportsAward = application.getScheme().getNationalSportsAwards();
+                int numberofStateSportsAward = application.getScheme().getStateSportsAwards();
+                int numberofDistrictSportsAward = application.getScheme().getDistrictSportsAwards();
+                double nationalSportsAwardPoints = 0;
+                double stateSportsAwardPoints = 0;
+                double districtSportsAwardPoints = 0;
+                double totalSportsAwardPoints = 0;
+                double sportScore = 0;
+
+                if(numberofNationalSportsAward>ApplicationConstants.AWARD_CAP){
+                    nationalSportsAwardPoints = ApplicationConstants.POINT_CAP;
+                }else{
+                    nationalSportsAwardPoints = numberofNationalSportsAward * ApplicationConstants.POINT_FACTOR;
+                }
+
+                if(numberofStateSportsAward>ApplicationConstants.AWARD_CAP){
+                    stateSportsAwardPoints = ApplicationConstants.POINT_CAP;
+                }else{
+                    stateSportsAwardPoints = numberofStateSportsAward * ApplicationConstants.POINT_FACTOR;
+                }
+
+                if(numberofDistrictSportsAward>ApplicationConstants.AWARD_CAP){
+                    districtSportsAwardPoints = ApplicationConstants.POINT_CAP;
+                }else{
+                    districtSportsAwardPoints = numberofDistrictSportsAward * ApplicationConstants.POINT_FACTOR;
+                }
+
+                totalSportsAwardPoints = nationalSportsAwardPoints + stateSportsAwardPoints + districtSportsAwardPoints;
+
+                sportScore = totalSportsAwardPoints * ApplicationConstants.RANGE_FACTOR;
+
+                application.setNonAcademicScore(sportScore);
+                break;
+            case 3:
+                //
                 break;
             default:
                 application.setAcademicScore(0);
