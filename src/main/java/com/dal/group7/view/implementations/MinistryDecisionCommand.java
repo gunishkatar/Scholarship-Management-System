@@ -59,7 +59,7 @@ public class MinistryDecisionCommand extends Command {
                 }
                 break;
             case 2:
-                getConfirmation();
+                confirm();
                 if (confirm) {
                     try {
                         ministryApplicationService.rejectApplication(applicationNumber);
@@ -88,15 +88,19 @@ public class MinistryDecisionCommand extends Command {
             System.out.println("Amount for Travel: " + application.getTravelAmount());
             System.out.println("Amount for Insurance: " + application.getInsuranceAmount());
             System.out.println("Amount for Living expenses: " + application.getLivingExpensesAmount());
-            System.out.println(CONFIRM_YOUR_SELECTION);
-            System.out.println(CONFIRM);
-            System.out.println(EXIT1);
-            System.out.print(PROMPT_PREFIX + PLEASE_SELECT_YOUR_OPTION);
-            input = scanner.nextInt();
-            confirm = input.equals(ONE);
+            confirm();
         } catch (SQLException exception) {
             error = true;
         }
+    }
+
+    private void confirm() {
+        System.out.println(CONFIRM_YOUR_SELECTION);
+        System.out.println(CONFIRM);
+        System.out.println(EXIT1);
+        System.out.print(PROMPT_PREFIX + PLEASE_SELECT_YOUR_OPTION);
+        input = scanner.nextInt();
+        confirm = input.equals(ONE);
     }
 
     @Override

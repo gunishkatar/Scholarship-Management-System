@@ -44,11 +44,11 @@ public class MinistryApplicationService {
     }
 
     public void issueFundToApplication(Application application) throws SQLException {
-        applicationDao.updateValue(application.getApplicationId(), MINISTRY_STATUS, FUND_ISSUED);
+        applicationDao.updateValue(application.getApplicationId(), MINISTRY_STATUS, FUND_ISSUED.toString());
         applicationDao.setValues(application);
     }
 
     public void rejectApplication(String applicationNumber) throws SQLException {
-        applicationDao.updateValue(applicationNumber, MINISTRY_STATUS, REJECTED);
+        applicationDao.updateValue(applicationNumber, MINISTRY_STATUS, REJECTED.toString());
     }
 }

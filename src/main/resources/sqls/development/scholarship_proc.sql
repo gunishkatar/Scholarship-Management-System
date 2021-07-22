@@ -36,6 +36,10 @@ BEGIN
         `academic_score`     DOUBLE                                                                NOT NULL DEFAULT 0,
         `non_academic_score` DOUBLE                                                                NOT NULL DEFAULT 0,
         `profile_score`      DOUBLE                                                                NOT NULL DEFAULT 0,
+        `tuition_amount`      DOUBLE                                                                NOT NULL DEFAULT 0,
+        `insurance_amount`      DOUBLE                                                                NOT NULL DEFAULT 0,
+        `travel_amount`      DOUBLE                                                                NOT NULL DEFAULT 0,
+        `living_expenses_amount`      DOUBLE                                                                NOT NULL DEFAULT 0,
         PRIMARY KEY (`application_id`)
     )
         ENGINE = InnoDB

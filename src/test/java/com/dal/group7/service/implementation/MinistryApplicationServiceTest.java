@@ -63,7 +63,7 @@ class MinistryApplicationServiceTest {
     void shouldIssueFunds() throws SQLException {
         ministryApplicationService.issueFundToApplication(APPLICATION);
 
-        verify(applicationDao).updateValue(null, "ministry_status", FUND_ISSUED);
+        verify(applicationDao).updateValue(null, "ministry_status", FUND_ISSUED.toString());
         verify(applicationDao).setValues(APPLICATION);
     }
 }
