@@ -1,5 +1,7 @@
 package com.dal.group7.view.implementations;
 
+import com.dal.group7.constants.ViewConstants;
+import com.dal.group7.persistent.model.UserCredential;
 import com.dal.group7.service.implementation.StudentLoginService;
 import com.dal.group7.view.interfaces.Command;
 
@@ -26,12 +28,24 @@ public class StudentLoginCommand extends Command {
   @Override
   public void handle() {
     try {
-      studentLoginService.userLogin(userName, password);
+      UserCredential userCredential = studentLoginService.userLogin(userName, password);
+      if (userCredential.getIsSoftBlock().equals(YES)) {
+        String securityAnswer = askSecQuestion();
+        studentLoginService.evaluateSecurityAnswer(securityAnswer);
+        studentLoginService.updateUserToSoftBlockToNO();
+      }
       this.success = true;
     } catch (Exception exception) {
       System.out.println(PROGRAM_MESSAGE_PREFIX + exception.getMessage() + PROGRAM_MESSAGE_POSTFIX);
       this.success = false;
     }
+  }
+
+  private String askSecQuestion() {
+    System.out.println(ENTER_SECURITY_DETAILS);
+    System.out.println(secQOne);
+    String securityAnswer = scanner.nextLine();
+    return securityAnswer;
   }
 
   @Override

@@ -87,6 +87,7 @@ public class ViewConstants {
           "Checking the status of application...";
   public static final String ENTER_SECURITY_DETAILS =
           "For security purposes, enter below details.";
+  public static final String secQOne = "What is your favorite sports team?";
   public static final String APPLIED_ON = "Applied On: ";
   public static final String LAST_UPDATE = "Last Updated On: ";
   public static final String APPLICATION_STATUS = "Overall Status: ";
@@ -97,6 +98,8 @@ public class ViewConstants {
   public static final String NOT_ELIGIBLE =
           "User is not eligible for scholarship";
   public static final String NO_USER_FOUND = "No User Found";
+  public static final String YES = "yes";
+  public static final String NO = "no";
 
   private ViewConstants() {
   }

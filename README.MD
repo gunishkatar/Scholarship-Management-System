@@ -36,4 +36,7 @@
     <li> SM5308-24 : Check Application Status, Author - Rahul Kodumuru</li>
     <li> SM5308-86 : Update Student fail login count to database on fail, to zero on success, Author - Venkata Saikiran</li>
     <li> SM5308-29 : Student login soft blocked details updated to database, Author - Venkata Saikiran</li>
+    <li> SM5308-28 : Student Login re-validation in case of incorrect attempts., Author - Venkata Saikiran</li>
+    <li> SM5308-13 : Student Soft blocking by Portal, Author - Venkata Saikiran </li>
+
 </ol>

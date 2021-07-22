@@ -23,6 +23,7 @@ public class StudentLoginService {
   private String password;
   private int failLoginCount;
   private static final String YES = "yes";
+  private static final String NO = "no";
   private static final String SOFT_BLOCK_COL = "is_soft_blocked";
   private static final String FAIL_LOGIN_COUNT_COL = "failed_login_count";
 
@@ -50,7 +51,7 @@ public class StudentLoginService {
     } else if (isStudentSoftBlocked()) {
       String lastLogin = userCredential.getLastLogin();
       checkSoftHardBlockCases(lastLogin);
-      throw new IllegalArgumentException(STUDENT_SOFT_BLOCK_MSG);
+      return userCredential;
     } else {
       updateFailLoginCount();
       if (parseInt(userCredential.getFailedLoginCount()) >= 2) {
@@ -66,13 +67,14 @@ public class StudentLoginService {
     userCredentialDao.updateValue(userId, SOFT_BLOCK_COL, YES);
   }
 
+  public void updateUserToSoftBlockToNO() throws SQLException {
+    userCredentialDao.updateValue(userId, SOFT_BLOCK_COL, NO);
+  }
+
   private void checkSoftHardBlockCases(String lastLogin) {
     Long hrsSinceLogin = calculateHrsSinceLogin(lastLogin);
-    if (hrsSinceLogin >= 24 && hrsSinceLogin <= 72) {
-      //TO-DO
-
-    } else if (hrsSinceLogin > 72) {
-      //TO-DO
+    if (hrsSinceLogin > 72) {
+      //TO-DO HARD BLOCK
     } else if (hrsSinceLogin < 24) {
       throw new IllegalArgumentException(STUDENT_SOFT_BLOCK_MSG);
     }
@@ -128,5 +130,14 @@ public class StudentLoginService {
 
   public Integer getLoginCount(String loginCount) {
     return parseInt(loginCount);
+  }
+
+  public void evaluateSecurityAnswer(String secAnswer) {
+    String savedSecAnswer = userCredential.getSecurityAnswerOne();
+    if (savedSecAnswer.equals(secAnswer)) {
+      return;
+    } else {
+      throw new IllegalArgumentException(STUDENT_SOFT_BLOCK_MSG);
+    }
   }
 }
