@@ -9,7 +9,10 @@ BEGIN
         `scholarship_id`     INT         NOT NULL AUTO_INCREMENT,
         `name`               VARCHAR(45) NOT NULL,
         `effectiveDate`      date        NOT NULL,
-        `scholarship_amount` double      NOT NULL,
+        `tuition_amount` double      NOT NULL,
+        `living_expenses_amount` double      NOT NULL,
+        `travel_amount` double      NOT NULL,
+        `insurance_amount` double      NOT NULL,
         `criteria_girl`      boolean     NOT NULL,
         `criteria_academic`  boolean     NOT NULL,
         `criteria_sports`    boolean     NOT NULL,
@@ -33,6 +36,10 @@ BEGIN
         `academic_score`     DOUBLE                                                                NOT NULL DEFAULT 0,
         `non_academic_score` DOUBLE                                                                NOT NULL DEFAULT 0,
         `profile_score`      DOUBLE                                                                NOT NULL DEFAULT 0,
+        `tuition_amount`      DOUBLE                                                                NOT NULL DEFAULT 0,
+        `insurance_amount`      DOUBLE                                                                NOT NULL DEFAULT 0,
+        `travel_amount`      DOUBLE                                                                NOT NULL DEFAULT 0,
+        `living_expenses_amount`      DOUBLE                                                                NOT NULL DEFAULT 0,
         PRIMARY KEY (`application_id`)
     )
         ENGINE = InnoDB

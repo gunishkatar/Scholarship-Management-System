@@ -9,10 +9,13 @@ public class ScholarshipHandle extends Scholarship {
             SQLException {
         this.scholarShipName = resultSet.getString(2);
         this.effectiveDate = resultSet.getDate(3);
-        this.scholarshipAmount = resultSet.getLong(4);
-        this.criteriaGirlChild = resultSet.getBoolean(5);
-        this.criteriaAcademics = resultSet.getBoolean(6);
-        this.criteriaSports = resultSet.getBoolean(7);
+        this.tuitionAmount = resultSet.getDouble(4);
+        this.insuranceAmount = resultSet.getDouble(5);
+        this.travelAmount = resultSet.getDouble(6);
+        this.livingExpenseAmount = resultSet.getDouble(7);
+        this.criteriaGirlChild = resultSet.getBoolean(8);
+        this.criteriaAcademics = resultSet.getBoolean(9);
+        this.criteriaSports = resultSet.getBoolean(10);
         return this;
     }
 

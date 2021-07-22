@@ -14,7 +14,7 @@ public class StudentHomeCommand extends Command {
         System.out.println(SCHOLARSHIP_SCHEMES);
         System.out.println(APPLY_FOR_A_SCHEME);
         System.out.println(CHECK_THE_STATUS_OF_THE_APPLIED_SCHEME);
-        System.out.println(LOGOUT_LAST + System.lineSeparator());
+        System.out.println(LOGOUT + System.lineSeparator());
         System.out.print(PROMPT_PREFIX + PLEASE_SELECT_YOUR_OPTION);
     }
 

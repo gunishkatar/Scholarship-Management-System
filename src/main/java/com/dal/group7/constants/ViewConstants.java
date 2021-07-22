@@ -19,8 +19,7 @@ public class ViewConstants {
   public static final String INSERTING_INSTITUTE = "Inserting Institute....";
   public static final String INSTITUTE = "2. Institute";
   public static final String LOGIN = "2. Login";
-  public static final String LOGOUT = "3. Logout";
-  public static final String LOGOUT_LAST = "4. Logout";
+  public static final String LOGOUT = "4. Logout";
   public static final String LOGIN_AS = "Login as: ";
   public static final String MINISTRY = "3. Ministry";
   public static final String MINISTRY_PORTAL = "WELCOME TO MINISTRY PORTAL";

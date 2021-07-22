@@ -20,7 +20,7 @@ import static org.mockito.ArgumentMatchers.any;
 class ScholarshipDaoTest {
 
     private static final Scholarship scholarship = new Scholarship(1, "name", valueOf(now()),
-            500L, true, true, true);
+            500D,500D, 500D, 500D, true, true, true);
 
 
     @Mock

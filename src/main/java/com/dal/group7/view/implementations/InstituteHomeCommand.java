@@ -15,7 +15,7 @@ public class InstituteHomeCommand extends Command {
         System.out.println(SCHOLARSHIP_SCHEMES);
         System.out.println(VIEW_APPROVED_STUDENT_APPLICATIONS);
         System.out.println(APPROVE_REJECT_APPLICATION);
-        System.out.println(LOGOUT_LAST + System.lineSeparator());
+        System.out.println(LOGOUT + System.lineSeparator());
         System.out.print(PROMPT_PREFIX + PLEASE_SELECT_YOUR_OPTION);
 
     }

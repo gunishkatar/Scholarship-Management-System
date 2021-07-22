@@ -14,7 +14,10 @@ public class Scholarship {
     private Integer id;
     protected String scholarShipName;
     protected Date effectiveDate;
-    protected Long scholarshipAmount;
+    protected Double tuitionAmount;
+    protected Double livingExpenseAmount;
+    protected Double travelAmount;
+    protected Double insuranceAmount;
     protected Boolean criteriaGirlChild;
     protected Boolean criteriaSports;
     protected Boolean criteriaAcademics;
@@ -22,14 +25,16 @@ public class Scholarship {
     public Scholarship() {
     }
 
-    public Scholarship(Integer id, String scholarShipName, Date effectiveDate,
-                       Long scholarshipAmount,
-                       Boolean criteriaGirlChild, Boolean criteriaSports,
-                       Boolean criteriaAcademics) {
+    public Scholarship(Integer id, String scholarShipName, Date effectiveDate, Double tuitionAmount,
+                       Double livingExpenseAmount, Double travelAmount, Double insuranceAmount,
+                       Boolean criteriaGirlChild, Boolean criteriaSports, Boolean criteriaAcademics) {
         this.id = id;
         this.scholarShipName = scholarShipName;
         this.effectiveDate = effectiveDate;
-        this.scholarshipAmount = scholarshipAmount;
+        this.tuitionAmount = tuitionAmount;
+        this.livingExpenseAmount = livingExpenseAmount;
+        this.travelAmount = travelAmount;
+        this.insuranceAmount = insuranceAmount;
         this.criteriaGirlChild = criteriaGirlChild;
         this.criteriaSports = criteriaSports;
         this.criteriaAcademics = criteriaAcademics;
@@ -47,8 +52,8 @@ public class Scholarship {
         return effectiveDate;
     }
 
-    public Long getScholarshipAmount() {
-        return scholarshipAmount;
+    public Double getTuitionAmount() {
+        return tuitionAmount;
     }
 
     public Boolean getCriteriaGirlChild() {
@@ -63,12 +68,27 @@ public class Scholarship {
         return criteriaAcademics;
     }
 
+    public Double getLivingExpenseAmount() {
+        return livingExpenseAmount;
+    }
+
+    public Double getTravelAmount() {
+        return travelAmount;
+    }
+
+    public Double getInsuranceAmount() {
+        return insuranceAmount;
+    }
+
     public Scholarship from(JSONObject jsonObject) {
         this.id = new Random().nextInt();
         this.scholarShipName = jsonObject.getString("scholarship_name");
         this.effectiveDate =
                 Date.valueOf(jsonObject.getString("effective_date"));
-        this.scholarshipAmount = jsonObject.getLong("scholarship_amount");
+        this.tuitionAmount = jsonObject.getDouble("tuition_amount");
+        this.insuranceAmount = jsonObject.getDouble("insurance_amount");
+        this.travelAmount = jsonObject.getDouble("travel_amount");
+        this.livingExpenseAmount = jsonObject.getDouble("living_expenses_amount");
         this.criteriaGirlChild =
                 jsonObject.getBoolean("scholarship_criteria_girl_child");
         this.criteriaSports =
@@ -96,9 +116,12 @@ public class Scholarship {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Scholarship that = (Scholarship) o;
-        return Objects.equals(scholarShipName, that.scholarShipName) &&
+        return  Objects.equals(scholarShipName, that.scholarShipName) &&
                 Objects.equals(effectiveDate, that.effectiveDate) &&
-                Objects.equals(scholarshipAmount, that.scholarshipAmount) &&
+                Objects.equals(tuitionAmount, that.tuitionAmount) &&
+                Objects.equals(livingExpenseAmount, that.livingExpenseAmount) &&
+                Objects.equals(travelAmount, that.travelAmount) &&
+                Objects.equals(insuranceAmount, that.insuranceAmount) &&
                 Objects.equals(criteriaGirlChild, that.criteriaGirlChild) &&
                 Objects.equals(criteriaSports, that.criteriaSports) &&
                 Objects.equals(criteriaAcademics, that.criteriaAcademics);
@@ -106,8 +129,7 @@ public class Scholarship {
 
     @Override
     public int hashCode() {
-        return Objects.hash(scholarShipName, effectiveDate, scholarshipAmount,
-                criteriaGirlChild, criteriaSports,
-                criteriaAcademics);
+        return Objects.hash(scholarShipName, effectiveDate, tuitionAmount, livingExpenseAmount, travelAmount,
+                insuranceAmount, criteriaGirlChild, criteriaSports, criteriaAcademics);
     }
 }

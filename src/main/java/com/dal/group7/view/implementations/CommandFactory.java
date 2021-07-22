@@ -126,8 +126,13 @@ public enum CommandFactory {
             return new InstituteDecisionCommand(
                     ServiceConstants.INSTITUTE_APPLICATION_SERVICE);
         }
+    },
+    MINISTRY_DECISION {
+        @Override
+        public Command getCommand() {
+            return new MinistryDecisionCommand(ServiceConstants.MINISTRY_APPLICATION_SERVICE);
+        }
     };
-
 
     public abstract Command getCommand();
 
@@ -160,6 +165,8 @@ public enum CommandFactory {
         private static final InstituteApplicationService
                 INSTITUTE_APPLICATION_SERVICE =
                 new InstituteApplicationService(APPLICATION.createDao());
+        private static final MinistryApplicationService MINISTRY_APPLICATION_SERVICE = new MinistryApplicationService(
+                APPLICATION.createDao(), SCHOLARSHIP.createDao(), STUDENT_FINANCE.createDao());
 
     }
 }
