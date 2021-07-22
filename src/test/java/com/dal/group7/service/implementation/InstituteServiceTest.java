@@ -75,6 +75,12 @@ class InstituteServiceTest {
 
     }
 
+    @Test
+    void shouldCheckInstituteExists() throws SQLException {
+        Mockito.when(instituteDao.doesEmailExist(Mockito.any())).thenReturn(true);
+        Assertions.assertTrue(instituteService.doesInstituteExist(INSTITUTE.getEmailId()));
+    }
+
     public void signup(){
 
     }
