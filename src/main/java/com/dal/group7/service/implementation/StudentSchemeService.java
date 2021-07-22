@@ -73,7 +73,7 @@ public class StudentSchemeService {
 
         switch (application.getScheme().getSchemeId()) {
             case 1:
-                // TODO: Profile score
+                calculateAcademicScore(application);
                 break;
             case 2:
                 // TODO: profile score
@@ -89,6 +89,25 @@ public class StudentSchemeService {
         application.setNonAcademicScore(0);
         application.setProfileScore(0);
     }
+
+    // Bussiness Logic for Calculating Academic Profile Score
+    public double calculateAcademicScore(Application application){
+
+        double XScore = ((application.getScheme().getGpaX() * 10) * 0.25);
+        double XIIScore = ((application.getScheme().getGpaXII() * 10) * 0.35);
+        double bachelorsScore =(( application.getScheme().getGpaBachelors() * 10) * 0.40);
+
+        //double totalScoreWithoutBacklog = XScore + XIIScore + bachelorsScore;
+
+        double XScoreAfterBacklog = XScore-(application.getScheme().getBacklogX() * (0.04 * XScore));
+        double XIIScoreAfterBacklog = XIIScore-(application.getScheme().getBacklogXII() * (0.06 * XIIScore));
+        double bachelorsScoreAfterBacklog = bachelorsScore-(application.getScheme().getBacklogBachelors() * (0.08 * bachelorsScore));
+
+        double totalAcademicProfileScore = XScoreAfterBacklog + XIIScoreAfterBacklog + bachelorsScoreAfterBacklog;
+        System.out.println("Total Profile Score " + totalAcademicProfileScore);
+        return totalAcademicProfileScore;
+    }
+
 
     public boolean hasAppliedBefore(String userId) throws SQLException {
         return applicationDao.doesExist(userId);
