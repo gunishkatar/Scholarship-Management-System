@@ -80,18 +80,13 @@ public class StudentSchemeService {
                 application.setNonAcademicScore(calculateSportsScholarshipScore(application));
                 break;
             case 3:
-                //
+                application.setNonAcademicScore(calculateArtsScholarshipScore(application));
                 break;
             default:
                 application.setAcademicScore(0);
                 application.setNonAcademicScore(0);
                 application.setProfileScore(0);
         }
-
-        // remove the code after writing actual logic.
-        application.setAcademicScore(0);
-        application.setNonAcademicScore(0);
-        application.setProfileScore(0);
     }
 
     // Bussiness Logic for Calculating Academic Profile Score
@@ -145,6 +140,42 @@ public class StudentSchemeService {
         sportScore = totalSportsAwardPoints * ApplicationConstants.RANGE_FACTOR;
 
         return sportScore;
+    }
+
+    // Bussiness Logic for Calculating Non-Academic Arts Scholarship Profile Score
+    public double calculateArtsScholarshipScore(Application application){
+        int numberofNationalArtsAward = application.getScheme().getNationalArtsAwards();
+        int numberofStateArtsAward = application.getScheme().getStateArtsAwards();
+        int numberofDistrictArtssAward = application.getScheme().getDistrictArtsAwards();
+        double nationalArtsAwardPoints = 0;
+        double stateArtsAwardPoints = 0;
+        double districtArtsAwardPoints = 0;
+        double totalArtsAwardPoints = 0;
+        double artScore = 0;
+
+        if(numberofNationalArtsAward>ApplicationConstants.AWARD_CAP){
+            nationalArtsAwardPoints = ApplicationConstants.POINT_CAP;
+        }else{
+            nationalArtsAwardPoints = numberofNationalArtsAward * ApplicationConstants.POINT_FACTOR;
+        }
+
+        if(numberofStateArtsAward>ApplicationConstants.AWARD_CAP){
+            stateArtsAwardPoints = ApplicationConstants.POINT_CAP;
+        }else{
+            stateArtsAwardPoints = numberofStateArtsAward * ApplicationConstants.POINT_FACTOR;
+        }
+
+        if(numberofDistrictArtssAward>ApplicationConstants.AWARD_CAP){
+            districtArtsAwardPoints = ApplicationConstants.POINT_CAP;
+        }else{
+            districtArtsAwardPoints = numberofDistrictArtssAward * ApplicationConstants.POINT_FACTOR;
+        }
+
+        totalArtsAwardPoints = nationalArtsAwardPoints + stateArtsAwardPoints + districtArtsAwardPoints;
+
+        artScore = totalArtsAwardPoints * ApplicationConstants.RANGE_FACTOR;
+
+        return artScore;
     }
 
     public boolean hasAppliedBefore(String userId) throws SQLException {
