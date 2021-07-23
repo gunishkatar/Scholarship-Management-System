@@ -1,7 +1,11 @@
 package com.dal.group7;
 
+import com.dal.group7.view.implementations.HomeCommand;
+
 public class Application {
+
     public static void main(String[] args) {
-        System.out.println("Hello Student!");
+        final HomeCommand homeCommand = new HomeCommand();
+        homeCommand.execute();
     }
 }
