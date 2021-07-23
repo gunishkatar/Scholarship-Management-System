@@ -21,6 +21,10 @@ public abstract class Dao<K, T> {
         return emptyList();
     }
 
+    public List<T> getAllApplicationByStatus() throws SQLException{
+        return emptyList();
+    }
+
     public List<T> getAllByUser(K id) throws SQLException {
         return emptyList();
     }

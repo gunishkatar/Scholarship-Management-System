@@ -10,6 +10,8 @@ import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 
 import java.sql.SQLException;
+import java.util.Arrays;
+import java.util.List;
 
 import static com.dal.group7.persistent.model.ApplicationStatus.APPROVED;
 import static com.dal.group7.persistent.model.ApplicationStatus.REJECTED;
@@ -20,6 +22,7 @@ class InstituteApplicationServiceTest {
 
     private static final String ID = "2137184";
     private static final String INSTITUTE_STATUS = "institute_status";
+    private static final List<Application> applications = Arrays.asList(new Application());
 
     @Mock
     private Dao<String, Application> applicationDao;
@@ -61,4 +64,19 @@ class InstituteApplicationServiceTest {
 
         Mockito.verify(applicationDao).updateValue(ID, INSTITUTE_STATUS, REJECTED.toString());
     }
+
+    @Test
+    void shouldDisplayApprovedApplications() throws SQLException {
+        Mockito.when(applicationDao.getAllApplicationByStatus()).thenReturn(applications);
+
+        assertEquals(applications, instituteApplicationService.displayApprovedApplications());
+    }
+
+    @Test
+    void shouldDisplayApplications() throws SQLException {
+        Mockito.when(applicationDao.getAll()).thenReturn(applications);
+
+        assertEquals(applications, instituteApplicationService.displayApplications());
+    }
+
 }

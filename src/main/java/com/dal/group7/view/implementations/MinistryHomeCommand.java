@@ -28,7 +28,7 @@ public class MinistryHomeCommand extends Command {
     public void setNextCommand() {
         switch (input) {
             case 1:
-                // TODO: ADD Command
+                nextCommand = LIST_APPLICATION_MINISTRY.getCommand();
                 break;
             case 2:
                 nextCommand = CREATE_SCHOLARSHIP.getCommand();
