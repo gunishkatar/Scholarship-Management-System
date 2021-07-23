@@ -7,10 +7,10 @@ public class ApplicationConstants {
     public static final String DB_PASSWORD = "db.password";
     public static final String JOIN_USER = "?user=";
     public static final String JOIN_PASSWORD = "&password=";
-    public static final int AWARD_CAP = 10;
-    public static final double POINT_CAP = 25;
-    public static final double POINT_FACTOR = 2.5;
-    public static final double RANGE_FACTOR = 1.34;
+    public static final float AWARD_CAP = 10.00f;
+    public static final float POINT_CAP = 25.00f;
+    public static final float POINT_FACTOR = 2.50f;
+    public static final float RANGE_FACTOR = 1.34f;
 
     private ApplicationConstants() {
     }
