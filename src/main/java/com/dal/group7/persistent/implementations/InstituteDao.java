@@ -42,7 +42,7 @@ public class InstituteDao extends Dao<Integer, Institute> {
         PreparedStatement statement = null;
 
         try (Connection connection = connectionManager.getConnection()) {
-            PwdEncrypt pwdEncrypt = new PwdEncrypt(new PwdEncryptDao(new ConnectionManager()));
+            PwdEncrypt pwdEncrypt = new PwdEncrypt(new PwdEncryptDao(connectionManager));
             connection.setAutoCommit(false);
 
             int counter = 1;
@@ -56,7 +56,7 @@ public class InstituteDao extends Dao<Integer, Institute> {
             statement.setString(counter, institute.getClass().getSimpleName().toLowerCase());
 
             statement.execute();
-            statement = connection.prepareStatement(SQLConstants.getInsertNewStudent());
+            statement = connection.prepareStatement(SQLConstants.getInsertNewInstitute());
             counter = 1;
 
             // institute_basic table object
@@ -81,22 +81,6 @@ public class InstituteDao extends Dao<Integer, Institute> {
             }
         }
     }
-//        try (var connection = connectionManager.getConnection();
-//            var preparedStatement = connection.prepareStatement(insertIntoTableAllFields(INSTITUTE, 10))) {
-//            preparedStatement.setInt(1, institute.getId());
-//            preparedStatement.setString(2, institute.getName());
-//            preparedStatement.setString(3, institute.getEmailId());
-//            preparedStatement.setInt(4, institute.getRegistrationCode());
-//            preparedStatement.setInt(5, institute.getPhoneNumber());
-//            preparedStatement.setString(6, institute.getAddress());
-//            preparedStatement.setString(7, institute.getState());
-//            preparedStatement.setString(8, institute.getCity());
-//            preparedStatement.setString(9, institute.getCountry());
-//            preparedStatement.setInt(10, institute.getPinCode());
-//            preparedStatement.executeUpdate();
-//        }
-
-
 
     public Optional<Institute> get(Integer id) throws SQLException {
         try(var connection = connectionManager.getConnection();

@@ -133,6 +133,10 @@ public class SQLConstants {
         return INSERT_NEW_STUDENT;
     }
 
+    public static String getInsertNewInstitute() {
+        return INSERT_NEW_INSTITUTE;
+    }
+
     public static String getInsertStudentFinance() {
         return INSERT_STUDENT_FINANCE;
     }
