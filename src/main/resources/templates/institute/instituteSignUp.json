@@ -1,13 +1,15 @@
 {
-  "institute_name": "",
-  "email_id": "institute@dal.ca",
-  "registration_code": "",
-  "phone_number": "",
+  "institute_id": "",
+  "name": "institute@dal.ca",
+  "email": "",
+  "regd_code": "",
   "password": "",
   "re_confirm_password": "",
   "address": "",
-  "state": "",
   "city": "",
+  "institute_state": "",
+  "institute_contact": "",
   "country": "",
-  "pinCode": ""
+  "pincode": "",
+  "isblacklisted": ""
 }
