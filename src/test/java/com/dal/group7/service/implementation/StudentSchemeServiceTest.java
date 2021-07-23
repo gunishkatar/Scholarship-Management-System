@@ -10,6 +10,7 @@ import org.mockito.InjectMocks;
 import org.mockito.MockitoAnnotations;
 
 import java.sql.Date;
+import java.text.DecimalFormat;
 
 class StudentSchemeServiceTest {
     private static final String FILE_PATH = "file-path";
@@ -17,13 +18,13 @@ class StudentSchemeServiceTest {
             new Scheme(1, "bruce@dal.ca", "male", 4, 1, 8.7, 7.9, 7.5, "CBSE",
                     "BEAP", 0, 1, 3,
                     Date.valueOf("2016-09-11"), Date.valueOf("2020-05-05"), 0,
-                    2, 5, 0, 0, 0, "ABC123FGH", "ICICI0003", 680000, "ICICI",
+                    2, 5, 6, 2, 9, "ABC123FGH", "ICICI0003", 680000, "ICICI",
                     "Bruce Wayne");
     private static final Scheme SCHEME_1=
             new Scheme(1, "bruce@dal.ca", "male", 4, 1, 8.7, 7.9, 7.5, "CBSE",
                     "", 0, 1, 3,
                     Date.valueOf("2016-09-11"), Date.valueOf("2020-05-05"), 0,
-                    2, 5, 0, 0, 0, "", "ICICI0003", 680000, "ICICI",
+                    2, 5, 6, 2, 9, "", "ICICI0003", 680000, "ICICI",
                     "");
     private static final Application APPLICATION =
             new Application("ABC123", 4, "bruce@dal.ca", 1, "2021-05-05",
@@ -79,6 +80,18 @@ class StudentSchemeServiceTest {
     void shouldCheckAcademicProfileScore(){
         double academicScore = studentSchemeService.calculateAcademicScore(APPLICATION);
         Assertions.assertEquals(70.541,academicScore);
+    }
+
+    @Test
+    void shouldCheckNonAcademicSportsProfileScore(){
+        double academicScore = studentSchemeService.calculateSportsScholarshipScore(APPLICATION);
+        Assertions.assertEquals(23.450,academicScore);
+    }
+
+    @Test
+    void shouldCheckNonAcademicArtsProfileScore(){
+        double academicScore = studentSchemeService.calculateArtsScholarshipScore(APPLICATION);
+        Assertions.assertEquals(56.95,academicScore);
     }
 
 }

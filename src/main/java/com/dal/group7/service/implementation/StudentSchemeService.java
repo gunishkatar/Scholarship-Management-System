@@ -4,10 +4,13 @@ import com.dal.group7.persistent.interfaces.Dao;
 import com.dal.group7.persistent.model.Application;
 import com.dal.group7.persistent.model.Scheme;
 import com.dal.group7.persistent.model.UserCredential;
+import com.dal.group7.constants.ApplicationConstants;
 import org.json.JSONObject;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.sql.SQLOutput;
+import java.text.DecimalFormat;
 import java.util.List;
 
 import static com.dal.group7.constants.ViewConstants.NOT_ELIGIBLE;
@@ -76,18 +79,16 @@ public class StudentSchemeService {
                 calculateAcademicScore(application);
                 break;
             case 2:
-                // TODO: profile score
+                calculateSportsScholarshipScore(application);
+                break;
+            case 3:
+                calculateArtsScholarshipScore(application);
                 break;
             default:
                 application.setAcademicScore(0);
                 application.setNonAcademicScore(0);
                 application.setProfileScore(0);
         }
-
-        // remove the code after writing actual logic.
-        application.setAcademicScore(0);
-        application.setNonAcademicScore(0);
-        application.setProfileScore(0);
     }
 
     // Bussiness Logic for Calculating Academic Profile Score
@@ -107,7 +108,79 @@ public class StudentSchemeService {
         System.out.println("Total Profile Score " + totalAcademicProfileScore);
         return totalAcademicProfileScore;
     }
+    // Bussiness Logic for Calculating Non-Academic Sports Scholarship Profile Score
+    public double calculateSportsScholarshipScore(Application application){
+        DecimalFormat df = new DecimalFormat();
+        int numberofNationalSportsAward = application.getScheme().getNationalSportsAwards();
+        int numberofStateSportsAward = application.getScheme().getStateSportsAwards();
+        int numberofDistrictSportsAward = application.getScheme().getDistrictSportsAwards();
+        float nationalSportsAwardPoints = 0.00f;
+        float stateSportsAwardPoints = 0.00f;
+        float districtSportsAwardPoints = 0.00f;
+        float totalSportsAwardPoints = 0.00f;
+        float sportScore = 0.00f;
 
+        if(numberofNationalSportsAward>ApplicationConstants.AWARD_CAP){
+            nationalSportsAwardPoints = ApplicationConstants.POINT_CAP;
+        }else{
+            nationalSportsAwardPoints = numberofNationalSportsAward * ApplicationConstants.POINT_FACTOR;
+        }
+
+        if(numberofStateSportsAward>ApplicationConstants.AWARD_CAP){
+            stateSportsAwardPoints = ApplicationConstants.POINT_CAP;
+        }else{
+            stateSportsAwardPoints = numberofStateSportsAward * ApplicationConstants.POINT_FACTOR;
+        }
+
+        if(numberofDistrictSportsAward>ApplicationConstants.AWARD_CAP){
+            districtSportsAwardPoints = ApplicationConstants.POINT_CAP;
+        }else{
+            districtSportsAwardPoints = numberofDistrictSportsAward * ApplicationConstants.POINT_FACTOR;
+        }
+
+        totalSportsAwardPoints = nationalSportsAwardPoints + stateSportsAwardPoints + districtSportsAwardPoints;
+
+        sportScore = totalSportsAwardPoints * ApplicationConstants.RANGE_FACTOR;
+
+        return Double.valueOf(df.format(sportScore));
+    }
+
+    // Bussiness Logic for Calculating Non-Academic Arts Scholarship Profile Score
+    public double calculateArtsScholarshipScore(Application application){
+        DecimalFormat df = new DecimalFormat();
+        int numberofNationalArtsAward = application.getScheme().getNationalArtsAwards();
+        int numberofStateArtsAward = application.getScheme().getStateArtsAwards();
+        int numberofDistrictArtssAward = application.getScheme().getDistrictArtsAwards();
+        float nationalArtsAwardPoints = 0.00f;
+        float stateArtsAwardPoints = 0.00f;
+        float districtArtsAwardPoints = 0.00f;
+        float totalArtsAwardPoints = 0.00f;
+        float artScore = 0.00f;
+
+        if(numberofNationalArtsAward>ApplicationConstants.AWARD_CAP){
+            nationalArtsAwardPoints = ApplicationConstants.POINT_CAP;
+        }else{
+            nationalArtsAwardPoints = numberofNationalArtsAward * ApplicationConstants.POINT_FACTOR;
+        }
+
+        if(numberofStateArtsAward>ApplicationConstants.AWARD_CAP){
+            stateArtsAwardPoints = ApplicationConstants.POINT_CAP;
+        }else{
+            stateArtsAwardPoints = numberofStateArtsAward * ApplicationConstants.POINT_FACTOR;
+        }
+
+        if(numberofDistrictArtssAward>ApplicationConstants.AWARD_CAP){
+            districtArtsAwardPoints = ApplicationConstants.POINT_CAP;
+        }else{
+            districtArtsAwardPoints = numberofDistrictArtssAward * ApplicationConstants.POINT_FACTOR;
+        }
+
+        totalArtsAwardPoints = nationalArtsAwardPoints + stateArtsAwardPoints + districtArtsAwardPoints;
+
+        artScore = totalArtsAwardPoints * ApplicationConstants.RANGE_FACTOR;
+
+        return Double.valueOf(df.format(artScore));
+    }
 
     public boolean hasAppliedBefore(String userId) throws SQLException {
         return applicationDao.doesExist(userId);
