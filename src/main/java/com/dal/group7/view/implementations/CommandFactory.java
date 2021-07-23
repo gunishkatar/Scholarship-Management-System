@@ -132,6 +132,24 @@ public enum CommandFactory {
         public Command getCommand() {
             return new MinistryDecisionCommand(ServiceConstants.MINISTRY_APPLICATION_SERVICE);
         }
+    },
+    LIST_APPROVED_APPLICATION {
+        @Override
+        public Command getCommand() {
+            return new ListApprovedApplicationCommand(ServiceConstants.INSTITUTE_APPLICATION_SERVICE);
+        }
+    },
+    LIST_APPLICATION {
+        @Override
+        public Command getCommand() {
+            return new ListApplicationCommand(ServiceConstants.INSTITUTE_APPLICATION_SERVICE);
+        }
+    },
+    LIST_APPLICATION_MINISTRY {
+        @Override
+        public Command getCommand() {
+            return new ListApplicationMinistryCommand(ServiceConstants.INSTITUTE_APPLICATION_SERVICE);
+        }
     };
 
     public abstract Command getCommand();
