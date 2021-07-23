@@ -16,7 +16,7 @@ import static com.dal.group7.constants.SQLConstants.*;
 
 public class InstituteDao extends Dao<Integer, Institute> {
 
-    private static final String INSTITUTE = "INSTITUTE";
+    private static final String INSTITUTE = "institute_basic";
     private final ConnectionManager connectionManager;
 
     public InstituteDao(ConnectionManager connectionManager) {
@@ -51,6 +51,7 @@ public class InstituteDao extends Dao<Integer, Institute> {
             preparedStatement.setString(8, institute.getCity());
             preparedStatement.setString(9, institute.getCountry());
             preparedStatement.setInt(10, institute.getPinCode());
+            preparedStatement.setBoolean(11, institute.getIsBlacklisted());
             preparedStatement.executeUpdate();
         }
     }

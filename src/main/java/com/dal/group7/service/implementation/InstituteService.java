@@ -38,6 +38,7 @@ public class InstituteService implements UserService {
         boolean cityFlag = false;
         boolean countryFlag = false;
         boolean pinCodeFlag = false;
+        boolean isBlacklistedFlag = false;
 
         idFlag = (institute.getId()>0);
         nameFlag = (!institute.getName().equals("")) && (institute.getName() != null);
@@ -49,7 +50,10 @@ public class InstituteService implements UserService {
         cityFlag = (!institute.getCity().equals("")) && (institute.getCity() != null);
         countryFlag = (!institute.getCountry().equals("")) && (institute.getCountry() != null);
         pinCodeFlag = (institute.getPinCode()>0);
-        return (idFlag && nameFlag && emailIdFlag && registrationCodeFlag && phoneNumberFlag && addressFlag && stateFlag && cityFlag && countryFlag && pinCodeFlag);
+        isBlacklistedFlag = (institute.getIsBlacklisted().equals("")) && (institute.getIsBlacklisted() !=null);
+
+        return (idFlag && nameFlag && emailIdFlag && registrationCodeFlag && phoneNumberFlag && addressFlag && stateFlag && cityFlag &&
+                countryFlag && pinCodeFlag && isBlacklistedFlag);
     }
 
     public Boolean isValidInstituteEmail(String emailId) {
