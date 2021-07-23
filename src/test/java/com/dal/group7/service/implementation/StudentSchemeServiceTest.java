@@ -10,6 +10,7 @@ import org.mockito.InjectMocks;
 import org.mockito.MockitoAnnotations;
 
 import java.sql.Date;
+import java.text.DecimalFormat;
 
 class StudentSchemeServiceTest {
     private static final String FILE_PATH = "file-path";
@@ -83,14 +84,14 @@ class StudentSchemeServiceTest {
 
     @Test
     void shouldCheckNonAcademicSportsProfileScore(){
-        float academicScore = studentSchemeService.calculateSportsScholarshipScore(APPLICATION);
-        Assertions.assertEquals(23.450f,academicScore);
+        double academicScore = studentSchemeService.calculateSportsScholarshipScore(APPLICATION);
+        Assertions.assertEquals(23.450,academicScore);
     }
 
     @Test
     void shouldCheckNonAcademicArtsProfileScore(){
-        float academicScore = studentSchemeService.calculateArtsScholarshipScore(APPLICATION);
-        Assertions.assertEquals(56.95f,academicScore);
+        double academicScore = studentSchemeService.calculateArtsScholarshipScore(APPLICATION);
+        Assertions.assertEquals(56.95,academicScore);
     }
 
 }

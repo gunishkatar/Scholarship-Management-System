@@ -10,6 +10,7 @@ import org.json.JSONObject;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.sql.SQLOutput;
+import java.text.DecimalFormat;
 import java.util.List;
 
 import static com.dal.group7.constants.ViewConstants.NOT_ELIGIBLE;
@@ -78,10 +79,10 @@ public class StudentSchemeService {
                 calculateAcademicScore(application);
                 break;
             case 2:
-                application.setNonAcademicScore(calculateSportsScholarshipScore(application));
+                calculateSportsScholarshipScore(application);
                 break;
             case 3:
-                application.setNonAcademicScore(calculateArtsScholarshipScore(application));
+                calculateArtsScholarshipScore(application);
                 break;
             default:
                 application.setAcademicScore(0);
@@ -108,7 +109,8 @@ public class StudentSchemeService {
         return totalAcademicProfileScore;
     }
     // Bussiness Logic for Calculating Non-Academic Sports Scholarship Profile Score
-    public float calculateSportsScholarshipScore(Application application){
+    public double calculateSportsScholarshipScore(Application application){
+        DecimalFormat df = new DecimalFormat();
         int numberofNationalSportsAward = application.getScheme().getNationalSportsAwards();
         int numberofStateSportsAward = application.getScheme().getStateSportsAwards();
         int numberofDistrictSportsAward = application.getScheme().getDistrictSportsAwards();
@@ -140,11 +142,12 @@ public class StudentSchemeService {
 
         sportScore = totalSportsAwardPoints * ApplicationConstants.RANGE_FACTOR;
 
-        return sportScore;
+        return Double.valueOf(df.format(sportScore));
     }
 
     // Bussiness Logic for Calculating Non-Academic Arts Scholarship Profile Score
-    public float calculateArtsScholarshipScore(Application application){
+    public double calculateArtsScholarshipScore(Application application){
+        DecimalFormat df = new DecimalFormat();
         int numberofNationalArtsAward = application.getScheme().getNationalArtsAwards();
         int numberofStateArtsAward = application.getScheme().getStateArtsAwards();
         int numberofDistrictArtssAward = application.getScheme().getDistrictArtsAwards();
@@ -176,7 +179,7 @@ public class StudentSchemeService {
 
         artScore = totalArtsAwardPoints * ApplicationConstants.RANGE_FACTOR;
 
-        return artScore;
+        return Double.valueOf(df.format(artScore));
     }
 
     public boolean hasAppliedBefore(String userId) throws SQLException {
