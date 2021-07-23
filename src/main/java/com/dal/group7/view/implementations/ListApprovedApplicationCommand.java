@@ -10,12 +10,12 @@ import static com.dal.group7.view.implementations.CommandFactory.INSTITUTE_HOME;
 
 import java.util.List;
 
-public class ApprovedApplicationCommand extends Command {
+public class ListApprovedApplicationCommand extends Command {
 
     private boolean result;
     private InstituteApplicationService instituteApplicationService;
 
-    public  ApprovedApplicationCommand(InstituteApplicationService instituteApplicationService){
+    public ListApprovedApplicationCommand(InstituteApplicationService instituteApplicationService){
         this.instituteApplicationService = instituteApplicationService;
     }
 

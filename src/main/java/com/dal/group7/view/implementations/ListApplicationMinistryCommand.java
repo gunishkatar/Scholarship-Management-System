@@ -6,16 +6,16 @@ import com.dal.group7.view.interfaces.Command;
 
 import java.util.List;
 
-import static com.dal.group7.constants.ViewConstants.*;
-import static com.dal.group7.view.implementations.CommandFactory.ERROR;
-import static com.dal.group7.view.implementations.CommandFactory.INSTITUTE_HOME;
+import static com.dal.group7.constants.ViewConstants.STARS;
+import static com.dal.group7.constants.ViewConstants.VIEW_APPLICATION;
+import static com.dal.group7.view.implementations.CommandFactory.*;
 
-public class ListApplicationCommand extends Command {
+public class ListApplicationMinistryCommand extends Command {
 
     private boolean result;
     private InstituteApplicationService instituteApplicationService;
 
-    public ListApplicationCommand(InstituteApplicationService instituteApplicationService){
+    public ListApplicationMinistryCommand(InstituteApplicationService instituteApplicationService){
         this.instituteApplicationService = instituteApplicationService;
     }
 
@@ -30,7 +30,7 @@ public class ListApplicationCommand extends Command {
     public void handle() {
 
         try {
-            printOnConsole(instituteApplicationService.displayApplications());
+            printOnConsole(instituteApplicationService.displayApprovedApplications());
             this.result = true;
         } catch (Exception e) {
             System.out.println(e.getMessage());
@@ -58,7 +58,7 @@ public class ListApplicationCommand extends Command {
 
     @Override
     public void setNextCommand() {
-        this.nextCommand = this.result ? INSTITUTE_HOME.getCommand() : ERROR.getCommand();
+        this.nextCommand = this.result ? MINISTRY_HOME.getCommand() : ERROR.getCommand();
     }
 
 }
