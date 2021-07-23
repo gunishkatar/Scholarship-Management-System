@@ -34,7 +34,7 @@ public enum AllocationStrategy {
             return null;
         }
     },
-    SLAB_D(null, 400000D) {
+    SLAB_D(0D, 400000D) {
         @Override
         public Double getAllocatedTuitionAmount(Scholarship scholarship) {
 

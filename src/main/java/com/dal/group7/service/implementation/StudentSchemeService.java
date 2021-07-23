@@ -115,7 +115,6 @@ public class StudentSchemeService {
         double bachelorsScoreAfterBacklog = bachelorsScore-(application.getScheme().getBacklogBachelors() * (0.08 * bachelorsScore));
 
         double totalAcademicProfileScore = XScoreAfterBacklog + XIIScoreAfterBacklog + bachelorsScoreAfterBacklog;
-        System.out.println("Total Profile Score " + totalAcademicProfileScore);
         return totalAcademicProfileScore;
     }
 
