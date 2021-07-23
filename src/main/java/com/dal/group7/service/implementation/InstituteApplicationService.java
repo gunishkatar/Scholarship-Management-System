@@ -4,6 +4,7 @@ import com.dal.group7.persistent.interfaces.Dao;
 import com.dal.group7.persistent.model.Application;
 
 import java.sql.SQLException;
+import java.util.List;
 
 import static com.dal.group7.persistent.model.ApplicationStatus.*;
 
@@ -26,4 +27,13 @@ public class InstituteApplicationService {
     public void rejectApplication(String applicationNumber) throws SQLException {
         applicationDao.updateValue(applicationNumber, INSTITUTE_STATUS, REJECTED.toString());
     }
+
+    public List<Application> displayApprovedApplications() throws SQLException{
+        return applicationDao.getAllApplicationByStatus();
+    }
+
+    public List<Application> displayApplications() throws SQLException{
+        return applicationDao.getAll();
+    }
+
 }
