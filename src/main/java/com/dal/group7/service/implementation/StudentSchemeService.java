@@ -9,6 +9,7 @@ import org.json.JSONObject;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.sql.SQLOutput;
 import java.util.List;
 
 import static com.dal.group7.constants.ViewConstants.NOT_ELIGIBLE;
@@ -107,15 +108,15 @@ public class StudentSchemeService {
         return totalAcademicProfileScore;
     }
     // Bussiness Logic for Calculating Non-Academic Sports Scholarship Profile Score
-    public double calculateSportsScholarshipScore(Application application){
+    public float calculateSportsScholarshipScore(Application application){
         int numberofNationalSportsAward = application.getScheme().getNationalSportsAwards();
         int numberofStateSportsAward = application.getScheme().getStateSportsAwards();
         int numberofDistrictSportsAward = application.getScheme().getDistrictSportsAwards();
-        double nationalSportsAwardPoints = 0;
-        double stateSportsAwardPoints = 0;
-        double districtSportsAwardPoints = 0;
-        double totalSportsAwardPoints = 0;
-        double sportScore = 0;
+        float nationalSportsAwardPoints = 0.00f;
+        float stateSportsAwardPoints = 0.00f;
+        float districtSportsAwardPoints = 0.00f;
+        float totalSportsAwardPoints = 0.00f;
+        float sportScore = 0.00f;
 
         if(numberofNationalSportsAward>ApplicationConstants.AWARD_CAP){
             nationalSportsAwardPoints = ApplicationConstants.POINT_CAP;
@@ -143,15 +144,15 @@ public class StudentSchemeService {
     }
 
     // Bussiness Logic for Calculating Non-Academic Arts Scholarship Profile Score
-    public double calculateArtsScholarshipScore(Application application){
+    public float calculateArtsScholarshipScore(Application application){
         int numberofNationalArtsAward = application.getScheme().getNationalArtsAwards();
         int numberofStateArtsAward = application.getScheme().getStateArtsAwards();
         int numberofDistrictArtssAward = application.getScheme().getDistrictArtsAwards();
-        double nationalArtsAwardPoints = 0;
-        double stateArtsAwardPoints = 0;
-        double districtArtsAwardPoints = 0;
-        double totalArtsAwardPoints = 0;
-        double artScore = 0;
+        float nationalArtsAwardPoints = 0.00f;
+        float stateArtsAwardPoints = 0.00f;
+        float districtArtsAwardPoints = 0.00f;
+        float totalArtsAwardPoints = 0.00f;
+        float artScore = 0.00f;
 
         if(numberofNationalArtsAward>ApplicationConstants.AWARD_CAP){
             nationalArtsAwardPoints = ApplicationConstants.POINT_CAP;
