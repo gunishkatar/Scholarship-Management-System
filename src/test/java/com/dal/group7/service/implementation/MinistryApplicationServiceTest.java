@@ -108,4 +108,18 @@ class MinistryApplicationServiceTest {
         verify(applicationDao).updateValue(null, "ministry_status", FUND_ISSUED.toString());
         verify(applicationDao).setValues(APPLICATION);
     }
+
+    @Test
+    void shouldGetApplicationWithAmountForSlabD() throws SQLException {
+        STUDENT_FINANCE.setAnnualIncome(300000D);
+        when(applicationDao.findById(any())).thenReturn(of(APPLICATION));
+        when(scholarshipDao.findById(any())).thenReturn(of(SCHOLARSHIP));
+        when(studentFinanceDao.findById(any())).thenReturn(of(STUDENT_FINANCE));
+        final Application applicationWithAmount = ministryApplicationService.getApplicationWithAmount(ID);
+
+        assertEquals(10000D, applicationWithAmount.getTuitionAmount());
+        assertEquals(10000D, applicationWithAmount.getInsuranceAmount());
+        assertEquals(10000D, applicationWithAmount.getTravelAmount());
+        assertEquals(10000D, applicationWithAmount.getLivingExpensesAmount());
+    }
 }
