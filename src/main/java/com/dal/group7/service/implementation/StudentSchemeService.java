@@ -74,21 +74,33 @@ public class StudentSchemeService {
 
     public void generateScores(Application application) {
 
+        double AcademicScore =0;
+        double nonAcademicScore =0;
+        double profileScore =0;
+
         switch (application.getScheme().getSchemeId()) {
+
             case 1:
-                calculateAcademicScore(application);
+                AcademicScore = calculateAcademicScore(application);
+                profileScore = AcademicScore;
                 break;
             case 2:
-                calculateSportsScholarshipScore(application);
+                nonAcademicScore = calculateSportsScholarshipScore(application);
+                profileScore = nonAcademicScore;
                 break;
             case 3:
-                calculateArtsScholarshipScore(application);
+                nonAcademicScore = calculateArtsScholarshipScore(application);
+                profileScore = nonAcademicScore;
                 break;
             default:
                 application.setAcademicScore(0);
                 application.setNonAcademicScore(0);
                 application.setProfileScore(0);
         }
+        application.setAcademicScore(AcademicScore);
+        application.setNonAcademicScore(nonAcademicScore);
+        application.setProfileScore(profileScore);
+
     }
 
     // Bussiness Logic for Calculating Academic Profile Score
@@ -98,8 +110,6 @@ public class StudentSchemeService {
         double XIIScore = ((application.getScheme().getGpaXII() * 10) * 0.35);
         double bachelorsScore =(( application.getScheme().getGpaBachelors() * 10) * 0.40);
 
-        //double totalScoreWithoutBacklog = XScore + XIIScore + bachelorsScore;
-
         double XScoreAfterBacklog = XScore-(application.getScheme().getBacklogX() * (0.04 * XScore));
         double XIIScoreAfterBacklog = XIIScore-(application.getScheme().getBacklogXII() * (0.06 * XIIScore));
         double bachelorsScoreAfterBacklog = bachelorsScore-(application.getScheme().getBacklogBachelors() * (0.08 * bachelorsScore));
@@ -108,6 +118,8 @@ public class StudentSchemeService {
         System.out.println("Total Profile Score " + totalAcademicProfileScore);
         return totalAcademicProfileScore;
     }
+
+
     // Bussiness Logic for Calculating Non-Academic Sports Scholarship Profile Score
     public double calculateSportsScholarshipScore(Application application){
         DecimalFormat df = new DecimalFormat();

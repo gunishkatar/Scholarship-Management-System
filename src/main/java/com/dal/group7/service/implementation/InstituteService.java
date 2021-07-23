@@ -2,8 +2,6 @@ package com.dal.group7.service.implementation;
 
 import com.dal.group7.constants.InstituteConstants;
 import com.dal.group7.persistent.implementations.ConnectionManager;
-import com.dal.group7.persistent.implementations.InstituteDao;
-import com.dal.group7.persistent.implementations.PwdEncryptDao;
 import com.dal.group7.persistent.interfaces.Dao;
 import com.dal.group7.persistent.model.Institute;
 import com.dal.group7.service.interfaces.UserService;
@@ -17,8 +15,6 @@ import java.sql.SQLException;
 public class InstituteService implements UserService {
     private final Dao<Integer, Institute> instituteDao;
     private final JsonFileReader jsonFileReader;
-    private PwdEncrypt passwordClass;
-    private ConnectionManager connectionManager;
 
     public InstituteService(Dao<Integer, Institute> instituteDao,
                             JsonFileReader jsonFileReader) {
@@ -38,6 +34,7 @@ public class InstituteService implements UserService {
         boolean cityFlag = false;
         boolean countryFlag = false;
         boolean pinCodeFlag = false;
+        boolean securityAnswers = false;
 
         idFlag = (institute.getId()>0);
         nameFlag = (!institute.getName().equals("")) && (institute.getName() != null);
@@ -49,7 +46,13 @@ public class InstituteService implements UserService {
         cityFlag = (!institute.getCity().equals("")) && (institute.getCity() != null);
         countryFlag = (!institute.getCountry().equals("")) && (institute.getCountry() != null);
         pinCodeFlag = (institute.getPinCode()>0);
-        return (idFlag && nameFlag && emailIdFlag && registrationCodeFlag && phoneNumberFlag && addressFlag && stateFlag && cityFlag && countryFlag && pinCodeFlag);
+        securityAnswers = institute.getSecurityAnswerOne() != null && !institute.getSecurityAnswerOne().equals("")
+                          && institute.getSecurityAnswerTwo() != null && !institute.getSecurityAnswerTwo().equals("")
+                          && institute.getSecurityAnswerThree() != null && !institute.getSecurityAnswerThree().equals("");
+
+
+        return (idFlag && nameFlag && emailIdFlag && registrationCodeFlag && phoneNumberFlag && addressFlag && stateFlag && cityFlag &&
+                countryFlag && pinCodeFlag && securityAnswers);
     }
 
     public Boolean isValidInstituteEmail(String emailId) {
