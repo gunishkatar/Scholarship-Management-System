@@ -23,7 +23,8 @@ class InstituteDaoTest {
 
     private static final Institute INSTITUTE = new Institute(1,"name","dal.ca",5000,
             "abc","abc", 1111,"LakeLouise","NovaScotia",
-            "Halifax","Canada",1234);
+            "Halifax","Canada",1234,"Rock",
+            "Alchemist","Wall Street");
 
     @Mock
     private ConnectionManager connectionManager;

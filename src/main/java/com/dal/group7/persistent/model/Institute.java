@@ -24,14 +24,18 @@ public class Institute {
     private Integer phoneNumber;
     private String country;
     private Integer pinCode;
-    private Boolean isBlacklisted;
+    private String securityAnswerOne;
+    private String securityAnswerTwo;
+    private String securityAnswerThree;
+
 
     public Institute() {
     }
 
     public Institute(Integer id, String name, String emailId, Integer registrationCode,String password,
                      String reConfirmPassword, Integer phoneNumber, String address,String city, String state,
-                     String country, Integer pinCode, Boolean isBlacklisted) {
+                     String country, Integer pinCode, String securityAnswerOne, String securityAnswerTwo,
+                     String securityAnswerThree) {
         this.id = id;
         this.name = name;
         this.emailId = emailId;
@@ -44,7 +48,10 @@ public class Institute {
         this.state = state;
         this.country = country;
         this.pinCode = pinCode;
-        this.isBlacklisted = isBlacklisted;
+        this.securityAnswerOne = securityAnswerOne;
+        this.securityAnswerTwo = securityAnswerTwo;
+        this.securityAnswerThree = securityAnswerThree;
+
     }
 
     public Institute from(ResultSet resultSet) throws SQLException {
@@ -97,9 +104,18 @@ public class Institute {
         return pinCode;
     }
 
-    public Boolean getIsBlacklisted() {
-        return isBlacklisted;
+    public String getSecurityAnswerOne() {
+        return securityAnswerOne;
     }
+
+    public String getSecurityAnswerTwo() {
+        return securityAnswerTwo;
+    }
+
+    public String getSecurityAnswerThree() {
+        return securityAnswerThree;
+    }
+
 
     public Institute from(JSONObject jsonObject) {
         this.id = new Random().nextInt();
@@ -114,7 +130,10 @@ public class Institute {
         this.phoneNumber = jsonObject.getInt("institute_contact");
         this.country = jsonObject.getString("country");
         this.pinCode = jsonObject.getInt("pincode");
-        this.isBlacklisted = jsonObject.getBoolean("isblacklisted");
+        this.securityAnswerOne = jsonObject.getString("security_answer_one");
+        this.securityAnswerTwo = jsonObject.getString("security_answer_two");
+        this.securityAnswerThree = jsonObject.getString("security_answer_three");
+
         return this;
     }
 
@@ -127,12 +146,13 @@ public class Institute {
                 && Objects.equals(password, that.password) && Objects.equals(reConfirmPassword, that.reConfirmPassword)
                 && Objects.equals(phoneNumber, that.phoneNumber ) && Objects.equals(address, that.address)
                 && Objects.equals(state, that.state) && Objects.equals(city, that.city) && Objects.equals(country, that.country)
-                && Objects.equals(pinCode, that.pinCode) && Objects.equals(isBlacklisted, that.isBlacklisted);
+                && Objects.equals(pinCode, that.pinCode) && Objects.equals(securityAnswerOne, that.securityAnswerOne)
+                && Objects.equals(securityAnswerTwo, that.securityAnswerTwo) && Objects.equals(securityAnswerThree, that.securityAnswerThree);
     }
 
     @Override
     public int hashCode() {
         return Objects.hash(name, emailId, registrationCode, password, reConfirmPassword, phoneNumber, address, state, city, country,
-                pinCode,isBlacklisted);
+                pinCode, securityAnswerOne, securityAnswerTwo, securityAnswerThree);
     }
 }

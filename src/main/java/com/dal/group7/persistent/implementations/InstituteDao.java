@@ -2,6 +2,7 @@ package com.dal.group7.persistent.implementations;
 import com.dal.group7.constants.SQLConstants;
 import com.dal.group7.persistent.interfaces.Dao;
 import com.dal.group7.persistent.model.Institute;
+import com.dal.group7.shared.PwdEncrypt;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -37,24 +38,64 @@ public class InstituteDao extends Dao<Integer, Institute> {
         }
     }
 
-    public void insertOne(Institute institute) throws SQLException{
-        try (var connection = connectionManager.getConnection();
-             //var preparedStatement = connection.prepareStatement(SQLConstants.getInsertNewInstitute())){
-            var preparedStatement = connection.prepareStatement(insertIntoTableAllFields(INSTITUTE, 10))) {
-            preparedStatement.setInt(1, institute.getId());
-            preparedStatement.setString(2, institute.getName());
-            preparedStatement.setString(3, institute.getEmailId());
-            preparedStatement.setInt(4, institute.getRegistrationCode());
-            preparedStatement.setInt(5, institute.getPhoneNumber());
-            preparedStatement.setString(6, institute.getAddress());
-            preparedStatement.setString(7, institute.getState());
-            preparedStatement.setString(8, institute.getCity());
-            preparedStatement.setString(9, institute.getCountry());
-            preparedStatement.setInt(10, institute.getPinCode());
-            preparedStatement.setBoolean(11, institute.getIsBlacklisted());
-            preparedStatement.executeUpdate();
+    public void insertOne(Institute institute) throws SQLException {
+        PreparedStatement statement = null;
+
+        try (Connection connection = connectionManager.getConnection()) {
+            PwdEncrypt pwdEncrypt = new PwdEncrypt(new PwdEncryptDao(new ConnectionManager()));
+            connection.setAutoCommit(false);
+
+            int counter = 1;
+            statement = connection.prepareStatement(SQLConstants.getInsertNewUser());
+            statement.setString(counter++, institute.getEmailId());
+            statement.setString(counter++, pwdEncrypt.getEncryptedPwd(institute.getPassword()));
+            statement.setString(counter++, SQLConstants.ONE);
+            statement.setString(counter++, institute.getSecurityAnswerOne());
+            statement.setString(counter++, institute.getSecurityAnswerTwo());
+            statement.setString(counter++, institute.getSecurityAnswerThree());
+            statement.setString(counter, institute.getClass().getSimpleName().toLowerCase());
+
+            statement.execute();
+            statement = connection.prepareStatement(SQLConstants.getInsertNewStudent());
+            counter = 1;
+
+            // institute_basic table object
+            statement.setString(counter++, institute.getName());
+            statement.setString(counter++, institute.getEmailId());
+            statement.setInt(counter++, institute.getRegistrationCode());
+            statement.setString(counter++, institute.getAddress());
+            statement.setString(counter++, institute.getCity());
+            statement.setString(counter++, institute.getState());
+            statement.setInt(counter++, institute.getPhoneNumber());
+            statement.setString(counter++, institute.getState());
+            statement.setString(counter, institute.getCountry());
+            statement.setInt(counter++, institute.getPinCode());
+
+            statement.execute();
+            connection.commit();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (statement != null) {
+                statement.close();
+            }
         }
     }
+//        try (var connection = connectionManager.getConnection();
+//            var preparedStatement = connection.prepareStatement(insertIntoTableAllFields(INSTITUTE, 10))) {
+//            preparedStatement.setInt(1, institute.getId());
+//            preparedStatement.setString(2, institute.getName());
+//            preparedStatement.setString(3, institute.getEmailId());
+//            preparedStatement.setInt(4, institute.getRegistrationCode());
+//            preparedStatement.setInt(5, institute.getPhoneNumber());
+//            preparedStatement.setString(6, institute.getAddress());
+//            preparedStatement.setString(7, institute.getState());
+//            preparedStatement.setString(8, institute.getCity());
+//            preparedStatement.setString(9, institute.getCountry());
+//            preparedStatement.setInt(10, institute.getPinCode());
+//            preparedStatement.executeUpdate();
+//        }
+
 
 
     public Optional<Institute> get(Integer id) throws SQLException {
