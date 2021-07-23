@@ -16,10 +16,16 @@ public enum AllocationStrategy {
             return amount > SLAB_A.lowerCap;
         }
     },
-    SLAB_B(0D, 0D) {
+    SLAB_B(1500000D, 2000000D) {
         @Override
         public Double getAllocatedTuitionAmount(Scholarship scholarship) {
-            return null;
+
+            return 0.7*scholarship.getTuitionAmount();
+        }
+
+        @Override
+        public Double getAllocatedTravelAmount(Scholarship scholarship) {
+            return 0.5*scholarship.getTravelAmount();
         }
     },
     SLAB_C(0D, 0D) {
