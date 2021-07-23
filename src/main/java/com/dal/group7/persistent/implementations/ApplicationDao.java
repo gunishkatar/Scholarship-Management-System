@@ -2,6 +2,8 @@ package com.dal.group7.persistent.implementations;
 
 import com.dal.group7.persistent.interfaces.Dao;
 import com.dal.group7.persistent.model.Application;
+import com.dal.group7.persistent.model.Scholarship;
+import com.dal.group7.persistent.model.ScholarshipHandle;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -206,6 +208,36 @@ public class ApplicationDao extends Dao<String, Application> {
             return resultSet.next() ?
                     Optional.of(new Application().from(resultSet)) :
                     Optional.empty();
+        }
+    }
+
+    @Override
+    public List<Application> getAllApplicationByStatus() throws SQLException {
+        try (var connection = connectionManager.getConnection();
+             var preparedStatement = connection
+                     .prepareStatement(getSelectByApplicationStatus())) {
+            preparedStatement.setString(ONE, APPROVED);
+            final var resultSet = preparedStatement.executeQuery();
+            List<Application> applications = new ArrayList<>();
+            while (resultSet.next()) {
+                applications.add(new Application().from(resultSet));
+            }
+            return applications;
+        }
+    }
+
+    @Override
+    public List<Application> getAll() throws SQLException {
+        try (var connection = connectionManager.getConnection();
+             var preparedStatement = connection
+                     .prepareStatement(getSelectAllQuery(APPLICATION))) {
+            final var resultSet = preparedStatement.executeQuery();
+            List<Application> applications = new ArrayList<>();
+            while (resultSet.next()) {
+                applications
+                        .add(new Application().from(resultSet));
+            }
+            return applications;
         }
     }
 }
