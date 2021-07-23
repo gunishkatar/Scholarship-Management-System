@@ -99,15 +99,6 @@ public class InstituteService implements UserService {
     @Override
     public void login() throws SQLException {
 
-
-//        InstituteLoginService instituteLoginService = new InstituteLoginService(this.passwordClass, this.connectionManager);
-//        if(instituteLoginService.instituteLogin()){
-//            System.out.println("Re-direct to InstituteView");
-//        }else{
-//            System.out.println("Throw Error");
-//        }
-
-
     }
 
     @Override

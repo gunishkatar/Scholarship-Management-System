@@ -60,6 +60,48 @@ class MinistryApplicationServiceTest {
     }
 
     @Test
+    void shouldGetApplicationWithAmountForSlabB() throws SQLException {
+        STUDENT_FINANCE.setAnnualIncome(1600000D);
+        when(applicationDao.findById(any())).thenReturn(of(APPLICATION));
+        when(scholarshipDao.findById(any())).thenReturn(of(SCHOLARSHIP));
+        when(studentFinanceDao.findById(any())).thenReturn(of(STUDENT_FINANCE));
+        final Application applicationWithAmount = ministryApplicationService.getApplicationWithAmount(ID);
+
+        assertEquals(7000D, applicationWithAmount.getTuitionAmount());
+        assertEquals(10000D, applicationWithAmount.getInsuranceAmount());
+        assertEquals(5000D, applicationWithAmount.getTravelAmount());
+        assertEquals(0D, applicationWithAmount.getLivingExpensesAmount());
+    }
+
+    @Test
+    void shouldGetApplicationWithAmountForSlabBWithUpperLimit() throws SQLException {
+        STUDENT_FINANCE.setAnnualIncome(2000000D);
+        when(applicationDao.findById(any())).thenReturn(of(APPLICATION));
+        when(scholarshipDao.findById(any())).thenReturn(of(SCHOLARSHIP));
+        when(studentFinanceDao.findById(any())).thenReturn(of(STUDENT_FINANCE));
+        final Application applicationWithAmount = ministryApplicationService.getApplicationWithAmount(ID);
+
+        assertEquals(7000D, applicationWithAmount.getTuitionAmount());
+        assertEquals(10000D, applicationWithAmount.getInsuranceAmount());
+        assertEquals(5000D, applicationWithAmount.getTravelAmount());
+        assertEquals(0D, applicationWithAmount.getLivingExpensesAmount());
+    }
+
+    @Test
+    void shouldGetApplicationWithAmountForSlabBWithLowerLimit() throws SQLException {
+        STUDENT_FINANCE.setAnnualIncome(1500001D);
+        when(applicationDao.findById(any())).thenReturn(of(APPLICATION));
+        when(scholarshipDao.findById(any())).thenReturn(of(SCHOLARSHIP));
+        when(studentFinanceDao.findById(any())).thenReturn(of(STUDENT_FINANCE));
+        final Application applicationWithAmount = ministryApplicationService.getApplicationWithAmount(ID);
+
+        assertEquals(7000D, applicationWithAmount.getTuitionAmount());
+        assertEquals(10000D, applicationWithAmount.getInsuranceAmount());
+        assertEquals(5000D, applicationWithAmount.getTravelAmount());
+        assertEquals(0D, applicationWithAmount.getLivingExpensesAmount());
+    }
+
+    @Test
     void shouldIssueFunds() throws SQLException {
         ministryApplicationService.issueFundToApplication(APPLICATION);
 
