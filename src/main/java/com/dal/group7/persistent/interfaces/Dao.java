@@ -1,6 +1,7 @@
 package com.dal.group7.persistent.interfaces;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -61,5 +62,13 @@ public abstract class Dao<K, T> {
     public List<T> getAllApplicationStatusByInstitute(
             int id) throws SQLException {
         return emptyList();
+    }
+
+    public ArrayList<Integer> fetchValues() throws SQLException {
+        return null;
+    }
+
+    public void incrementValue(K id, String field, double value)
+            throws SQLException {
     }
 }

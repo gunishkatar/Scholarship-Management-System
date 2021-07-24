@@ -128,4 +128,18 @@ public class InstituteDao extends Dao<Integer, Institute> {
             preparedStatement.executeUpdate();
         }
     }
+
+    @Override
+    public void incrementValue(Integer id, String field, double value)
+            throws SQLException {
+        try (var connection = connectionManager.getConnection();
+             var preparedStatement = connection.prepareStatement(
+                     setAwardValues(field))
+        ) {
+            preparedStatement.setObject(1, value);
+            preparedStatement.setInt(2, id);
+
+            preparedStatement.executeUpdate();
+        }
+    }
 }

@@ -107,6 +107,10 @@ public class SQLConstants {
     public static final String HARD_BLOCK_COL = "is_hard_blocked";
     public static final String APP_STATUS_COL = "application_status";
     public static final String FAIL_LOGIN_COUNT_COL = "failed_login_count";
+    public static final String AWARD_INSTITUTES =
+            "select institute_id , AVG(total_rating) as average_rating from " +
+                    "feedback group by institute_id order by average_rating " +
+                    "desc limit 2;";
 
     private SQLConstants() {
     }
@@ -169,6 +173,10 @@ public class SQLConstants {
         return "insert into " + table + " values(" + params + ");";
     }
 
+    public static String getAwardInstitutes() {
+        return AWARD_INSTITUTES;
+    }
+
     public static String getInsertNewStudent() {
         return INSERT_NEW_STUDENT;
     }
@@ -201,6 +209,12 @@ public class SQLConstants {
         return "update institute_basic set " + field +
                 " = grant_amount + ? where" +
                 " institute_id = ?";
+    }
+
+    public static String setAwardValues(String field) {
+        return "update institute_basic set " + field +
+                " = round(grant_amount + (grant_amount * ?), 2) where " +
+                "institute_id = ? ";
     }
 
     public static String setStatusForApplication(String field) {
