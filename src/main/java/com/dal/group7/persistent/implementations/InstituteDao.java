@@ -14,8 +14,7 @@ import java.util.List;
 import java.util.Optional;
 
 import static com.dal.group7.constants.FieldConstants.ONE;
-import static com.dal.group7.constants.SQLConstants.getSelectAllQuery;
-import static com.dal.group7.constants.SQLConstants.getSelectByIdQuery;
+import static com.dal.group7.constants.SQLConstants.*;
 
 public class InstituteDao extends Dao<Integer, Institute> {
 
@@ -104,14 +103,29 @@ public class InstituteDao extends Dao<Integer, Institute> {
 
     @Override
     public List<Institute> getAll() throws SQLException {
-        try(var connection = connectionManager.getConnection();
-            var preparedStatement = connection.prepareStatement(getSelectAllQuery(INSTITUTE))) {
+        try (var connection = connectionManager.getConnection();
+             var preparedStatement = connection
+                     .prepareStatement(getSelectAllQuery(INSTITUTE))) {
             final var resultSet = preparedStatement.executeQuery();
             List<Institute> institutes = new ArrayList<>();
             while (resultSet.next()) {
                 institutes.add(new Institute().from(resultSet));
             }
             return institutes;
+        }
+    }
+
+    @Override
+    public void updateValue(Integer id, String field, Object value)
+            throws SQLException {
+        try (var connection = connectionManager.getConnection();
+             var preparedStatement = connection.prepareStatement(
+                     setGrantAmountValue(field))
+        ) {
+            preparedStatement.setObject(1, value);
+            preparedStatement.setInt(2, id);
+
+            preparedStatement.executeUpdate();
         }
     }
 }
