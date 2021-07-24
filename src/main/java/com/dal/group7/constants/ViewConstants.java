@@ -107,7 +107,7 @@ public class ViewConstants {
           "1. List Applications With Profile Score";
   public static final String VIEW_APPROVED_STUDENT_APPLICATIONS_TWO =
           "2. View Approved Student Applications";
-  public static final String ENTER_ID = "Enter ID >> ";
+  public static final String ENTER_ID = "Enter Institute ID >> ";
 
   private ViewConstants() {
   }

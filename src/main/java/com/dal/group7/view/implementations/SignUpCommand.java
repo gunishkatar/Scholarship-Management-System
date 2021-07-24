@@ -3,9 +3,7 @@ package com.dal.group7.view.implementations;
 import com.dal.group7.view.interfaces.Command;
 
 import static com.dal.group7.constants.ViewConstants.*;
-import static com.dal.group7.view.implementations.CommandFactory.QUIT;
-import static com.dal.group7.view.implementations.CommandFactory.STUDENT_SIGNUP;
-import static com.dal.group7.view.implementations.CommandFactory.INSTITUTE_SIGNUP;
+import static com.dal.group7.view.implementations.CommandFactory.*;
 
 
 public class SignUpCommand extends Command {
@@ -29,9 +27,13 @@ public class SignUpCommand extends Command {
         switch (input) {
             case 1:
                 nextCommand = STUDENT_SIGNUP.getCommand();
+                System.setProperty(UserType.USER.toString(),
+                        UserType.STUDENT.toString());
                 break;
             case 2:
                 nextCommand = INSTITUTE_SIGNUP.getCommand();
+                System.setProperty(UserType.USER.toString(),
+                        UserType.INSTITUTE.toString());
                 break;
             default:
                 nextCommand = QUIT.getCommand();
