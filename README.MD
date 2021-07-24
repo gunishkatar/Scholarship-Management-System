@@ -40,8 +40,10 @@
     <li> SM5308-13 : Student Soft blocking by Portal, Author - Venkata Saikiran </li>
     <li> SM5308-89 : Profile Score Calculation Logic for Academic Scholarship, Author - Rishita Kotiyal </li>
     <li> SM5308-79 : SLAB A logic, Ministry approves/rejects application, Author - Amrita Krishna</li>
+    <li> SM5308-82 : Added SLAB-D revenue allocation business logic, Author - Rishita Kotiyal </li>
     <li> SM5308-91 : Fix Institute Sign up, Author - Rahul Kodumuru</li>
     <li> SM5308-81 : Added SLAB-C business logic</li>
+    <li> SM5308-37 : Created Feedback template for student, Author - Rishita Kotiyal </li>
 </ol>
 
 <h3>Contributors</h3>
