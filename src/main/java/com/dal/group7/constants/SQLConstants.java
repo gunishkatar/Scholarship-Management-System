@@ -22,6 +22,8 @@ public class SQLConstants {
             " where application_status = ?";
     private static final String WHERE_SCHOLARSHIP_ID =
             " where scholarship_id = ?";
+    private static final String WHERE_SCHOLARSHIP_CRITERIA =
+            " where criteria_girl = ? and criteria_academic = ? and criteria_sports = ?";
     private static final String INSERT_NEW_STUDENT =
             "INSERT INTO student_basic (first_name, last_name, email_id, " +
                     "phone_number, passport_number, dob, gender, state, " +
@@ -117,6 +119,10 @@ public class SQLConstants {
 
     public static String getSelectScholarshipByIdQuery() {
         return SELECT_ALL_QUERY + SCHOLARSHIP + WHERE_SCHOLARSHIP_ID;
+    }
+
+    public static String getSelectScholarshipByCriteria() {
+        return SELECT_ALL_QUERY + SCHOLARSHIP + WHERE_SCHOLARSHIP_CRITERIA;
     }
 
     public static String getSelectStudentFinanceByIdQuery() {
