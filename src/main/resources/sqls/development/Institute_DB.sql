@@ -5,7 +5,7 @@ BEGIN
     DROP TABLE IF EXISTS `CSCI5308_7_DEVINT`.`institute_basic`;
     CREATE TABLE IF NOT EXISTS `CSCI5308_7_DEVINT`.`institute_basic`
     (
-        `institute_id`      INT          NOT NULL,
+        `in`      INT          NOT NULL,
         `name`              VARCHAR(45)  NOT NULL,
         `email`             VARCHAR(255) NOT NULL,
         `regd_code`         VARCHAR(45)  NOT NULL,

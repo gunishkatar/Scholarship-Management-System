@@ -20,19 +20,35 @@ public enum AllocationStrategy {
         @Override
         public Double getAllocatedTuitionAmount(Scholarship scholarship) {
 
-            return 0.7*scholarship.getTuitionAmount();
+            return 0.7 * scholarship.getTuitionAmount();
         }
 
         @Override
         public Double getAllocatedTravelAmount(Scholarship scholarship) {
-            return 0.5*scholarship.getTravelAmount();
+            return 0.5 * scholarship.getTravelAmount();
+        }
+
+        @Override
+        public Double getAllocatedInsuranceAmount(Scholarship scholarship) {
+            return 0.5 * scholarship.getInsuranceAmount();
         }
     },
-    SLAB_C(0D, 0D) {
+    SLAB_C(1000000D, 1500000D) {
         @Override
         public Double getAllocatedTuitionAmount(Scholarship scholarship) {
-            return null;
+            return 1 * scholarship.getTuitionAmount();
         }
+
+        @Override
+        public Double getAllocatedTravelAmount(Scholarship scholarship) {
+            return 0.75 * scholarship.getTravelAmount();
+        }
+
+        @Override
+        public Double getAllocatedInsuranceAmount(Scholarship scholarship) {
+            return 0.75 * scholarship.getInsuranceAmount();
+        }
+
     },
     SLAB_D(0D, 400000D) {
         @Override
