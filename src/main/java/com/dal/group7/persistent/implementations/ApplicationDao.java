@@ -169,7 +169,21 @@ public class ApplicationDao extends Dao<String, Application> {
         try (var connection = connectionManager.getConnection();
              var preparedStatement = connection.prepareStatement(
                      setStatusForApplication(field))
-             ) {
+        ) {
+            preparedStatement.setObject(1, value);
+            preparedStatement.setString(2, id);
+
+            preparedStatement.executeUpdate();
+        }
+    }
+
+    @Override
+    public void updateUserStatus(String id, String field, String value)
+            throws SQLException {
+        try (var connection = connectionManager.getConnection();
+             var preparedStatement = connection.prepareStatement(
+                     setStatusForUser(field))
+        ) {
             preparedStatement.setObject(1, value);
             preparedStatement.setString(2, id);
 
@@ -187,7 +201,8 @@ public class ApplicationDao extends Dao<String, Application> {
             preparedStatement.setDouble(1, application.getTuitionAmount());
             preparedStatement.setDouble(2, application.getInsuranceAmount());
             preparedStatement.setDouble(3, application.getTravelAmount());
-            preparedStatement.setDouble(4, application.getLivingExpensesAmount());
+            preparedStatement
+                    .setDouble(4, application.getLivingExpensesAmount());
             preparedStatement.setString(5, application.getApplicationId());
 
             preparedStatement.executeUpdate();

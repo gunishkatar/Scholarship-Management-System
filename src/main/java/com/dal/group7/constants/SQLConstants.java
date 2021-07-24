@@ -227,6 +227,10 @@ public class SQLConstants {
         return UPDATE_APPLICATION_SET + field + STATUS + WHERE_APPLICATION_ID;
     }
 
+    public static String setStatusForUser(String field) {
+        return UPDATE_APPLICATION_SET + field + STATUS + WHERE_STUDENT_ID;
+    }
+
     public static String setAmountForApplication() {
         return UPDATE_APPLICATION_SET + AMOUNT + WHERE_APPLICATION_ID;
     }

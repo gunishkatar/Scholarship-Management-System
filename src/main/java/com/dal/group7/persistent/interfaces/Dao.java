@@ -74,4 +74,7 @@ public abstract class Dao<K, T> {
     public void incrementValue(K id, String field, double value)
             throws SQLException {
     }
+
+    public void updateUserStatus(K id, K field, K value) throws SQLException {
+    }
 }
