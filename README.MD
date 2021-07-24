@@ -47,6 +47,7 @@
     <li> SM5308-85 : Additional 10% Grant to Institute, Author - Rahul Kodumuru</li>
     <li> SM5308-16 : Student hard blocking by portal, Author - Venkata Saikiran </li>
     <li> SM5308-31 : Current Scholarship status update to HOLD after hard blocking,, Author - Venkata Saikiran</li>
+    <li> SM5308-83 : Allocate funds for top ranked institutes, Author - Rahul Kodumuru </li>
 </ol>
 
 <h3>Contributors</h3>

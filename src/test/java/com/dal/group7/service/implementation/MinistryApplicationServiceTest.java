@@ -3,6 +3,7 @@ package com.dal.group7.service.implementation;
 import com.dal.group7.persistent.interfaces.Dao;
 import com.dal.group7.persistent.model.Application;
 import com.dal.group7.persistent.model.Scholarship;
+import com.dal.group7.persistent.model.StudentFeedback;
 import com.dal.group7.persistent.model.StudentFinance;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -38,6 +39,9 @@ class MinistryApplicationServiceTest {
     @Mock
     private Dao<String, StudentFinance> studentFinanceDao;
 
+    @Mock
+    private Dao<Integer, StudentFeedback> studentFeedbackDao;
+
     @InjectMocks
     MinistryApplicationService ministryApplicationService;
 
@@ -47,7 +51,7 @@ class MinistryApplicationServiceTest {
         ministryApplicationService =
                 new MinistryApplicationService(applicationDao, scholarshipDao,
                         studentFinanceDao,
-                        INSTITUTE.createDao());
+                        INSTITUTE.createDao(), studentFeedbackDao);
     }
 
     @Test

@@ -77,14 +77,29 @@ public enum CommandFactory {
     STUDENT_LOGIN {
         @Override
         public Command getCommand() {
-            return new StudentLoginCommand(ServiceConstants.STUDENT_LOGIN_SERVICE);
+            return new StudentLoginCommand(
+                    ServiceConstants.STUDENT_LOGIN_SERVICE);
         }
 
+    }, SAVE_FEEDBACK {
+        @Override
+        public Command getCommand() {
+            return new StudentFeedbackCommand(
+                    ServiceConstants.STUDENT_FEEDBACK_SERVICE);
+        }
+    },
+    AWARD_INSTITUTE {
+        @Override
+        public Command getCommand() {
+            return new AwardInstitutesCommand(
+                    ServiceConstants.MINISTRY_APPLICATION_SERVICE);
+        }
     },
     INSTITUTE_SIGNUP {
         @Override
         public Command getCommand() {
-            return new InstituteSignupCommand(ServiceConstants.INSTITUTE_SERVICE);
+            return new InstituteSignupCommand(
+                    ServiceConstants.INSTITUTE_SERVICE);
         }
     },
     INSTITUTE_HOME {
@@ -186,7 +201,10 @@ public enum CommandFactory {
         private static final MinistryApplicationService
                 MINISTRY_APPLICATION_SERVICE = new MinistryApplicationService(
                 APPLICATION.createDao(), SCHOLARSHIP.createDao(),
-                STUDENT_FINANCE.createDao(), INSTITUTE.createDao());
-
+                STUDENT_FINANCE.createDao(), INSTITUTE.createDao(),
+                STUDENT_FEEDBACK.createDao());
+        private static final StudentFeedbackService STUDENT_FEEDBACK_SERVICE =
+                new StudentFeedbackService(STUDENT_FEEDBACK.createDao(),
+                        new JsonFileReader());
     }
 }

@@ -38,6 +38,11 @@ public class SQLConstants {
                     "security_answer_three, " +
                     "role_type) " +
                     "VALUES (?, ?, ?, ?, ?, ?, ?);";
+
+    private static final String INSERT_NEW_FEEDBACK =
+            "INSERT INTO feedback (institute_id, answer_one, answer_two, " +
+                    "answer_three, answer_four, answer_five, total_rating) " +
+                    "VALUES (?, ?, ?, ?, ?, ?, ?)";
     private static final String INSERT_NEW_INSTITUTE =
             "INSERT INTO institute_basic (institute_id, name, email, " +
                     "regd_code, address," +
@@ -102,6 +107,10 @@ public class SQLConstants {
     public static final String HARD_BLOCK_COL = "is_hard_blocked";
     public static final String APP_STATUS_COL = "application_status";
     public static final String FAIL_LOGIN_COUNT_COL = "failed_login_count";
+    public static final String AWARD_INSTITUTES =
+            "select institute_id , AVG(total_rating) as average_rating from " +
+                    "feedback group by institute_id order by average_rating " +
+                    "desc limit 2;";
 
     private SQLConstants() {
     }
@@ -148,6 +157,10 @@ public class SQLConstants {
         return SELECT_ALL_QUERY + "student_finance" + WHERE_EMAIL_ID;
     }
 
+    public static String getInsertNewFeedback() {
+        return INSERT_NEW_FEEDBACK;
+    }
+    
     public static String getInsertNewScholarship() {
         return INSERT_NEW_SCHOLARSHIP;
     }
@@ -158,6 +171,10 @@ public class SQLConstants {
                 IntStream.range(0, numberOfFields).mapToObj(i -> "?")
                         .collect(Collectors.joining(","));
         return "insert into " + table + " values(" + params + ");";
+    }
+
+    public static String getAwardInstitutes() {
+        return AWARD_INSTITUTES;
     }
 
     public static String getInsertNewStudent() {
@@ -192,6 +209,12 @@ public class SQLConstants {
         return "update institute_basic set " + field +
                 " = grant_amount + ? where" +
                 " institute_id = ?";
+    }
+
+    public static String setAwardValues(String field) {
+        return "update institute_basic set " + field +
+                " = round(grant_amount + (grant_amount * ?), 2) where " +
+                "institute_id = ? ";
     }
 
     public static String setStatusForApplication(String field) {

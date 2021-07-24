@@ -11,11 +11,12 @@ public class MinistryHomeCommand extends Command {
 
     @Override
     public void printView() {
-        System.out.println(HEADER+MINISTRY_PORTAL + HEADER);
+        System.out.println(HEADER + MINISTRY_PORTAL + HEADER);
         System.out.println(VIEW_APPROVED_STUDENT_APPLICATIONS);
         System.out.println(CREATE_SCHOLARSHIP1);
         System.out.println(APPROVE_REJECT_APPLICATION);
-        System.out.println(LOGOUT);
+        System.out.println("4. Award Top Institutes");
+        System.out.println("5. Logout");
         System.out.print(PROMPT_PREFIX + PLEASE_SELECT_YOUR_OPTION);
     }
 
@@ -37,6 +38,9 @@ public class MinistryHomeCommand extends Command {
                 nextCommand = MINISTRY_DECISION.getCommand();
                 break;
             case 4:
+                nextCommand = AWARD_INSTITUTE.getCommand();
+                break;
+            case 5:
             default:
                 nextCommand = QUIT.getCommand();
         }
