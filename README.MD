@@ -45,6 +45,8 @@
     <li> SM5308-37 : Created Feedback template for student, Author - Rishita Kotiyal </li>
     <li> SM5308-81 : Added SLAB-C business logic, Author - Rahul Kodumuru</li>
     <li> SM5308-85 : Additional 10% Grant to Institute, Author - Rahul Kodumuru</li>
+    <li> SM5308-16 : Student hard blocking by portal, Author - Venkata Saikiran </li>
+    <li> SM5308-31 : Current Scholarship status update to HOLD after hard blocking,, Author - Venkata Saikiran</li>
 </ol>
 
 <h3>Contributors</h3>
