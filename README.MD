@@ -41,7 +41,8 @@
     <li> SM5308-89 : Profile Score Calculation Logic for Academic Scholarship, Author - Rishita Kotiyal </li>
     <li> SM5308-79 : SLAB A logic, Ministry approves/rejects application, Author - Amrita Krishna</li>
     <li> SM5308-91 : Fix Institute Sign up, Author - Rahul Kodumuru</li>
-    <li> SM5308-81 : Added SLAB-C business logic</li>
+    <li> SM5308-81 : Added SLAB-C business logic, Author - Rahul Kodumuru</li>
+    <li> SM5308-85 : Additional 10% Grant to Institute, Author - Rahul Kodumuru</li>
 </ol>
 
 <h3>Contributors</h3>
