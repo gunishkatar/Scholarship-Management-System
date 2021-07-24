@@ -58,12 +58,9 @@ public abstract class Dao<K, T> {
         return Optional.empty();
     }
 
-<<<<<<< HEAD
     public List<T> getAllScholarshipsByCriteria(String genderCriteria, String academicCriteria, String sportsCriteria) throws SQLException{
         return emptyList();
     }
-
-=======
 
     public List<T> getAllApplicationStatusByInstitute(
             int id) throws SQLException {
@@ -77,5 +74,4 @@ public abstract class Dao<K, T> {
     public void incrementValue(K id, String field, double value)
             throws SQLException {
     }
->>>>>>> 64bee17dac9e2214a8ed29ac972574fba61d21ad
 }

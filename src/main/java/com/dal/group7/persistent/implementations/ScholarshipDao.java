@@ -66,8 +66,8 @@ public class ScholarshipDao extends Dao<Integer, Scholarship> {
              var preparedStatement = connection
                      .prepareStatement(getSelectScholarshipByCriteria())) {
             preparedStatement.setString(FieldConstants.ONE, genderCriteria);
-            preparedStatement.setString(TWO, academicCriteria);
-            preparedStatement.setString(THREE, sportsCriteria);
+            preparedStatement.setString(FieldConstants.TWO, academicCriteria);
+            preparedStatement.setString(FieldConstants.THREE, sportsCriteria);
             final var resultSet = preparedStatement.executeQuery();
             List<Scholarship> scholarships = new ArrayList<>();
             while (resultSet.next()) {
