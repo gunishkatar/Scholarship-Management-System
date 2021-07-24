@@ -83,6 +83,7 @@ public class ViewConstants {
           "Below are the current applications";
   public static final String STARS = " ***** ";
   public static final String EFFECTIVE_FROM = "Effective From: ";
+  public static final String EFFECTIVE_DATE = "Effective From: ";
   public static final String AMOUNT_GRANT = "Amount for grant: ";
   public static final String GIRL_CHILD_SPECIFIC = "Girl Child Specific: ";
   public static final String ACADEMIC_SPECIFIC = "Academic Specific: ";
@@ -104,6 +105,9 @@ public class ViewConstants {
   public static final String NO_USER_FOUND = "No User Found";
   public static final String YES = "yes";
   public static final String NO = "no";
+  public static final String GUEST_QUESTION_ONE = "Please, mention your gender: ";
+  public static final String GUEST_QUESTION_TWO = "Interested in academic scholarships ?";
+  public static final String GUEST_QUESTION_THREE = "Interested in sports scholarships ?";
   public static final String LIST_APPLICATIONS_WITH_PROFILE_SCORE =
           "1. List Applications With Profile Score";
   public static final String VIEW_APPROVED_STUDENT_APPLICATIONS_TWO =

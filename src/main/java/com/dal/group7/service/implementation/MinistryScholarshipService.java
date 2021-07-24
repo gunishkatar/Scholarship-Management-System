@@ -2,6 +2,7 @@ package com.dal.group7.service.implementation;
 
 import com.dal.group7.persistent.interfaces.Dao;
 import com.dal.group7.persistent.model.Scholarship;
+import com.dal.group7.persistent.model.ScholarshipHandle;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -26,5 +27,33 @@ public class MinistryScholarshipService {
 
     public List<Scholarship> displayScholarships() throws SQLException {
         return scholarshipDao.getAll();
+    }
+
+    public int genderParameterMapping(String gender){
+        if(gender.equalsIgnoreCase("male")){
+            return 0;
+        }else {
+            return 1;
+        }
+    }
+
+    public int academicParameterMapping(String academicParameter){
+        if(academicParameter.equalsIgnoreCase("no")){
+            return 0;
+        }else {
+            return 1;
+        }
+    }
+
+    public int sportsParameterMapping(String sportsParameter){
+        if(sportsParameter.equalsIgnoreCase("no")){
+            return 0;
+        }else {
+            return 1;
+        }
+    }
+
+    public List<Scholarship> displayScholarshipsByCriteria(String girlCriteria, String academicCriteria, String sportsCriteria) throws SQLException {
+        return scholarshipDao.getAllScholarshipsByCriteria(girlCriteria, academicCriteria, sportsCriteria);
     }
 }

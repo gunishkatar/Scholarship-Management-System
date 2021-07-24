@@ -23,7 +23,7 @@ public enum CommandFactory {
     GUEST {
         @Override
         public Command getCommand() {
-            return new GuestCommand();
+            return new GuestCommand(ServiceConstants.MINISTRY_SCHOLARSHIP_SERVICE);
         }
     },
     HOME {

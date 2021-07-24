@@ -58,6 +58,9 @@ public abstract class Dao<K, T> {
         return Optional.empty();
     }
 
+    public List<T> getAllScholarshipsByCriteria(String genderCriteria, String academicCriteria, String sportsCriteria) throws SQLException{
+        return emptyList();
+    }
 
     public List<T> getAllApplicationStatusByInstitute(
             int id) throws SQLException {
