@@ -37,7 +37,12 @@
     <li> SM5308-86 : Update Student fail login count to database on fail, to zero on success, Author - Venkata Saikiran</li>
     <li> SM5308-29 : Student login soft blocked details updated to database, Author - Venkata Saikiran</li>
     <li> SM5308-28 : Student Login re-validation in case of incorrect attempts., Author - Venkata Saikiran</li>
+    <li> SM5308-38 : Feedback table creation., Author - Gunish Katar</li>
     <li> SM5308-13 : Student Soft blocking by Portal, Author - Venkata Saikiran </li>
+    <li> SM5308-88 : Profile Score Calculation Logic for Non-Academic Scholarship, Author - Gunish Katar </li>
+    <li> SM5308-43 : Institute and Ministry views the application, Author - Gunish Katar </li>
     <li> SM5308-89 : Profile Score Calculation Logic for Academic Scholarship, Author - Rishita Kotiyal </li>
     <li> SM5308-79 : SLAB A logic, Ministry approves/rejects application, Author - Amrita Krishna</li>
+    <li> SM5308-80 : SLAB B logic, Ministry approves/rejects application, Author - Gunish Katar</li>
+    <li> SM5308-35 : Guest Questionnaire, Author - Gunish Katar</li>
 </ol>
