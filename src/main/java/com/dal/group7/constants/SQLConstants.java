@@ -4,6 +4,7 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class SQLConstants {
+    public static final String NO = "no";
     public static final String STUDENT_BASIC = "student_basic";
     public static final String USER_CREDENTIAL = "user_credential";
     public static final String APPLICATION = "application";
@@ -20,6 +21,10 @@ public class SQLConstants {
             " where application_id = ?";
     private static final String WHERE_APPLICATION_STATUS =
             " where application_status = ?";
+    private static final String WHERE_ID_AND_STATUS =
+            " where institute_id = ? and institute_status = ?";
+    private static final String WHERE_INSTITUTE_APPLICATION_STATUS =
+            " where institute_status = ?";
     private static final String WHERE_SCHOLARSHIP_ID =
             " where scholarship_id = ?";
     private static final String WHERE_SCHOLARSHIP_CRITERIA =
@@ -35,17 +40,24 @@ public class SQLConstants {
                     "security_answer_three, " +
                     "role_type) " +
                     "VALUES (?, ?, ?, ?, ?, ?, ?);";
+
+    private static final String INSERT_NEW_FEEDBACK =
+            "INSERT INTO feedback (institute_id, answer_one, answer_two, " +
+                    "answer_three, answer_four, answer_five, total_rating) " +
+                    "VALUES (?, ?, ?, ?, ?, ?, ?)";
     private static final String INSERT_NEW_INSTITUTE =
-            "INSERT INTO institute_basic (institute_name, email_id, " +
-                    "registration_code, phone_number," +
-                    "address, state, city, country, pinCode)" +
-                    "VALUES(?,?,?,?,?,?,?,?,?)";
+            "INSERT INTO institute_basic (institute_id, name, email, " +
+                    "regd_code, address," +
+                    "city, institute_state, institute_contact, country, " +
+                    "pincode)" +
+                    "VALUES(?,?,?,?,?,?,?,?,?,?)";
     private static final String INSERT_NEW_SCHOLARSHIP =
             "INSERT INTO scholarship (name, effectiveDate, " +
                     "scholarship_amount," +
                     " criteria_girl, criteria_academic, criteria_sports)" +
                     "VALUES(?,?,?,?,?,?)";
     public static final String ONE = "1";
+    public static final String TWO = "2";
     private static final String INSERT_INTO = "INSERT INTO ";
 
     private static final String INSERT_STUDENT_FINANCE =
@@ -83,12 +95,24 @@ public class SQLConstants {
     public static final String PICKED = "picked";
     public static final String FUND_RECEIVED = "fund_received";
     public static final String FUND_ISSUED = "fund_issued";
-    private static final String UPDATE_APPLICATION_SET = "update application set ";
-    private static final String UPDATE_USER_CREDENTIAL_SET = "update user_credential set ";
+    private static final String UPDATE_APPLICATION_SET =
+            "update application set ";
+    private static final String UPDATE_USER_CREDENTIAL_SET =
+            "update user_credential set ";
     private static final String LAST_LOGIN_SET = "last_login_time = now()";
     private static final String STATUS = " = ?";
-    private static final String AMOUNT = "tuition_amount=?, insurance_amount=?, travel_amount=?, " +
-            "living_expenses_amount=?";
+    private static final String AMOUNT =
+            "tuition_amount=?, insurance_amount=?, travel_amount=?, " +
+                    "living_expenses_amount=?";
+    public static final String HOLD = "HOLD";
+    public static final String SOFT_BLOCK_COL = "is_soft_blocked";
+    public static final String HARD_BLOCK_COL = "is_hard_blocked";
+    public static final String APP_STATUS_COL = "application_status";
+    public static final String FAIL_LOGIN_COUNT_COL = "failed_login_count";
+    public static final String AWARD_INSTITUTES =
+            "select institute_id , AVG(total_rating) as average_rating from " +
+                    "feedback group by institute_id order by average_rating " +
+                    "desc limit 2;";
 
     private SQLConstants() {
     }
@@ -109,8 +133,18 @@ public class SQLConstants {
         return SELECT_ALL_QUERY + table + WHERE_STUDENT_ID;
     }
 
-    public static String getSelectByApplicationStatus(){
+    public static String getSelectByApplicationStatus() {
         return SELECT_ALL_QUERY + APPLICATION + WHERE_APPLICATION_STATUS;
+    }
+
+    public static String getSelectByInstituteApplicationStatus() {
+        return SELECT_ALL_QUERY + APPLICATION +
+                WHERE_INSTITUTE_APPLICATION_STATUS;
+    }
+
+    public static String getSelectApprovedApplicationsByInstitute() {
+        return SELECT_ALL_QUERY + APPLICATION +
+                WHERE_ID_AND_STATUS;
     }
 
     public static String getSelectByApplicationIdQuery() {
@@ -129,6 +163,10 @@ public class SQLConstants {
         return SELECT_ALL_QUERY + "student_finance" + WHERE_EMAIL_ID;
     }
 
+    public static String getInsertNewFeedback() {
+        return INSERT_NEW_FEEDBACK;
+    }
+    
     public static String getInsertNewScholarship() {
         return INSERT_NEW_SCHOLARSHIP;
     }
@@ -141,8 +179,16 @@ public class SQLConstants {
         return "insert into " + table + " values(" + params + ");";
     }
 
+    public static String getAwardInstitutes() {
+        return AWARD_INSTITUTES;
+    }
+
     public static String getInsertNewStudent() {
         return INSERT_NEW_STUDENT;
+    }
+
+    public static String getInsertNewInstitute() {
+        return INSERT_NEW_INSTITUTE;
     }
 
     public static String getInsertStudentFinance() {
@@ -161,9 +207,20 @@ public class SQLConstants {
         return INSERT_NEW_APPLICATION;
     }
 
-
     public static String getInsertNewUser() {
         return INSERT_NEW_USER;
+    }
+
+    public static String setGrantAmountValue(String field) {
+        return "update institute_basic set " + field +
+                " = grant_amount + ? where" +
+                " institute_id = ?";
+    }
+
+    public static String setAwardValues(String field) {
+        return "update institute_basic set " + field +
+                " = round(grant_amount + (grant_amount * ?), 2) where " +
+                "institute_id = ? ";
     }
 
     public static String setStatusForApplication(String field) {

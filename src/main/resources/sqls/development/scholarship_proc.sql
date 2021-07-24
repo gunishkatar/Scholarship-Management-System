@@ -44,6 +44,13 @@ BEGIN
     )
         ENGINE = InnoDB
         DEFAULT CHARACTER SET = utf8mb3;
+    alter table application alter column tuition_amount set default 0;
+    alter table application alter column insurance_amount set default 0;
+    alter table application alter column travel_amount set default 0;
+    alter table application alter column living_expenses_amount set default 0;
+
+
+        alter table application modify `application_status` enum('SUBMITTED','APPROVED','REJECTED','CLOSED', 'HOLD')
 END
 |
 

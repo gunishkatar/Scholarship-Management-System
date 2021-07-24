@@ -43,6 +43,23 @@
     <li> SM5308-43 : Institute and Ministry views the application, Author - Gunish Katar </li>
     <li> SM5308-89 : Profile Score Calculation Logic for Academic Scholarship, Author - Rishita Kotiyal </li>
     <li> SM5308-79 : SLAB A logic, Ministry approves/rejects application, Author - Amrita Krishna</li>
+    <li> SM5308-82 : Added SLAB-D revenue allocation business logic, Author - Rishita Kotiyal </li>
+    <li> SM5308-91 : Fix Institute Sign up, Author - Rahul Kodumuru</li>
+    <li> SM5308-37 : Created Feedback template for student, Author - Rishita Kotiyal </li>
+    <li> SM5308-81 : Added SLAB-C business logic, Author - Rahul Kodumuru</li>
+    <li> SM5308-85 : Additional 10% Grant to Institute, Author - Rahul Kodumuru</li>
+    <li> SM5308-16 : Student hard blocking by portal, Author - Venkata Saikiran </li>
+    <li> SM5308-31 : Current Scholarship status update to HOLD after hard blocking,, Author - Venkata Saikiran</li>
+    <li> SM5308-83 : Allocate funds for top ranked institutes, Author - Rahul Kodumuru </li>
     <li> SM5308-80 : SLAB B logic, Ministry approves/rejects application, Author - Gunish Katar</li>
     <li> SM5308-35 : Guest Questionnaire, Author - Gunish Katar</li>
 </ol>
+
+<h3>Contributors</h3>
+<ul>
+    <li>Amrita Krishna</li>
+    <li>Gunish Katar</li>
+    <li>Rishita Kotiyal</li>
+    <li>Rahul Kodumuru</li>
+    <li>Venkata Sai Kiran</li>
+</ul>

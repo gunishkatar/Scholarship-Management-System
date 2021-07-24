@@ -14,7 +14,8 @@ public class StudentHomeCommand extends Command {
         System.out.println(SCHOLARSHIP_SCHEMES);
         System.out.println(APPLY_FOR_A_SCHEME);
         System.out.println(CHECK_THE_STATUS_OF_THE_APPLIED_SCHEME);
-        System.out.println(LOGOUT + System.lineSeparator());
+        System.out.println(GIVE_FEEDBACK);
+        System.out.println("5. Logout" + System.lineSeparator());
         System.out.print(PROMPT_PREFIX + PLEASE_SELECT_YOUR_OPTION);
     }
 
@@ -36,7 +37,8 @@ public class StudentHomeCommand extends Command {
                 this.nextCommand = VIEW_APPLICATION_STATUS.getCommand();
                 break;
             case 4:
-                // TODO: LOGOUT
+                this.nextCommand = SAVE_FEEDBACK.getCommand();
+                break;
             default:
                 this.nextCommand = QUIT.getCommand();
         }

@@ -1,8 +1,7 @@
 package com.dal.group7.persistent.interfaces;
 
-import com.dal.group7.persistent.model.Application;
-
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -59,8 +58,24 @@ public abstract class Dao<K, T> {
         return Optional.empty();
     }
 
+<<<<<<< HEAD
     public List<T> getAllScholarshipsByCriteria(String genderCriteria, String academicCriteria, String sportsCriteria) throws SQLException{
         return emptyList();
     }
 
+=======
+
+    public List<T> getAllApplicationStatusByInstitute(
+            int id) throws SQLException {
+        return emptyList();
+    }
+
+    public ArrayList<Integer> fetchValues() throws SQLException {
+        return null;
+    }
+
+    public void incrementValue(K id, String field, double value)
+            throws SQLException {
+    }
+>>>>>>> 64bee17dac9e2214a8ed29ac972574fba61d21ad
 }

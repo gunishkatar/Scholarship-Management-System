@@ -58,7 +58,8 @@ public class ViewConstants {
           "You have entered invalid Credentials";
   public static final String STUDENT_SOFT_BLOCK_MSG =
           "You have been Blocked Temporarily for a day";
-  public static final String STUDENT_HARD_BLOCK_MSG = "You have been Blocked";
+  public static final String STUDENT_HARD_BLOCK_MSG =
+          "You have tried to login with incorrect credentials for three days. You have been Hard_Blocked";
   public static final String MAX_ATTEMPT_MSG = "You have reached maximum attempts to login.";
   public static final String ENTER_APPLY_SCHEME_FILE =
           "Enter the full path of the scholarship application";
@@ -107,6 +108,12 @@ public class ViewConstants {
   public static final String GUEST_QUESTION_ONE = "Please, mention your gender: ";
   public static final String GUEST_QUESTION_TWO = "Interested in academic scholarships ?";
   public static final String GUEST_QUESTION_THREE = "Interested in sports scholarships ?";
+  public static final String LIST_APPLICATIONS_WITH_PROFILE_SCORE =
+          "1. List Applications With Profile Score";
+  public static final String VIEW_APPROVED_STUDENT_APPLICATIONS_TWO =
+          "2. View Approved Student Applications";
+  public static final String ENTER_ID = "Enter Institute ID >> ";
+  public static final String GIVE_FEEDBACK = "4. Give Feedback";
 
   private ViewConstants() {
   }
