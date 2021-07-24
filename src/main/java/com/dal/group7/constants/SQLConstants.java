@@ -38,6 +38,11 @@ public class SQLConstants {
                     "security_answer_three, " +
                     "role_type) " +
                     "VALUES (?, ?, ?, ?, ?, ?, ?);";
+
+    private static final String INSERT_NEW_FEEDBACK =
+            "INSERT INTO feedback (institute_id, answer_one, answer_two, " +
+                    "answer_three, answer_four, answer_five, total_rating) " +
+                    "VALUES (?, ?, ?, ?, ?, ?, ?)";
     private static final String INSERT_NEW_INSTITUTE =
             "INSERT INTO institute_basic (institute_id, name, email, " +
                     "regd_code, address," +
@@ -143,6 +148,10 @@ public class SQLConstants {
         return SELECT_ALL_QUERY + "student_finance" + WHERE_EMAIL_ID;
     }
 
+    public static String getInsertNewFeedback() {
+        return INSERT_NEW_FEEDBACK;
+    }
+    
     public static String getInsertNewScholarship() {
         return INSERT_NEW_SCHOLARSHIP;
     }

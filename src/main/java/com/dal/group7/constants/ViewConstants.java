@@ -108,6 +108,7 @@ public class ViewConstants {
   public static final String VIEW_APPROVED_STUDENT_APPLICATIONS_TWO =
           "2. View Approved Student Applications";
   public static final String ENTER_ID = "Enter Institute ID >> ";
+  public static final String GIVE_FEEDBACK = "4. Give Feedback";
 
   private ViewConstants() {
   }
