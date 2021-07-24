@@ -15,15 +15,15 @@ public class Institute {
     private Integer id;
     private String name;
     private String emailId;
-    private Integer registrationCode;
+    private String registrationCode;
     private String password;
     private String reConfirmPassword;
     private String address;
     private String city;
     private String state;
-    private Integer phoneNumber;
+    private String phoneNumber;
     private String country;
-    private Integer pinCode;
+    private String pinCode;
     private String securityAnswerOne;
     private String securityAnswerTwo;
     private String securityAnswerThree;
@@ -32,9 +32,12 @@ public class Institute {
     public Institute() {
     }
 
-    public Institute(Integer id, String name, String emailId, Integer registrationCode,String password,
-                     String reConfirmPassword, Integer phoneNumber, String address,String city, String state,
-                     String country, Integer pinCode, String securityAnswerOne, String securityAnswerTwo,
+    public Institute(Integer id, String name, String emailId,
+                     String registrationCode, String password,
+                     String reConfirmPassword, String phoneNumber,
+                     String address, String city, String state,
+                     String country, String pinCode, String securityAnswerOne,
+                     String securityAnswerTwo,
                      String securityAnswerThree) {
         this.id = id;
         this.name = name;
@@ -70,7 +73,7 @@ public class Institute {
 
     public String getEmailId() { return emailId;}
 
-    public Integer getRegistrationCode() {
+    public String getRegistrationCode() {
         return registrationCode;
     }
 
@@ -80,7 +83,7 @@ public class Institute {
 
     public String getReConfirmPassword() { return reConfirmPassword; }
 
-    public Integer getPhoneNumber() {
+    public String getPhoneNumber() {
         return phoneNumber;
     }
 
@@ -100,7 +103,7 @@ public class Institute {
         return country;
     }
 
-    public Integer getPinCode() {
+    public String getPinCode() {
         return pinCode;
     }
 
@@ -118,18 +121,18 @@ public class Institute {
 
 
     public Institute from(JSONObject jsonObject) {
-        this.id = new Random().nextInt();
-        this.name= jsonObject.getString("name");
+        this.id = new Random().nextInt() & Integer.MAX_VALUE;
+        this.name = jsonObject.getString("name");
         this.emailId = jsonObject.getString("email");
-        this.registrationCode = jsonObject.getInt("regd_code");
+        this.registrationCode = jsonObject.getString("regd_code");
         this.password = jsonObject.getString("password");
         this.reConfirmPassword = jsonObject.getString("re_confirm_password");
         this.address = jsonObject.getString("address");
         this.city = jsonObject.getString("city");
         this.state = jsonObject.getString("institute_state");
-        this.phoneNumber = jsonObject.getInt("institute_contact");
+        this.phoneNumber = jsonObject.getString("institute_contact");
         this.country = jsonObject.getString("country");
-        this.pinCode = jsonObject.getInt("pincode");
+        this.pinCode = jsonObject.getString("pincode");
         this.securityAnswerOne = jsonObject.getString("security_answer_one");
         this.securityAnswerTwo = jsonObject.getString("security_answer_two");
         this.securityAnswerThree = jsonObject.getString("security_answer_three");

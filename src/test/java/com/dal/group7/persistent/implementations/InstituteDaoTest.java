@@ -14,15 +14,16 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.ArgumentMatchers.any;
 
 class InstituteDaoTest {
 
-    private static final Institute INSTITUTE = new Institute(1,"name","dal.ca",5000,
-            "abc","abc", 1111,"LakeLouise","NovaScotia",
-            "Halifax","Canada",1234,"Rock",
-            "Alchemist","Wall Street");
+    private static final Institute INSTITUTE =
+            new Institute(1, "name", "dal.ca", "5000",
+                    "abc", "abc", "1111A", "LakeLouise", "NovaScotia",
+                    "Halifax", "Canada", "1234A", "Rock",
+                    "Alchemist", "Wall Street");
 
     @Mock
     private ConnectionManager connectionManager;
