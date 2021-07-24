@@ -1,11 +1,12 @@
 use CSCI5308_7_DEVINT;
 delimiter |
+DROP PROCEDURE SP_CREATE_INSTITUTE_TABLES;
 CREATE PROCEDURE SP_CREATE_INSTITUTE_TABLES()
 BEGIN
     DROP TABLE IF EXISTS `CSCI5308_7_DEVINT`.`institute_basic`;
     CREATE TABLE IF NOT EXISTS `CSCI5308_7_DEVINT`.`institute_basic`
     (
-        `in`      INT          NOT NULL,
+        `institute_id`      INT          NOT NULL,
         `name`              VARCHAR(45)  NOT NULL,
         `email`             VARCHAR(255) NOT NULL,
         `regd_code`         VARCHAR(45)  NOT NULL,
