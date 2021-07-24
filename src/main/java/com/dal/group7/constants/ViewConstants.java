@@ -76,6 +76,10 @@ public class ViewConstants {
   public static final String EXIT1 = "2. Exit";
   public static final String VIEW_SCHOLARSHIP =
           "Below are the current available scholarships";
+  public static final String VIEW_APPROVEDAPPLICATION =
+          "Below are the current approved applications";
+  public static final String VIEW_APPLICATION =
+          "Below are the current applications";
   public static final String STARS = " ***** ";
   public static final String EFFECTIVE_FROM = "Effective From: ";
   public static final String AMOUNT_GRANT = "Amount for grant: ";

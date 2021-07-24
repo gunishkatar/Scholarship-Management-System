@@ -19,6 +19,8 @@ public class SQLConstants {
     private static final String WHERE_EMAIL_ID = " where email_id=?";
     private static final String WHERE_APPLICATION_ID =
             " where application_id = ?";
+    private static final String WHERE_APPLICATION_STATUS =
+            " where application_status = ?";
     private static final String WHERE_SCHOLARSHIP_ID =
             " where scholarship_id = ?";
     private static final String INSERT_NEW_STUDENT =
@@ -106,6 +108,10 @@ public class SQLConstants {
 
     public static String getSelectByStudentIdQuery(String table) {
         return SELECT_ALL_QUERY + table + WHERE_STUDENT_ID;
+    }
+
+    public static String getSelectByApplicationStatus(){
+        return SELECT_ALL_QUERY + APPLICATION + WHERE_APPLICATION_STATUS;
     }
 
     public static String getSelectByApplicationIdQuery() {
