@@ -1,6 +1,8 @@
 package com.dal.group7.service.implementation;
 
+import com.dal.group7.persistent.implementations.ApplicationDao;
 import com.dal.group7.persistent.interfaces.Dao;
+import com.dal.group7.persistent.model.Application;
 import com.dal.group7.persistent.model.UserCredential;
 import com.dal.group7.shared.PwdEncrypt;
 
@@ -11,21 +13,21 @@ import java.time.format.DateTimeFormatter;
 
 import static com.dal.group7.constants.FieldConstants.ONE;
 import static com.dal.group7.constants.FieldConstants.ZERO;
+import static com.dal.group7.constants.SQLConstants.*;
+import static com.dal.group7.constants.SQLConstants.NO;
 import static com.dal.group7.constants.ViewConstants.*;
 import static java.lang.Integer.parseInt;
 
 public class StudentLoginService {
 
   private Dao<String, UserCredential> userCredentialDao;
+  private Dao<String, Application> applicationDao;
   private PwdEncrypt pwdEncrypt;
   private UserCredential userCredential;
   private String userId;
   private String password;
   private int failLoginCount;
-  private static final String YES = "yes";
-  private static final String NO = "no";
-  private static final String SOFT_BLOCK_COL = "is_soft_blocked";
-  private static final String FAIL_LOGIN_COUNT_COL = "failed_login_count";
+
 
   public StudentLoginService(Dao<String, UserCredential> userCredentialDao, PwdEncrypt pwdEncrypt) {
     this.userCredentialDao = userCredentialDao;
@@ -71,10 +73,12 @@ public class StudentLoginService {
     userCredentialDao.updateValue(userId, SOFT_BLOCK_COL, NO);
   }
 
-  private void checkSoftHardBlockCases(String lastLogin) {
+  private void checkSoftHardBlockCases(String lastLogin) throws SQLException {
     Long hrsSinceLogin = calculateHrsSinceLogin(lastLogin);
     if (hrsSinceLogin > 72) {
-      //TO-DO HARD BLOCK
+      userCredentialDao.updateValue(userId, HARD_BLOCK_COL, NO);
+      applicationDao.updateValue(userId, APP_STATUS_COL, HOLD);
+      throw new IllegalArgumentException(STUDENT_HARD_BLOCK_MSG);
     } else if (hrsSinceLogin < 24) {
       throw new IllegalArgumentException(STUDENT_SOFT_BLOCK_MSG);
     }
@@ -98,7 +102,7 @@ public class StudentLoginService {
     userCredentialDao.updateValue(userId, FAIL_LOGIN_COUNT_COL, ZERO);
   }
 
-  private String getEncryptedPassword(String password) {
+  public String getEncryptedPassword(String password) {
     return pwdEncrypt.getEncryptedPwd(password);
   }
 

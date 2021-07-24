@@ -49,6 +49,8 @@ BEGIN
     alter table application alter column travel_amount set default 0;
     alter table application alter column living_expenses_amount set default 0;
 
+
+        alter table application modify `application_status` enum('SUBMITTED','APPROVED','REJECTED','CLOSED', 'HOLD')
 END
 |
 

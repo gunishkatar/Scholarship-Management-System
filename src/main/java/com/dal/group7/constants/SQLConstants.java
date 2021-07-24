@@ -102,6 +102,11 @@ public class SQLConstants {
     private static final String AMOUNT =
             "tuition_amount=?, insurance_amount=?, travel_amount=?, " +
                     "living_expenses_amount=?";
+    public static final String HOLD = "HOLD";
+    public static final String SOFT_BLOCK_COL = "is_soft_blocked";
+    public static final String HARD_BLOCK_COL = "is_hard_blocked";
+    public static final String APP_STATUS_COL = "application_status";
+    public static final String FAIL_LOGIN_COUNT_COL = "failed_login_count";
 
     private SQLConstants() {
     }
