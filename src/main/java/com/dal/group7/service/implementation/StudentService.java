@@ -99,13 +99,4 @@ public class StudentService implements UserService {
                 pincode && address && securityAnswers);
     }
 
-    @Override
-    public void login() {
-        // TODO
-    }
-
-    @Override
-    public void logout() {
-        // TODO
-    }
 }
