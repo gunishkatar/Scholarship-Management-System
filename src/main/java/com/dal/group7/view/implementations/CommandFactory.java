@@ -183,7 +183,8 @@ public enum CommandFactory {
         private static final StudentLoginService STUDENT_LOGIN_SERVICE =
                 new StudentLoginService(
                         USER_CREDENTIALS.createDao(),
-                        new PwdEncrypt(ENCRYPTION.createDao()));
+                        new PwdEncrypt(ENCRYPTION.createDao()),
+                        APPLICATION.createDao());
         private static final InstituteService INSTITUTE_SERVICE =
                 new InstituteService(INSTITUTE.createDao(),
                         new JsonFileReader());

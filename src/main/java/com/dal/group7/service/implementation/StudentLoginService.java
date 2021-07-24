@@ -1,6 +1,5 @@
 package com.dal.group7.service.implementation;
 
-import com.dal.group7.persistent.implementations.ApplicationDao;
 import com.dal.group7.persistent.interfaces.Dao;
 import com.dal.group7.persistent.model.Application;
 import com.dal.group7.persistent.model.UserCredential;
@@ -13,8 +12,8 @@ import java.time.format.DateTimeFormatter;
 
 import static com.dal.group7.constants.FieldConstants.ONE;
 import static com.dal.group7.constants.FieldConstants.ZERO;
-import static com.dal.group7.constants.SQLConstants.*;
 import static com.dal.group7.constants.SQLConstants.NO;
+import static com.dal.group7.constants.SQLConstants.*;
 import static com.dal.group7.constants.ViewConstants.*;
 import static java.lang.Integer.parseInt;
 
@@ -29,16 +28,21 @@ public class StudentLoginService {
   private int failLoginCount;
 
 
-  public StudentLoginService(Dao<String, UserCredential> userCredentialDao, PwdEncrypt pwdEncrypt) {
+  public StudentLoginService(Dao<String, UserCredential> userCredentialDao,
+                             PwdEncrypt pwdEncrypt,
+                             Dao<String, Application> applicationDao) {
     this.userCredentialDao = userCredentialDao;
     this.pwdEncrypt = pwdEncrypt;
+    this.applicationDao = applicationDao;
   }
 
-  public UserCredential userLogin(String userId, String password) throws SQLException {
+  public UserCredential userLogin(String userId, String password)
+          throws SQLException {
     this.userId = userId;
     this.password = getEncryptedPassword(password);
 
-    if (getStoredCredential() && areCredentialsValid() && !isStudentSoftBlocked() && !isStudentHardBlocked()
+    if (getStoredCredential() && areCredentialsValid() &&
+            !isStudentSoftBlocked() && !isStudentHardBlocked()
             && !isStudentBlackListed()) {
       userCredentialDao.updateLastLoginTime(userId);
       updateFailLoginCountOnSuccess();
@@ -76,8 +80,8 @@ public class StudentLoginService {
   private void checkSoftHardBlockCases(String lastLogin) throws SQLException {
     Long hrsSinceLogin = calculateHrsSinceLogin(lastLogin);
     if (hrsSinceLogin > 72) {
-      userCredentialDao.updateValue(userId, HARD_BLOCK_COL, NO);
-      applicationDao.updateValue(userId, APP_STATUS_COL, HOLD);
+      userCredentialDao.updateValue(userId, HARD_BLOCK_COL, YES);
+      applicationDao.updateUserStatus(userId, APP_STATUS_COL, HOLD);
       throw new IllegalArgumentException(STUDENT_HARD_BLOCK_MSG);
     } else if (hrsSinceLogin < 24) {
       throw new IllegalArgumentException(STUDENT_SOFT_BLOCK_MSG);
