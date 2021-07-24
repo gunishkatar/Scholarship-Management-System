@@ -4,6 +4,7 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class SQLConstants {
+    public static final String NO = "no";
     public static final String STUDENT_BASIC = "student_basic";
     public static final String USER_CREDENTIAL = "user_credential";
     public static final String APPLICATION = "application";
@@ -32,16 +33,18 @@ public class SQLConstants {
                     "role_type) " +
                     "VALUES (?, ?, ?, ?, ?, ?, ?);";
     private static final String INSERT_NEW_INSTITUTE =
-            "INSERT INTO institute_basic (institute_name, email_id, " +
-                    "registration_code, phone_number," +
-                    "address, state, city, country, pinCode)" +
-                    "VALUES(?,?,?,?,?,?,?,?,?)";
+            "INSERT INTO institute_basic (institute_id, name, email, " +
+                    "regd_code, address," +
+                    "city, institute_state, institute_contact, country, " +
+                    "pincode)" +
+                    "VALUES(?,?,?,?,?,?,?,?,?,?)";
     private static final String INSERT_NEW_SCHOLARSHIP =
             "INSERT INTO scholarship (name, effectiveDate, " +
                     "scholarship_amount," +
                     " criteria_girl, criteria_academic, criteria_sports)" +
                     "VALUES(?,?,?,?,?,?)";
     public static final String ONE = "1";
+    public static final String TWO = "2";
     private static final String INSERT_INTO = "INSERT INTO ";
 
     private static final String INSERT_STUDENT_FINANCE =
