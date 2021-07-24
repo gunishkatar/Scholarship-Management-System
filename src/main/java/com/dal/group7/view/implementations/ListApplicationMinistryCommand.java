@@ -43,15 +43,7 @@ public class ListApplicationMinistryCommand extends Command {
         for (Application scheme : applications) {
             System.out.print(System.lineSeparator());
             System.out.println(STARS + scheme.getApplicationId() + STARS);
-//            System.out.println(EFFECTIVE_FROM + scheme.getEffectiveDate());
-//            System.out.println(
-//                    AMOUNT_GRANT + scheme.getTuitionAmount());
-//            System.out.println(
-//                    GIRL_CHILD_SPECIFIC + scheme.getCriteriaGirlChild());
-//            System.out.println(
-//                    ACADEMIC_SPECIFIC + scheme.getCriteriaAcademics());
-//            System.out
-//                    .println(SPORTS_SPECIFIC + scheme.getCriteriaSports());
+            System.out.println("Profile Score : " + scheme.getProfileScore());
         }
         System.out.print(System.lineSeparator());
     }
