@@ -15,10 +15,11 @@ import java.sql.SQLException;
 class InstituteServiceTest {
 
     private static final String EMAIL_ID_ONE = "institute@dal.ca";
-    static final Institute INSTITUTE = new Institute(1,"name","dal.ca",5000,"abc",
-            "abc", 1111,"LakeLouise","NovaScotia","Halifax",
-            "Canada",1234, "Rock", "Alchemist",
-            "Wall Street");
+    static final Institute INSTITUTE =
+            new Institute(1, "name", "dal.ca", "5000", "abc",
+                    "abc", "1111A", "LakeLouise", "NovaScotia", "Halifax",
+                    "Canada", "1234A", "Rock", "Alchemist",
+                    "Wall Street");
 
     @Mock
     private InstituteDao instituteDao;
@@ -45,22 +46,28 @@ class InstituteServiceTest {
 
     @Test
     void isValidInstitute() {
-        Institute institute = new Institute(1,"name","institute@dal.ca",5000,
-                "abc","abc",1111,
-                "LakeLouise","NovaScotia","Halifax","Country",1234,
-                "Rock", "Alchemist",  "Wall Street");
+        Institute institute =
+                new Institute(1, "name", "institute@dal.ca", "5000",
+                        "abc", "abc", "1111A",
+                        "LakeLouise", "NovaScotia", "Halifax", "Country",
+                        "1234A",
+                        "Rock", "Alchemist", "Wall Street");
 
-        InstituteService instituteService = new InstituteService(instituteDao, jsonFileReader);
+        InstituteService instituteService =
+                new InstituteService(instituteDao, jsonFileReader);
         Assertions.assertTrue(instituteService.isValid(institute));
     }
 
     @Test
     public void isNotValidInstitute() {
-        Institute institute = new Institute(1,"name","institute@dal.ca",
-                0,"abc","abc",1111, "LakeLouise",
-                "NovaScotia","Halifax","Country",1234, "Rock", "Alchemist",  "Wall Street");
+        Institute institute = new Institute(1, "name", "institute@dal.ca",
+                "0", "abc", "abc", "", "LakeLouise",
+                "NovaScotia", "Halifax", "Country", "", "Rock",
+                "Alchemist",
+                "Wall Street");
 
-        InstituteService instituteService = new InstituteService(instituteDao, jsonFileReader);
+        InstituteService instituteService =
+                new InstituteService(instituteDao, jsonFileReader);
         Assertions.assertFalse(instituteService.isValid(institute));
     }
 

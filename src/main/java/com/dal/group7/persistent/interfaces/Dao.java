@@ -1,7 +1,5 @@
 package com.dal.group7.persistent.interfaces;
 
-import com.dal.group7.persistent.model.Application;
-
 import java.sql.SQLException;
 import java.util.List;
 import java.util.Map;
@@ -59,4 +57,9 @@ public abstract class Dao<K, T> {
         return Optional.empty();
     }
 
+
+    public List<T> getAllApplicationStatusByInstitute(
+            int id) throws SQLException {
+        return emptyList();
+    }
 }

@@ -7,8 +7,7 @@ import com.dal.group7.view.interfaces.Command;
 import java.util.List;
 
 import static com.dal.group7.constants.ViewConstants.*;
-import static com.dal.group7.view.implementations.CommandFactory.ERROR;
-import static com.dal.group7.view.implementations.CommandFactory.STUDENT_HOME;
+import static com.dal.group7.view.implementations.CommandFactory.*;
 
 public class ListScholarshipCommand extends Command {
 
@@ -55,7 +54,17 @@ public class ListScholarshipCommand extends Command {
 
     @Override
     public void setNextCommand() {
-        this.nextCommand =
-                this.result ? STUDENT_HOME.getCommand() : ERROR.getCommand();
+        if (System.getProperty(UserType.USER.toString())
+                .equalsIgnoreCase(UserType.STUDENT.toString()) &&
+                result) {
+            nextCommand = STUDENT_HOME.getCommand();
+        } else if (
+                System.getProperty(UserType.USER.toString())
+                        .equalsIgnoreCase(UserType.INSTITUTE.toString()) &&
+                        result) {
+            nextCommand = INSTITUTE_HOME.getCommand();
+        } else {
+            nextCommand = ERROR.getCommand();
+        }
     }
 }

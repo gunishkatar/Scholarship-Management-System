@@ -7,8 +7,4 @@ import java.sql.SQLException;
 public interface UserService {
 
     void signup(String filename) throws SQLException, IOException;
-
-    void login() throws SQLException;
-
-    void logout();
 }

@@ -2,8 +2,6 @@ package com.dal.group7.persistent.implementations;
 
 import com.dal.group7.persistent.interfaces.Dao;
 import com.dal.group7.persistent.model.Application;
-import com.dal.group7.persistent.model.Scholarship;
-import com.dal.group7.persistent.model.ScholarshipHandle;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -15,7 +13,6 @@ import java.util.Optional;
 
 import static com.dal.group7.constants.FieldConstants.ONE;
 import static com.dal.group7.constants.SQLConstants.*;
-import static com.dal.group7.constants.SQLConstants.getSelectByApplicationIdQuery;
 
 public class ApplicationDao extends Dao<String, Application> {
     private final ConnectionManager connectionManager;
@@ -215,8 +212,27 @@ public class ApplicationDao extends Dao<String, Application> {
     public List<Application> getAllApplicationByStatus() throws SQLException {
         try (var connection = connectionManager.getConnection();
              var preparedStatement = connection
-                     .prepareStatement(getSelectByApplicationStatus())) {
+                     .prepareStatement(
+                             getSelectByInstituteApplicationStatus())) {
             preparedStatement.setString(ONE, APPROVED);
+            final var resultSet = preparedStatement.executeQuery();
+            List<Application> applications = new ArrayList<>();
+            while (resultSet.next()) {
+                applications.add(new Application().from(resultSet));
+            }
+            return applications;
+        }
+    }
+
+    @Override
+    public List<Application> getAllApplicationStatusByInstitute(int id)
+            throws SQLException {
+        try (var connection = connectionManager.getConnection();
+             var preparedStatement = connection
+                     .prepareStatement(
+                             getSelectApprovedApplicationsByInstitute())) {
+            preparedStatement.setInt(ONE, id);
+            preparedStatement.setString(Integer.parseInt(TWO), APPROVED);
             final var resultSet = preparedStatement.executeQuery();
             List<Application> applications = new ArrayList<>();
             while (resultSet.next()) {
