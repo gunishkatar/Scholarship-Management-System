@@ -88,12 +88,15 @@ public class SQLConstants {
     public static final String PICKED = "picked";
     public static final String FUND_RECEIVED = "fund_received";
     public static final String FUND_ISSUED = "fund_issued";
-    private static final String UPDATE_APPLICATION_SET = "update application set ";
-    private static final String UPDATE_USER_CREDENTIAL_SET = "update user_credential set ";
+    private static final String UPDATE_APPLICATION_SET =
+            "update application set ";
+    private static final String UPDATE_USER_CREDENTIAL_SET =
+            "update user_credential set ";
     private static final String LAST_LOGIN_SET = "last_login_time = now()";
     private static final String STATUS = " = ?";
-    private static final String AMOUNT = "tuition_amount=?, insurance_amount=?, travel_amount=?, " +
-            "living_expenses_amount=?";
+    private static final String AMOUNT =
+            "tuition_amount=?, insurance_amount=?, travel_amount=?, " +
+                    "living_expenses_amount=?";
 
     private SQLConstants() {
     }
@@ -176,9 +179,14 @@ public class SQLConstants {
         return INSERT_NEW_APPLICATION;
     }
 
-
     public static String getInsertNewUser() {
         return INSERT_NEW_USER;
+    }
+
+    public static String setGrantAmountValue(String field) {
+        return "update institute_basic set " + field +
+                " = grant_amount + ? where" +
+                " institute_id = ?";
     }
 
     public static String setStatusForApplication(String field) {

@@ -200,7 +200,7 @@ public class ApplicationDao extends Dao<String, Application> {
              var preparedStatement = connection.prepareStatement(
                      getSelectByApplicationIdQuery())) {
 
-            preparedStatement.setString(ONE, id);
+            preparedStatement.setInt(ONE, Integer.parseInt(id));
             final var resultSet = preparedStatement.executeQuery();
             return resultSet.next() ?
                     Optional.of(new Application().from(resultSet)) :

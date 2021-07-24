@@ -183,8 +183,10 @@ public enum CommandFactory {
         private static final InstituteApplicationService
                 INSTITUTE_APPLICATION_SERVICE =
                 new InstituteApplicationService(APPLICATION.createDao());
-        private static final MinistryApplicationService MINISTRY_APPLICATION_SERVICE = new MinistryApplicationService(
-                APPLICATION.createDao(), SCHOLARSHIP.createDao(), STUDENT_FINANCE.createDao());
+        private static final MinistryApplicationService
+                MINISTRY_APPLICATION_SERVICE = new MinistryApplicationService(
+                APPLICATION.createDao(), SCHOLARSHIP.createDao(),
+                STUDENT_FINANCE.createDao(), INSTITUTE.createDao());
 
     }
 }

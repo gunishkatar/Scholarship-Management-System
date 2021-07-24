@@ -29,10 +29,14 @@ public class StudentSignupCommand extends Command {
         try {
             System.out.println(INSERTING_STUDENT);
             studentService.signup(input);
-            System.out.println(PROGRAM_MESSAGE_PREFIX + SIGNED_UP_AS_STUDENT + PROGRAM_MESSAGE_POSTFIX);
+            System.out.println(PROGRAM_MESSAGE_PREFIX + SIGNED_UP_AS_STUDENT +
+                    PROGRAM_MESSAGE_POSTFIX);
             this.result = true;
-        } catch (Exception e) {
+        } catch (Exception exception) {
             this.result = false;
+            System.out.println(
+                    PROGRAM_MESSAGE_PREFIX + exception.getLocalizedMessage() +
+                            PROGRAM_MESSAGE_POSTFIX);
         }
     }
 
