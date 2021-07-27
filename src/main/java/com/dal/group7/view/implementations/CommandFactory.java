@@ -1,7 +1,7 @@
 package com.dal.group7.view.implementations;
 
 import com.dal.group7.service.implementation.*;
-import com.dal.group7.shared.PwdEncrypt;
+import com.dal.group7.service.implementation.PwdEncrypt;
 import com.dal.group7.view.interfaces.Command;
 
 import static com.dal.group7.persistent.implementations.DaoFactory.*;

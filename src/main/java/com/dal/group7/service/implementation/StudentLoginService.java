@@ -3,7 +3,6 @@ package com.dal.group7.service.implementation;
 import com.dal.group7.persistent.interfaces.Dao;
 import com.dal.group7.persistent.model.Application;
 import com.dal.group7.persistent.model.UserCredential;
-import com.dal.group7.shared.PwdEncrypt;
 
 import java.sql.SQLException;
 import java.time.Duration;
