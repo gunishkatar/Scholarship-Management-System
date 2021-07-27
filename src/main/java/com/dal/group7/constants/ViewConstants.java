@@ -58,7 +58,8 @@ public class ViewConstants {
           "You have entered invalid Credentials";
   public static final String STUDENT_SOFT_BLOCK_MSG =
           "You have been Blocked Temporarily for a day";
-  public static final String STUDENT_HARD_BLOCK_MSG = "You have been Blocked";
+  public static final String STUDENT_HARD_BLOCK_MSG =
+          "You have tried to login with incorrect credentials for three days. You have been Hard_Blocked";
   public static final String MAX_ATTEMPT_MSG = "You have reached maximum attempts to login.";
   public static final String ENTER_APPLY_SCHEME_FILE =
           "Enter the full path of the scholarship application";
@@ -76,8 +77,13 @@ public class ViewConstants {
   public static final String EXIT1 = "2. Exit";
   public static final String VIEW_SCHOLARSHIP =
           "Below are the current available scholarships";
+  public static final String VIEW_APPROVEDAPPLICATION =
+          "Below are the current approved applications";
+  public static final String VIEW_APPLICATION =
+          "Below are the current applications";
   public static final String STARS = " ***** ";
   public static final String EFFECTIVE_FROM = "Effective From: ";
+  public static final String EFFECTIVE_DATE = "Effective From: ";
   public static final String AMOUNT_GRANT = "Amount for grant: ";
   public static final String GIRL_CHILD_SPECIFIC = "Girl Child Specific: ";
   public static final String ACADEMIC_SPECIFIC = "Academic Specific: ";
@@ -99,6 +105,21 @@ public class ViewConstants {
   public static final String NO_USER_FOUND = "No User Found";
   public static final String YES = "yes";
   public static final String NO = "no";
+  public static final String GUEST_QUESTION_ONE = "Please, mention your gender: ";
+  public static final String GUEST_QUESTION_TWO = "Interested in academic scholarships ?";
+  public static final String GUEST_QUESTION_THREE = "Interested in sports scholarships ?";
+  public static final String LIST_APPLICATIONS_WITH_PROFILE_SCORE =
+          "1. List Applications With Profile Score";
+  public static final String VIEW_APPROVED_STUDENT_APPLICATIONS_TWO =
+          "2. View Approved Student Applications";
+  public static final String ENTER_ID = "Enter Institute ID >> ";
+  public static final String GIVE_FEEDBACK = "4. Give Feedback";
+  public static final String EXCEPTION_ENCRYPTION = "Error in encryption_logic query";
+  public static final String INVALID_EMAIL = "Invalid Email";
+  public static final String INVALID_CREDS = "Invalid Credentials";
+  public static final String NO_INSTITUTE_FOUND = "No Institutes Found";
+  public static final String INVALID_PARAMS = "Invalid student parameters passed";
+  public static final String FAILED_TO_APPLY = "Failed applying as";
 
   private ViewConstants() {
   }

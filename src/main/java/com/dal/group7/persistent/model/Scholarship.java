@@ -5,6 +5,8 @@ import org.json.JSONObject;
 
 import java.lang.reflect.Field;
 import java.sql.Date;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.*;
 
 import static java.util.Arrays.stream;
@@ -95,6 +97,20 @@ public class Scholarship {
                 jsonObject.getBoolean("scholarship_criteria_sports");
         this.criteriaAcademics =
                 jsonObject.getBoolean("scholarship_criteria_academics");
+        return this;
+    }
+
+    public Scholarship formResultSet(ResultSet resultSet) throws
+            SQLException {
+        this.scholarShipName = resultSet.getString(2);
+        this.effectiveDate = resultSet.getDate(3);
+        this.tuitionAmount = resultSet.getDouble(4);
+        this.insuranceAmount = resultSet.getDouble(5);
+        this.travelAmount = resultSet.getDouble(6);
+        this.livingExpenseAmount = resultSet.getDouble(7);
+        this.criteriaGirlChild = resultSet.getBoolean(8);
+        this.criteriaAcademics = resultSet.getBoolean(9);
+        this.criteriaSports = resultSet.getBoolean(10);
         return this;
     }
 

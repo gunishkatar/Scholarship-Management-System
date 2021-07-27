@@ -1,5 +1,6 @@
-package com.dal.group7.shared;
+package com.dal.group7.service.implementation;
 
+import com.dal.group7.service.implementation.PwdEncrypt;
 import org.junit.jupiter.api.Test;
 
 import java.util.HashMap;

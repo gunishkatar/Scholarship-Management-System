@@ -28,13 +28,13 @@ public class ApplySchemeCommand extends Command {
         this.input = scanner.nextLine();
         try {
             System.out.println(APPLYING_SCHOLARSHIP);
-            studentSchemeService.applyScheme(input);
-            System.out.println(PROGRAM_MESSAGE_PREFIX + SIGNED_UP_AS_STUDENT +
-                    PROGRAM_MESSAGE_POSTFIX);
             this.result = true;
+            studentSchemeService.applyScheme(input);
+            System.out.println(PROGRAM_MESSAGE_PREFIX + APPLICATION_SUBMITTED +
+                    PROGRAM_MESSAGE_POSTFIX);
         } catch (Exception e) {
-            System.out.println(e.getMessage());
             this.result = false;
+            System.out.println(e.getMessage());
         }
     }
 

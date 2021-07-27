@@ -10,7 +10,7 @@ package com.dal.group7.persistent.implementations;
 import com.dal.group7.constants.SQLConstants;
 import com.dal.group7.persistent.interfaces.Dao;
 import com.dal.group7.persistent.model.Student;
-import com.dal.group7.shared.PwdEncrypt;
+import com.dal.group7.service.implementation.PwdEncrypt;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;

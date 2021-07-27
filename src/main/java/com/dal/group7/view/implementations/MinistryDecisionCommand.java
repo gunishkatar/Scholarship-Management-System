@@ -1,16 +1,15 @@
 package com.dal.group7.view.implementations;
 
 import com.dal.group7.persistent.model.Application;
-import com.dal.group7.service.implementation.InstituteApplicationService;
 import com.dal.group7.service.implementation.MinistryApplicationService;
-import com.dal.group7.service.implementation.MinistryScholarshipService;
 import com.dal.group7.view.interfaces.Command;
 
 import java.sql.SQLException;
 
 import static com.dal.group7.constants.FieldConstants.ONE;
 import static com.dal.group7.constants.ViewConstants.*;
-import static com.dal.group7.view.implementations.CommandFactory.*;
+import static com.dal.group7.view.implementations.CommandFactory.ERROR;
+import static com.dal.group7.view.implementations.CommandFactory.MINISTRY_HOME;
 
 public class MinistryDecisionCommand extends Command {
     private String applicationNumber;
@@ -49,8 +48,12 @@ public class MinistryDecisionCommand extends Command {
                 getConfirmation();
                 if (confirm) {
                     try {
-                        ministryApplicationService.issueFundToApplication(application);
-                        System.out.println(PROGRAM_MESSAGE_PREFIX + "Application has been Approved!" +
+                        ministryApplicationService
+                                .issueFundToApplication(application);
+                        ministryApplicationService
+                                .issueTenPercentGrantToInstitute(application);
+                        System.out.println(PROGRAM_MESSAGE_PREFIX +
+                                "Application has been Approved!" +
                                 PROGRAM_MESSAGE_POSTFIX);
                     } catch (SQLException exception) {
                         System.out.println(PROGRAM_MESSAGE_PREFIX + exception.getMessage() + PROGRAM_MESSAGE_POSTFIX);

@@ -1,28 +1,30 @@
+use CSCI5308_7_PRODUCTION;
+
 DROP procedure IF EXISTS `SP_CREATE_SCHOLARSHIP_TABLES`;
 
 DELIMITER |
 CREATE PROCEDURE SP_CREATE_SCHOLARSHIP_TABLES()
 BEGIN
-    DROP TABLE IF EXISTS `CSCI5308_7_DEVINT`.`scholarship`;
-    CREATE TABLE IF NOT EXISTS `CSCI5308_7_DEVINT`.`scholarship`
+    DROP TABLE IF EXISTS `CSCI5308_7_PRODUCTION`.`scholarship`;
+    CREATE TABLE IF NOT EXISTS `CSCI5308_7_PRODUCTION`.`scholarship`
     (
-        `scholarship_id`     INT         NOT NULL AUTO_INCREMENT,
-        `name`               VARCHAR(45) NOT NULL,
-        `effectiveDate`      date        NOT NULL,
-        `tuition_amount` double      NOT NULL,
+        `scholarship_id`         INT         NOT NULL AUTO_INCREMENT,
+        `name`                   VARCHAR(45) NOT NULL,
+        `effectiveDate`          date        NOT NULL,
+        `tuition_amount`         double      NOT NULL,
         `living_expenses_amount` double      NOT NULL,
-        `travel_amount` double      NOT NULL,
-        `insurance_amount` double      NOT NULL,
-        `criteria_girl`      boolean     NOT NULL,
-        `criteria_academic`  boolean     NOT NULL,
-        `criteria_sports`    boolean     NOT NULL,
+        `travel_amount`          double      NOT NULL,
+        `insurance_amount`       double      NOT NULL,
+        `criteria_girl`          boolean     NOT NULL,
+        `criteria_academic`      boolean     NOT NULL,
+        `criteria_sports`        boolean     NOT NULL,
         PRIMARY KEY (`scholarship_id`)
     )
         ENGINE = InnoDB
         DEFAULT CHARACTER SET = UTF8MB3;
-    DROP TABLE IF EXISTS `CSCI5308_7_DEVINT`.`application`;
+    DROP TABLE IF EXISTS `CSCI5308_7_PRODUCTION`.`application`;
 
-    CREATE TABLE IF NOT EXISTS `CSCI5308_7_DEVINT`.`application`
+    CREATE TABLE IF NOT EXISTS `CSCI5308_7_PRODUCTION`.`application`
     (
         `application_id`         INT                                                                   NOT NULL,
         `scheme_id`              INT                                                                   NULL     DEFAULT NULL,

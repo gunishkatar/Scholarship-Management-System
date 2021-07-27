@@ -27,12 +27,18 @@ public class SelectLoginUserCommand extends Command {
         switch (input) {
             case 1:
                 nextCommand = CommandFactory.STUDENT_LOGIN.getCommand();
+                System.setProperty(UserType.USER.toString(),
+                        UserType.STUDENT.toString());
                 break;
             case 2:
                 nextCommand = CommandFactory.INSTITUTE_LOGIN.getCommand();
+                System.setProperty(UserType.USER.toString(),
+                        UserType.INSTITUTE.toString());
                 break;
             case 3:
                 nextCommand = CommandFactory.MINISTRY_LOGIN.getCommand();
+                System.setProperty(UserType.USER.toString(),
+                        UserType.MINISTRY.toString());
                 break;
             default:
                 nextCommand = QUIT.getCommand();

@@ -15,9 +15,11 @@ import java.sql.SQLException;
 class InstituteServiceTest {
 
     private static final String EMAIL_ID_ONE = "institute@dal.ca";
-    static final Institute INSTITUTE = new Institute(1,"name","dal.ca",5000,"abc",
-            "abc", 1111,"LakeLouise","NovaScotia","Halifax",
-            "Canada",1234);
+    static final Institute INSTITUTE =
+            new Institute(1, "name", "dal.ca", "5000", "abc",
+                    "abc", "1111A", "LakeLouise", "NovaScotia", "Halifax",
+                    "Canada", "1234A", "Rock", "Alchemist",
+                    "Wall Street");
 
     @Mock
     private InstituteDao instituteDao;
@@ -43,22 +45,29 @@ class InstituteServiceTest {
     }
 
     @Test
-    public void isValidInstitute() {
-        Institute institute = new Institute(1,"name","institute@dal.ca",5000,
-                "abc","abc",1111,
-                "LakeLouise","NovaScotia","Halifax","Country",1234);
+    void isValidInstitute() {
+        Institute institute =
+                new Institute(1, "name", "institute@dal.ca", "5000",
+                        "abc", "abc", "1111A",
+                        "LakeLouise", "NovaScotia", "Halifax", "Country",
+                        "1234A",
+                        "Rock", "Alchemist", "Wall Street");
 
-        InstituteService instituteService = new InstituteService(instituteDao, jsonFileReader);
+        InstituteService instituteService =
+                new InstituteService(instituteDao, jsonFileReader);
         Assertions.assertTrue(instituteService.isValid(institute));
     }
 
     @Test
     public void isNotValidInstitute() {
-        Institute institute = new Institute(1,"name","institute@dal.ca",
-                0,"abc","abc",1111, "LakeLouise",
-                "NovaScotia","Halifax","Country",1234);
+        Institute institute = new Institute(1, "name", "institute@dal.ca",
+                "0", "abc", "abc", "", "LakeLouise",
+                "NovaScotia", "Halifax", "Country", "", "Rock",
+                "Alchemist",
+                "Wall Street");
 
-        InstituteService instituteService = new InstituteService(instituteDao, jsonFileReader);
+        InstituteService instituteService =
+                new InstituteService(instituteDao, jsonFileReader);
         Assertions.assertFalse(instituteService.isValid(institute));
     }
 
@@ -81,11 +90,4 @@ class InstituteServiceTest {
         Assertions.assertTrue(instituteService.doesInstituteExist(INSTITUTE.getEmailId()));
     }
 
-    public void signup(){
-
-    }
-
-    public void login(){
-
-    }
 }

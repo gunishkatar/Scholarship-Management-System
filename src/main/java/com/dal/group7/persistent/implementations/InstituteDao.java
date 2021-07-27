@@ -1,7 +1,9 @@
 package com.dal.group7.persistent.implementations;
+
 import com.dal.group7.constants.SQLConstants;
 import com.dal.group7.persistent.interfaces.Dao;
 import com.dal.group7.persistent.model.Institute;
+import com.dal.group7.service.implementation.PwdEncrypt;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -16,7 +18,7 @@ import static com.dal.group7.constants.SQLConstants.*;
 
 public class InstituteDao extends Dao<Integer, Institute> {
 
-    private static final String INSTITUTE = "INSTITUTE";
+    private static final String INSTITUTE = "institute_basic";
     private final ConnectionManager connectionManager;
 
     public InstituteDao(ConnectionManager connectionManager) {
@@ -37,25 +39,58 @@ public class InstituteDao extends Dao<Integer, Institute> {
         }
     }
 
-    public void insertOne(Institute institute) throws SQLException{
-        try (var connection = connectionManager.getConnection();
-             //var preparedStatement = connection.prepareStatement(SQLConstants.getInsertNewInstitute())){
-            var preparedStatement = connection.prepareStatement(insertIntoTableAllFields(INSTITUTE, 10))) {
-            preparedStatement.setInt(1, institute.getId());
-            preparedStatement.setString(2, institute.getName());
-            preparedStatement.setString(3, institute.getEmailId());
-            preparedStatement.setInt(4, institute.getRegistrationCode());
-            preparedStatement.setInt(5, institute.getPhoneNumber());
-            preparedStatement.setString(6, institute.getAddress());
-            preparedStatement.setString(7, institute.getState());
-            preparedStatement.setString(8, institute.getCity());
-            preparedStatement.setString(9, institute.getCountry());
-            preparedStatement.setInt(10, institute.getPinCode());
-            preparedStatement.executeUpdate();
+    @Override
+    public void insertOne(Institute institute) throws SQLException {
+        PreparedStatement statement = null;
+
+        try (Connection connection = connectionManager.getConnection()) {
+            PwdEncrypt pwdEncrypt =
+                    new PwdEncrypt(new PwdEncryptDao(connectionManager));
+            connection.setAutoCommit(false);
+
+            int counter = 1;
+            statement = connection
+                    .prepareStatement(SQLConstants.getInsertNewUser());
+            // user_cred table object
+            statement.setString(counter++, institute.getEmailId());
+            statement.setString(counter++,
+                    pwdEncrypt.getEncryptedPwd(institute.getPassword()));
+            statement.setString(counter++, SQLConstants.TWO);
+            statement.setString(counter++, institute.getSecurityAnswerOne());
+            statement.setString(counter++, institute.getSecurityAnswerTwo());
+            statement.setString(counter++, institute.getSecurityAnswerThree());
+            statement.setString(counter,
+                    institute.getClass().getSimpleName().toLowerCase());
+
+            statement.execute();
+            statement = connection
+                    .prepareStatement(SQLConstants.getInsertNewInstitute());
+            counter = 1;
+
+            // institute_basic table object
+            statement.setInt(counter++, institute.getId());
+            statement.setString(counter++, institute.getName());
+            statement.setString(counter++, institute.getEmailId());
+            statement.setString(counter++, institute.getRegistrationCode());
+            statement.setString(counter++, institute.getAddress());
+            statement.setString(counter++, institute.getCity());
+            statement.setString(counter++, institute.getState());
+            statement.setString(counter++, institute.getPhoneNumber());
+            statement.setString(counter++, institute.getCountry());
+            statement.setString(counter, institute.getPinCode());
+
+            statement.execute();
+            connection.commit();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (statement != null) {
+                statement.close();
+            }
         }
     }
 
-
+    @Override
     public Optional<Institute> get(Integer id) throws SQLException {
         try(var connection = connectionManager.getConnection();
             var preparedStatement = connection.prepareStatement(getSelectByIdQuery(INSTITUTE))) {
@@ -66,15 +101,45 @@ public class InstituteDao extends Dao<Integer, Institute> {
     }
 
 
+    @Override
     public List<Institute> getAll() throws SQLException {
-        try(var connection = connectionManager.getConnection();
-            var preparedStatement = connection.prepareStatement(getSelectAllQuery(INSTITUTE))) {
+        try (var connection = connectionManager.getConnection();
+             var preparedStatement = connection
+                     .prepareStatement(getSelectAllQuery(INSTITUTE))) {
             final var resultSet = preparedStatement.executeQuery();
             List<Institute> institutes = new ArrayList<>();
             while (resultSet.next()) {
                 institutes.add(new Institute().from(resultSet));
             }
             return institutes;
+        }
+    }
+
+    @Override
+    public void updateValue(Integer id, String field, Object value)
+            throws SQLException {
+        try (var connection = connectionManager.getConnection();
+             var preparedStatement = connection.prepareStatement(
+                     setGrantAmountValue(field))
+        ) {
+            preparedStatement.setObject(1, value);
+            preparedStatement.setInt(2, id);
+
+            preparedStatement.executeUpdate();
+        }
+    }
+
+    @Override
+    public void incrementValue(Integer id, String field, double value)
+            throws SQLException {
+        try (var connection = connectionManager.getConnection();
+             var preparedStatement = connection.prepareStatement(
+                     setAwardValues(field))
+        ) {
+            preparedStatement.setObject(1, value);
+            preparedStatement.setInt(2, id);
+
+            preparedStatement.executeUpdate();
         }
     }
 }

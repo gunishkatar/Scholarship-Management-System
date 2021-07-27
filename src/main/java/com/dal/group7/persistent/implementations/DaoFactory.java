@@ -29,6 +29,12 @@ public enum DaoFactory {
             return new StudentDao(connectionManager);
         }
     },
+    STUDENT_FEEDBACK {
+        @Override
+        public Dao<Integer, StudentFeedback> createDao() {
+            return new StudentFeedBackDao(connectionManager);
+        }
+    },
     USER_CREDENTIALS {
         @Override
         public Dao<String, UserCredential> createDao() {

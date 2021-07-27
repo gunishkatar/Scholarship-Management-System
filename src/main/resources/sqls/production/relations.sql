@@ -1,4 +1,5 @@
-use CSCI5308_7_DEVINT;
+use CSCI5308_7_PRODUCTION;
+
 DROP PROCEDURE IF EXISTS SP_CREATE_RELATIONS;
 
 delimiter |
@@ -25,7 +26,7 @@ BEGIN
         ADD CONSTRAINT FK_application_student_basic
             FOREIGN KEY (student_id) REFERENCES student_basic (email_id);
 
-        ALTER TABLE institute_basic
+    ALTER TABLE institute_basic
         ADD CONSTRAINT FK_institute_basic_user_cred
             FOREIGN KEY (email) REFERENCES user_credential (user_id);
 

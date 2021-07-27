@@ -1,7 +1,7 @@
 package com.dal.group7.view.implementations;
 
 import com.dal.group7.service.implementation.*;
-import com.dal.group7.shared.PwdEncrypt;
+import com.dal.group7.service.implementation.PwdEncrypt;
 import com.dal.group7.view.interfaces.Command;
 
 import static com.dal.group7.persistent.implementations.DaoFactory.*;
@@ -23,7 +23,7 @@ public enum CommandFactory {
     GUEST {
         @Override
         public Command getCommand() {
-            return new GuestCommand();
+            return new GuestCommand(ServiceConstants.MINISTRY_SCHOLARSHIP_SERVICE);
         }
     },
     HOME {
@@ -77,14 +77,29 @@ public enum CommandFactory {
     STUDENT_LOGIN {
         @Override
         public Command getCommand() {
-            return new StudentLoginCommand(ServiceConstants.STUDENT_LOGIN_SERVICE);
+            return new StudentLoginCommand(
+                    ServiceConstants.STUDENT_LOGIN_SERVICE);
         }
 
+    }, SAVE_FEEDBACK {
+        @Override
+        public Command getCommand() {
+            return new StudentFeedbackCommand(
+                    ServiceConstants.STUDENT_FEEDBACK_SERVICE);
+        }
+    },
+    AWARD_INSTITUTE {
+        @Override
+        public Command getCommand() {
+            return new AwardInstitutesCommand(
+                    ServiceConstants.MINISTRY_APPLICATION_SERVICE);
+        }
     },
     INSTITUTE_SIGNUP {
         @Override
         public Command getCommand() {
-            return new InstituteSignupCommand(ServiceConstants.INSTITUTE_SERVICE);
+            return new InstituteSignupCommand(
+                    ServiceConstants.INSTITUTE_SERVICE);
         }
     },
     INSTITUTE_HOME {
@@ -132,6 +147,24 @@ public enum CommandFactory {
         public Command getCommand() {
             return new MinistryDecisionCommand(ServiceConstants.MINISTRY_APPLICATION_SERVICE);
         }
+    },
+    LIST_APPROVED_APPLICATION {
+        @Override
+        public Command getCommand() {
+            return new ListApprovedApplicationCommand(ServiceConstants.INSTITUTE_APPLICATION_SERVICE);
+        }
+    },
+    LIST_APPLICATION {
+        @Override
+        public Command getCommand() {
+            return new ListApplicationCommand(ServiceConstants.INSTITUTE_APPLICATION_SERVICE);
+        }
+    },
+    LIST_APPLICATION_MINISTRY {
+        @Override
+        public Command getCommand() {
+            return new ListApplicationMinistryCommand(ServiceConstants.INSTITUTE_APPLICATION_SERVICE);
+        }
     };
 
     public abstract Command getCommand();
@@ -150,7 +183,8 @@ public enum CommandFactory {
         private static final StudentLoginService STUDENT_LOGIN_SERVICE =
                 new StudentLoginService(
                         USER_CREDENTIALS.createDao(),
-                        new PwdEncrypt(ENCRYPTION.createDao()));
+                        new PwdEncrypt(ENCRYPTION.createDao()),
+                        APPLICATION.createDao());
         private static final InstituteService INSTITUTE_SERVICE =
                 new InstituteService(INSTITUTE.createDao(),
                         new JsonFileReader());
@@ -165,8 +199,13 @@ public enum CommandFactory {
         private static final InstituteApplicationService
                 INSTITUTE_APPLICATION_SERVICE =
                 new InstituteApplicationService(APPLICATION.createDao());
-        private static final MinistryApplicationService MINISTRY_APPLICATION_SERVICE = new MinistryApplicationService(
-                APPLICATION.createDao(), SCHOLARSHIP.createDao(), STUDENT_FINANCE.createDao());
-
+        private static final MinistryApplicationService
+                MINISTRY_APPLICATION_SERVICE = new MinistryApplicationService(
+                APPLICATION.createDao(), SCHOLARSHIP.createDao(),
+                STUDENT_FINANCE.createDao(), INSTITUTE.createDao(),
+                STUDENT_FEEDBACK.createDao());
+        private static final StudentFeedbackService STUDENT_FEEDBACK_SERVICE =
+                new StudentFeedbackService(STUDENT_FEEDBACK.createDao(),
+                        new JsonFileReader());
     }
 }

@@ -1,9 +1,7 @@
 package com.dal.group7.service.implementation;
 
 import com.dal.group7.persistent.interfaces.Dao;
-import com.dal.group7.persistent.model.Student;
 import com.dal.group7.persistent.model.UserCredential;
-import com.dal.group7.shared.PwdEncrypt;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
@@ -12,8 +10,6 @@ import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 
 import java.sql.SQLException;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.Optional;
 
 import static com.dal.group7.constants.ViewConstants.NO_USER_FOUND;
@@ -26,6 +22,7 @@ class StudentLoginServiceTest {
   private static final String USERNAME = "user";
   private static final String TEST_DATE = "2021-07-21 00:00:01";
   private static final String TEST_DATE1 = "2022-07-21 08:00:01";
+  private static final String hashedPwd ="xtrsfd";
   private static final UserCredential CREDENTIALS = new UserCredential(USERNAME, PASSWORD, "NO", "NO",
           "2020-01-10", "1", "NONE", "NONE",
           "NONE", "0", "student", "NO");
@@ -97,5 +94,25 @@ class StudentLoginServiceTest {
     int loginCountVal = studentLoginService.getLoginCount(loginCount);
     assertEquals(1,loginCountVal);
   }
+
+  @Test
+  void getLoginCountTestNotEquals() {
+    String loginCount ="2";
+    int loginCountVal = studentLoginService.getLoginCount(loginCount);
+    assertNotEquals(1,loginCountVal);
+  }
+
+  @Test
+  void getEncryptedPasswordTest() {
+    Mockito.when(studentLoginService.getEncryptedPassword(any())).thenReturn("xtrsfd");
+    assertEquals(studentLoginService.getEncryptedPassword("abc"),hashedPwd);
+  }
+
+  @Test
+  void getEncryptedPasswordTestNotEquals() {
+    Mockito.when(studentLoginService.getEncryptedPassword(any())).thenReturn("xtrfd");
+    assertNotEquals(studentLoginService.getEncryptedPassword("abc"),hashedPwd);
+  }
+
 
 }

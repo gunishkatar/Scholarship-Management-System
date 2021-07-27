@@ -1,10 +1,13 @@
-use CSCI5308_7_DEVINT;
+use CSCI5308_7_PRODUCTION;
+
 delimiter |
-DROP PROCEDURE SP_CREATE_INSTITUTE_TABLES;
+
+DROP PROCEDURE IF EXISTS SP_CREATE_INSTITUTE_TABLES;
+
 CREATE PROCEDURE SP_CREATE_INSTITUTE_TABLES()
 BEGIN
-    DROP TABLE IF EXISTS `CSCI5308_7_DEVINT`.`institute_basic`;
-    CREATE TABLE IF NOT EXISTS `CSCI5308_7_DEVINT`.`institute_basic`
+    DROP TABLE IF EXISTS `CSCI5308_7_PRODUCTION`.`institute_basic`;
+    CREATE TABLE IF NOT EXISTS `CSCI5308_7_PRODUCTION`.`institute_basic`
     (
         `institute_id`      INT          NOT NULL,
         `name`              VARCHAR(45)  NOT NULL,
@@ -24,6 +27,6 @@ BEGIN
     alter table institute_basic
         add grant_amount double default 0 null;
 
-END 
+END
 |
 CALL SP_CREATE_INSTITUTE_TABLES();

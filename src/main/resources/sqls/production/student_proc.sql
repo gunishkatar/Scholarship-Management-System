@@ -1,12 +1,14 @@
+use CSCI5308_7_PRODUCTION;
+
 DROP PROCEDURE IF EXISTS SP_CREATE_STUDENT_TABLES;
 
 delimiter |
 CREATE PROCEDURE SP_CREATE_STUDENT_TABLES()
 BEGIN
 
-    DROP TABLE IF EXISTS `CSCI5308_7_DEVINT`.`student_basic`;
+    DROP TABLE IF EXISTS `CSCI5308_7_PRODUCTION`.`student_basic`;
     -- Student Basic
-    CREATE TABLE IF NOT EXISTS `CSCI5308_7_DEVINT`.`student_basic`
+    CREATE TABLE IF NOT EXISTS `CSCI5308_7_PRODUCTION`.`student_basic`
     (
         `first_name`      VARCHAR(255)                          NOT NULL,
         `last_name`       VARCHAR(255)                          NOT NULL,
@@ -24,9 +26,9 @@ BEGIN
       DEFAULT CHARACTER SET = UTF8MB3;
 
     -- Student Academic
-    DROP TABLE IF EXISTS `CSCI5308_7_DEVINT`.`student_academic`;
+    DROP TABLE IF EXISTS `CSCI5308_7_PRODUCTION`.`student_academic`;
 
-    CREATE TABLE IF NOT EXISTS `CSCI5308_7_DEVINT`.`student_academic`
+    CREATE TABLE IF NOT EXISTS `CSCI5308_7_PRODUCTION`.`student_academic`
     (
         `email_id`                   VARCHAR(255) NOT NULL,
         `institute_id`               INT          NULL DEFAULT NULL,
@@ -45,9 +47,9 @@ BEGIN
       DEFAULT CHARACTER SET = UTF8MB3;
 
     -- student Non Academic
-    DROP TABLE IF EXISTS `CSCI5308_7_DEVINT`.`student_non_academic`;
+    DROP TABLE IF EXISTS `CSCI5308_7_PRODUCTION`.`student_non_academic`;
 
-    CREATE TABLE IF NOT EXISTS `CSCI5308_7_DEVINT`.`student_non_academic`
+    CREATE TABLE IF NOT EXISTS `CSCI5308_7_PRODUCTION`.`student_non_academic`
     (
         `email_id`                     VARCHAR(255) NOT NULL,
         `national_sports_awards_count` INT          NULL DEFAULT '0',
@@ -61,9 +63,9 @@ BEGIN
       DEFAULT CHARACTER SET = UTF8MB3;
 
     -- student finance
-    DROP TABLE IF EXISTS `CSCI5308_7_DEVINT`.`student_finance`;
+    DROP TABLE IF EXISTS `CSCI5308_7_PRODUCTION`.`student_finance`;
 
-    CREATE TABLE IF NOT EXISTS `CSCI5308_7_DEVINT`.`student_finance`
+    CREATE TABLE IF NOT EXISTS `CSCI5308_7_PRODUCTION`.`student_finance`
     (
         `email_id`             VARCHAR(255) NOT NULL,
         `bank_acc_num`         VARCHAR(255) NULL DEFAULT NULL,
