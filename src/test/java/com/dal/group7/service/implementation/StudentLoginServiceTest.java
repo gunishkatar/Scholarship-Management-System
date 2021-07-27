@@ -1,9 +1,7 @@
 package com.dal.group7.service.implementation;
 
 import com.dal.group7.persistent.interfaces.Dao;
-import com.dal.group7.persistent.model.Student;
 import com.dal.group7.persistent.model.UserCredential;
-import com.dal.group7.shared.PwdEncrypt;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
@@ -12,8 +10,6 @@ import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 
 import java.sql.SQLException;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.Optional;
 
 import static com.dal.group7.constants.ViewConstants.NO_USER_FOUND;
