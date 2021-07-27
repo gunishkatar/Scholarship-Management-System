@@ -6,6 +6,7 @@ import com.dal.group7.persistent.model.*;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import static com.dal.group7.constants.ViewConstants.NO_INSTITUTE_FOUND;
 import static com.dal.group7.persistent.model.ApplicationStatus.FUND_ISSUED;
 import static com.dal.group7.persistent.model.ApplicationStatus.REJECTED;
 
@@ -94,7 +95,7 @@ public class MinistryApplicationService {
         ArrayList<Integer> institutes = studentFeedbackDao.fetchValues();
 
         if (institutes.isEmpty()) {
-            throw new Exception("No Institutes Found");
+            throw new Exception(NO_INSTITUTE_FOUND);
         } else {
             Integer instituteIdOne = institutes.get(0);
             Integer instituteIdTwo = institutes.get(1);

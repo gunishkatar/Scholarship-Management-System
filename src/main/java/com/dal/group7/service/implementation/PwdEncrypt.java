@@ -5,6 +5,8 @@ import com.dal.group7.persistent.interfaces.Dao;
 import java.sql.SQLException;
 import java.util.Map;
 
+import static com.dal.group7.constants.ViewConstants.EXCEPTION_ENCRYPTION;
+
 public class PwdEncrypt {
     private final Dao<String, String> pwdDao;
 
@@ -18,7 +20,7 @@ public class PwdEncrypt {
             Map<String, String> hmap = pwdDao.getValue();
             encryptedPwd = getStringHash(inputPwd, hmap);
         } catch (SQLException e) {
-            System.out.println("Error in encryption_logic query" + e);
+            System.out.println(EXCEPTION_ENCRYPTION + e);
         }
         return encryptedPwd;
     }

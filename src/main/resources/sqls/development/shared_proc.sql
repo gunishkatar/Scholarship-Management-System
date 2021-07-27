@@ -30,12 +30,13 @@ BEGIN
 
     CREATE TABLE IF NOT EXISTS `CSCI5308_7_DEVINT`.`feedback`
     (
-        `user_id`           VARCHAR(255) NOT NULL,
-        `fb_question_one`   VARCHAR(255) NOT NULL,
-        `fb_question_two`   VARCHAR(255) NOT NULL,
-        `fb_question_three` VARCHAR(255) NOT NULL,
-        `rating`            INT          NOT NULL,
-        PRIMARY KEY (`user_id`)
+       institute_id int    default 0 null,
+       answer_one   double default 0 not null,
+       answer_two   double default 0 not null,
+       answer_three double default 0 not null,
+       answer_four  double default 0 not null,
+       answer_five  double default 0 not null,
+       total_rating double default 0 not null
     ) ENGINE = InnoDB
       DEFAULT CHARACTER SET = utf8mb3;
 END

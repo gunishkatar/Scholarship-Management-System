@@ -8,6 +8,8 @@ import org.json.JSONObject;
 import java.io.IOException;
 import java.sql.SQLException;
 
+import static com.dal.group7.constants.ViewConstants.INVALID_PARAMS;
+
 public class StudentFeedbackService {
     private final Dao<Integer, StudentFeedback> studentFeedbackDao;
     private final JsonFileReader jsonFileReader;
@@ -27,7 +29,7 @@ public class StudentFeedbackService {
             studentFeedbackDao.insertOne(feedback);
         } else {
             throw new IllegalArgumentException(
-                    "Invalid student parameters passed");
+                    INVALID_PARAMS);
         }
     }
 
