@@ -18,13 +18,14 @@ import static java.lang.Integer.parseInt;
 
 public class StudentLoginService {
 
-  private Dao<String, UserCredential> userCredentialDao;
-  private Dao<String, Application> applicationDao;
-  private PwdEncrypt pwdEncrypt;
+  private final Dao<String, UserCredential> userCredentialDao;
+  private final Dao<String, Application> applicationDao;
+  private final PwdEncrypt pwdEncrypt;
   private UserCredential userCredential;
   private String userId;
   private String password;
   private int failLoginCount;
+  private static final String pattern = "yyyy-MM-dd HH:mm:ss";
 
 
   public StudentLoginService(Dao<String, UserCredential> userCredentialDao,
@@ -88,10 +89,10 @@ public class StudentLoginService {
   }
 
   public Long calculateHrsSinceLogin(String lastLogin) {
-    DateTimeFormatter last_login_date_format = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
-    LocalDateTime last_login_date = LocalDateTime.parse(lastLogin, last_login_date_format);
-    LocalDateTime current_date = LocalDateTime.now();
-    Duration duration = Duration.between(last_login_date, current_date);
+    DateTimeFormatter lastLoginDateFormat = DateTimeFormatter.ofPattern(pattern);
+    LocalDateTime lastLoginDate = LocalDateTime.parse(lastLogin, lastLoginDateFormat);
+    LocalDateTime currentDate = LocalDateTime.now();
+    Duration duration = Duration.between(lastLoginDate, currentDate);
     return duration.toHours();
   }
 

@@ -90,11 +90,4 @@ class InstituteServiceTest {
         Assertions.assertTrue(instituteService.doesInstituteExist(INSTITUTE.getEmailId()));
     }
 
-    public void signup(){
-
-    }
-
-    public void login(){
-
-    }
 }

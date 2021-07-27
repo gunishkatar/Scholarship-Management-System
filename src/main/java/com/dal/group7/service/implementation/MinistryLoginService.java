@@ -5,6 +5,8 @@ import com.dal.group7.persistent.model.UserCredential;
 
 import java.sql.SQLException;
 
+import static com.dal.group7.constants.ViewConstants.INVALID_CREDS;
+
 public class MinistryLoginService {
     private Dao<String, UserCredential> userCredentialDao;
     private PwdEncrypt pwdEncrypt;
@@ -23,7 +25,7 @@ public class MinistryLoginService {
         if(getStoredCredential() && areCredentialsValid()){
             return userCredential;
         }
-        throw new IllegalArgumentException("Invalid Credentials");
+        throw new IllegalArgumentException(INVALID_CREDS);
     }
 
     private String getEncryptedPassword(String password){
@@ -33,7 +35,7 @@ public class MinistryLoginService {
     private boolean getStoredCredential() throws SQLException {
         if(userCredentialDao.doesExist(userId)){
             userCredential = userCredentialDao.get(userId)
-                    .orElseThrow(() -> new IllegalArgumentException("Invalid Credentials"));
+                    .orElseThrow(() -> new IllegalArgumentException(INVALID_CREDS));
             return true;
         }
         return false;

@@ -54,6 +54,7 @@
     <li> SM5308-80 : SLAB B logic, Ministry approves/rejects application, Author - Gunish Katar</li>
     <li> SM5308-35 : Guest Questionnaire, Author - Gunish Katar</li>
     <li> SM5308-92 : Bug fixes for Hard blocking, Author - Rahul Kodumuru</li>
+    <li> SM5308-93 : Code Refactoring - v1, Author - Venkata Saikiran</li>
 </ol>
 
 <h3>Contributors</h3>

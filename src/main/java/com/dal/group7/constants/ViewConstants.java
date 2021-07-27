@@ -114,6 +114,12 @@ public class ViewConstants {
           "2. View Approved Student Applications";
   public static final String ENTER_ID = "Enter Institute ID >> ";
   public static final String GIVE_FEEDBACK = "4. Give Feedback";
+  public static final String EXCEPTION_ENCRYPTION = "Error in encryption_logic query";
+  public static final String INVALID_EMAIL = "Invalid Email";
+  public static final String INVALID_CREDS = "Invalid Credentials";
+  public static final String NO_INSTITUTE_FOUND = "No Institutes Found";
+  public static final String INVALID_PARAMS = "Invalid student parameters passed";
+  public static final String FAILED_TO_APPLY = "Failed applying as";
 
   private ViewConstants() {
   }

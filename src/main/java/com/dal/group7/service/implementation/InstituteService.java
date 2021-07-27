@@ -10,6 +10,9 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.util.InvalidPropertiesFormatException;
 
+import static com.dal.group7.constants.ViewConstants.INVALID_EMAIL;
+import static com.dal.group7.constants.ViewConstants.INVALID_PARAMS;
+
 
 public class InstituteService implements UserService {
     private final Dao<Integer, Institute> instituteDao;
@@ -66,7 +69,7 @@ public class InstituteService implements UserService {
                 }
             }
         } catch (Exception e) {
-            throw new IllegalArgumentException("Invalid Email");
+            throw new IllegalArgumentException(INVALID_EMAIL);
         }
         return false;
     }
@@ -87,7 +90,7 @@ public class InstituteService implements UserService {
             instituteDao.insertOne(institute);
         } else {
             throw new InvalidPropertiesFormatException(
-                    "Incorrect Parameters passed");
+                    INVALID_PARAMS);
         }
     }
 
