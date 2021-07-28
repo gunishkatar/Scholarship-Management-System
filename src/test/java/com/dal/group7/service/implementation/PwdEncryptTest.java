@@ -1,11 +1,11 @@
 package com.dal.group7.service.implementation;
 
-import com.dal.group7.service.implementation.PwdEncrypt;
 import org.junit.jupiter.api.Test;
 
 import java.util.HashMap;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 
 class PwdEncryptTest {
 

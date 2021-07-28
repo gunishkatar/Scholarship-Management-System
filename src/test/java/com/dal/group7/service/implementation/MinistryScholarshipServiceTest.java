@@ -17,7 +17,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import static java.sql.Date.valueOf;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.ArgumentMatchers.any;
 
 class MinistryScholarshipServiceTest {

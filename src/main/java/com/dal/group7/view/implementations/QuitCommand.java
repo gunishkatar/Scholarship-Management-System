@@ -22,11 +22,9 @@ public class QuitCommand extends Command {
 
     @Override
     public void handle() {
-        //TODO: ADD content
     }
 
     @Override
     public void setNextCommand() {
-        //TODO: ADD content
     }
 }

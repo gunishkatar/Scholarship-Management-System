@@ -10,7 +10,6 @@ import org.mockito.InjectMocks;
 import org.mockito.MockitoAnnotations;
 
 import java.sql.Date;
-import java.text.DecimalFormat;
 
 class StudentSchemeServiceTest {
     private static final String FILE_PATH = "file-path";

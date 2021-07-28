@@ -15,7 +15,6 @@ public class ErrorCommand extends Command {
 
     @Override
     public void handle() {
-        // TODO: ADD content
     }
 
     @Override

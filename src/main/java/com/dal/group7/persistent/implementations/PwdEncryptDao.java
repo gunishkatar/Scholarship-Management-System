@@ -5,6 +5,7 @@ import com.dal.group7.persistent.interfaces.Dao;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.HashMap;
+
 import static com.dal.group7.constants.SQLConstants.getSelectAllQuery;
 
 public class PwdEncryptDao extends Dao {
