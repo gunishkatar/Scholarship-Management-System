@@ -8,7 +8,8 @@ import java.util.List;
 
 import static com.dal.group7.constants.ViewConstants.STARS;
 import static com.dal.group7.constants.ViewConstants.VIEW_APPLICATION;
-import static com.dal.group7.view.implementations.CommandFactory.*;
+import static com.dal.group7.view.implementations.CommandFactory.ERROR;
+import static com.dal.group7.view.implementations.CommandFactory.MINISTRY_HOME;
 
 public class ListApplicationMinistryCommand extends Command {
 

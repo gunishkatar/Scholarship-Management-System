@@ -1,18 +1,14 @@
 package com.dal.group7.view.implementations;
 
-import com.dal.group7.persistent.model.Application;
-import com.dal.group7.persistent.model.ScholarshipHandle;
-import com.dal.group7.service.implementation.MinistryScholarshipService;
 import com.dal.group7.persistent.model.Scholarship;
+import com.dal.group7.service.implementation.MinistryScholarshipService;
 import com.dal.group7.view.interfaces.Command;
 
 import java.util.List;
-import java.util.Scanner;
 
 import static com.dal.group7.constants.ViewConstants.*;
-import static com.dal.group7.view.implementations.CommandFactory.*;
-
-import com.dal.group7.view.interfaces.Command;
+import static com.dal.group7.view.implementations.CommandFactory.ERROR;
+import static com.dal.group7.view.implementations.CommandFactory.HOME;
 
 public class GuestCommand extends Command {
 

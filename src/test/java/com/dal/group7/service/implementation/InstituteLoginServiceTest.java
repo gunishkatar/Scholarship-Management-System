@@ -12,7 +12,8 @@ import org.mockito.MockitoAnnotations;
 import java.sql.SQLException;
 import java.util.Optional;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.ArgumentMatchers.any;
 
 public class InstituteLoginServiceTest {

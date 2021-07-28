@@ -2,10 +2,8 @@ package com.dal.group7.persistent.implementations;
 
 import com.dal.group7.constants.FieldConstants;
 import com.dal.group7.persistent.interfaces.Dao;
-import com.dal.group7.persistent.model.Application;
 import com.dal.group7.persistent.model.Scholarship;
 import com.dal.group7.persistent.model.ScholarshipHandle;
-import com.dal.group7.constants.FieldConstants.*;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -13,7 +11,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
-import static com.dal.group7.constants.FieldConstants.*;
 import static com.dal.group7.constants.SQLConstants.*;
 
 public class ScholarshipDao extends Dao<Integer, Scholarship> {

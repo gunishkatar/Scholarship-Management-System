@@ -2,8 +2,10 @@ package com.dal.group7.view.implementations;
 
 import com.dal.group7.service.implementation.InstituteLoginService;
 import com.dal.group7.view.interfaces.Command;
+
 import static com.dal.group7.constants.ViewConstants.*;
-import static com.dal.group7.view.implementations.CommandFactory.*;
+import static com.dal.group7.view.implementations.CommandFactory.ERROR;
+import static com.dal.group7.view.implementations.CommandFactory.INSTITUTE_HOME;
 
 public class InstituteLoginCommand extends Command {
 

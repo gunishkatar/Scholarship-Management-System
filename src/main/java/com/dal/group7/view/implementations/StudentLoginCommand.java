@@ -1,6 +1,5 @@
 package com.dal.group7.view.implementations;
 
-import com.dal.group7.constants.ViewConstants;
 import com.dal.group7.persistent.model.UserCredential;
 import com.dal.group7.service.implementation.StudentLoginService;
 import com.dal.group7.view.interfaces.Command;
